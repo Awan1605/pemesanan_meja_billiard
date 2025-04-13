@@ -204,7 +204,7 @@
             <ul class="hidden lg:flex space-x-4" id="menu">
                 <li>
                     <a class="text-white hover:text-blue-500 nav-link" href="#">
-                        Beranda
+                        Home
                     </a>
                 </li>
                 <li>
