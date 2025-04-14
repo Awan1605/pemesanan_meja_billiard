@@ -169,14 +169,37 @@
             <button class="text-white block lg:hidden text-2xl" id="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
-            <ul class="hidden lg:flex space-x-4 text-lg" id="menu">
-                <li><a class="text-white hover:text-blue-500 nav-link" href="#">Beranda</a></li>
-                <li><a class="text-white hover:text-blue-500 nav-link" href="{{ route('home') }}">Reservasi</a></li>
-                <li><a class="text-white hover:text-blue-500 nav-link" href="#">Galeri</a></li>
-                <li><a class="text-white hover:text-blue-500 nav-link" href="#">Tentang</a></li>
-                <li><a class="text-white hover:text-blue-500 nav-link" href="#">Hubungi Kami</a></li>
-                <li><a class="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-800"
-                        href="{{ route('login') }}">Login</a></li>
+            <ul class="hidden lg:flex space-x-4" id="menu">
+                <li>
+                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        Beranda
+                    </a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        Reservasi
+                    </a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        Galeri
+                    </a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        Tentang
+                    </a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        Hubungi Kami
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-primary text-white py-2 px-4 rounded" href="#">
+                        Login
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="lg:hidden">
