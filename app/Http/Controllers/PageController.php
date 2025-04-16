@@ -10,6 +10,10 @@ class PageController extends Controller
     {
         return view('about');
     }
+    public function about2()
+    {
+        return view('about2');
+    }
     public function home()
     {
         return view('home');
@@ -17,6 +21,10 @@ class PageController extends Controller
     public function login()
     {
         return view('login');
+    }
+    public function registration()
+    {
+        return view('registration');
     }
 
 }

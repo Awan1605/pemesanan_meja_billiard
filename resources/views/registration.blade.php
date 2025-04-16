@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zetro Billiard Login</title>
+    <title>Zetro Billiard Registration</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color:rgba(14, 20, 36, 1);
+            background-color: rgba(14, 20, 36, 1);
         }
         .container {
             display: flex;
@@ -67,9 +67,9 @@
             margin-bottom: 28px;
             display: flex;
             align-items: center;
-            justify-content: center; /* Tambahkan ini */
+            justify-content: center;
             gap: 10px;
-            width: 100%; /* Pastikan mengambil lebar penuh */
+            width: 100%;
         }
         .input-group {
             margin-bottom: 20px;
@@ -101,14 +101,10 @@
             cursor: pointer;
             z-index: 2;
         }
-        .input-group input[type="password"],
-        .input-group input[type="text"] {
-            padding: 10px 35px 10px 35px;
-        }
         .terms {
-            font-size: 12px;
+            font-size: 11px;
             color: gray;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .terms span {
             color: #2563eb;
@@ -118,7 +114,7 @@
             width: 100%;
             background: #2563eb;
             color: white;
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
@@ -132,18 +128,18 @@
         .btn:hover {
             background: #1e4db7;
         }
-        .create-account {
+        .login-link {
             text-align: center;
             margin-top: 15px;
             font-size: 14px;
         }
-        .create-account a {
+        .login-link a {
             text-decoration: none;
             font-weight: bold;
             color: black;
         }
 
-        /* ANIMASI TAMBAHAN */
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -187,27 +183,27 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
+        
         @media (max-width: 768px) {
-        .container {
-            flex-direction: column;
-            width: 90%;
-            height: auto;
+            .container {
+                flex-direction: column;
+                width: 90%;
+                height: auto;
+            }
+            .left, .right {
+                width: 100%;
+                height: auto;
+            }
+            .left img {
+                height: 200px;
+            }
+            .overlay h1 {
+                font-size: 24px;
+            }
+            .right {
+                padding: 30px;
+            }
         }
-
-        .left, .right {
-            width: 100%;
-            height: auto;
-        }
-
-        .left img {
-            height: 200px;
-        }
-
-        .overlay h1 {
-            font-size: 24px;
-        }
-    }
-
     </style>
 </head>
 <body>
@@ -219,37 +215,57 @@
             </div>
         </div>
         <div class="right animate-fade animate-delay-1">
-            <h2 class="animate-fade animate-delay-2">Login Account</h2>
+            <h2 class="animate-fade animate-delay-2">Register Account</h2>
             <form method="POST" action="">
                 @csrf
                 <div class="input-group">
+                    <label for="nama">Nama</label>
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan Nama" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email" name="email" placeholder="email@gmail.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone"> No HP</label>
+                    <i class="fas fa-phone input-icon"></i>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+
+                <div class="input-group">
                     <label for="username">Username</label>
                     <i class="fas fa-user input-icon"></i>
-                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="text" id="username" name="username" placeholder="Masukkan Username" required>
                 </div>
+                
                 <div class="input-group">
                     <label for="password">Password</label>
                     <i class="fas fa-lock input-icon"></i>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                     <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
-                <p class="terms">By signing up you agree to <span>terms and conditions</span> at Zetro Billiard.</p>
-                <button type="submit" class="btn">Login</button>
+               
+                <p class="terms">Dengan melakukan pendaftaran, Anda setuju terhadap <span>syarat dan ketentuan</span> yang berlaku di Zetro Billiard.</p>
+                
+                <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Register</button>
             </form>
-            <p class="create-account">Belum punya akun? <a href="{{route('registration')}}"> Daftar di sini</a></p>
+            <p class="login-link">Already have an account? <a href="{{ route('login') }}">Login here</a></p>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.querySelector('#togglePassword');
             const password = document.querySelector('#password');
             
             togglePassword.addEventListener('click', function() {
-                // Toggle the type attribute
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
                 
-                // Toggle the eye icon
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });

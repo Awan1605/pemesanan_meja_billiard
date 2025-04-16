@@ -176,7 +176,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                    <a class="text-white hover:text-blue-500 nav-link" href="{{ route("home") }}">
                         Reservasi
                     </a>
                 </li>
@@ -195,11 +195,8 @@
                         Hubungi Kami
                     </a>
                 </li>
-                <li>
-                    <a class="btn-primary text-white py-2 px-4 rounded" href="#">
-                        Login
-                    </a>
-                </li>
+                <li><a class="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-800"
+                        href="{{ route('login') }}">Login</a></li>
             </ul>
         </div>
         <div class="lg:hidden">
@@ -211,7 +208,7 @@
                 <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Tentang</a></li>
                 <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Hubungi Kami</a></li>
                 <li><a class="bg-blue-900 text-white py-2 px-4 rounded block text-center hover:bg-blue-800"
-                        href="#">Login</a></li>
+                        href="{{ route("login") }}">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -456,7 +453,7 @@
         <p class="mb-2"><a href="#" class="hover:text-blue-500">ZetroBilliard</a></p>
         <p class="mb-2">Biliar bukan hanya tentang keberuntungan tapi tentang fokus, strategi, dan ketenangan</p>
         <p class="mb-4">Copyright 2025 • KELOMPOK 3 • PBL</p>
-        <a class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-blue-800" href="#">Register Now</a>
+        <a class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-blue-800" href="{{ route("login") }}">Register Now</a>
     </div>
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
