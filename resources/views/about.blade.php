@@ -171,7 +171,7 @@
             </button>
             <ul class="hidden lg:flex space-x-4" id="menu">
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                    <a class="text-white hover:text-blue-500 nav-link" href="about">
                         Beranda
                     </a>
                 </li>
@@ -181,7 +181,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                    <a class="text-white hover:text-blue-500 nav-link" href="#galeri">
                         Galeri
                     </a>
                 </li>
@@ -191,7 +191,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                    <a class="text-white hover:text-blue-500 nav-link" href="#hubungi_kami">
                         Hubungi Kami
                     </a>
                 </li>
@@ -204,9 +204,9 @@
                 <li><a class="text-white text-xl hover:text-blue-500 block nav-link" href="#">Beranda</a></li>
                 <li><a class="text-white hover:text-blue-500 block nav-link" href="{{ route('home') }}">Reservasi</a>
                 </li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Galeri</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#galeri">Galeri</a></li>
                 <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Tentang</a></li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Hubungi Kami</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#hubungi_kami">Hubungi Kami</a></li>
                 <li><a class="bg-blue-900 text-white py-2 px-4 rounded block text-center hover:bg-blue-800"
                         href="{{ route("login") }}">Login</a></li>
             </ul>
@@ -315,7 +315,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto mt-10 mb-10 px-4">
+    <div id="galeri" class="container mx-auto mt-10 mb-10 px-4">
         <h2 class="mb-6 font-bold text-2xl text-center text-white">Galeri</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
             <!-- Ulangi untuk semua gambar -->
@@ -363,7 +363,7 @@
         </div>
     </div>
 
-    <h2 class="mb-5 mt-5 font-bold text-xl text-center animate-fade-in">Hubungi Kami</h2>
+    <h2 id="hubungi_kami" class="mb-5 mt-5 font-bold text-xl text-center animate-fade-in">Hubungi Kami</h2>
     <div class="contact-info text-center bg-gray-800 p-5 rounded-lg shadow-lg animate-slide-up">
         <p class="mb-4">
             <i class="fas fa-info-circle text-blue-500 text-2xl"></i>
@@ -453,7 +453,7 @@
         <p class="mb-2"><a href="#" class="hover:text-blue-500">ZetroBilliard</a></p>
         <p class="mb-2">Biliar bukan hanya tentang keberuntungan tapi tentang fokus, strategi, dan ketenangan</p>
         <p class="mb-4">Copyright 2025 • KELOMPOK 3 • PBL</p>
-        <a class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-blue-800" href="{{ route("login") }}">Register Now</a>
+        <a class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-blue-800" href="{{ route("registration") }}">Register Now</a>
     </div>
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
