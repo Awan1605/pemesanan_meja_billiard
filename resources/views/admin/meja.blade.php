@@ -58,11 +58,11 @@
                     </a>
 
                     <!-- Manajemen Makanan -->
-                    <a href="{{ route('admin.makanan') }}"class="block py-3 px-4 flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg mt-2 transition-colors duration-200">
+                    <a href="{{ route('admin.makanan') }}" class="block py-3 px-4 flex items-center text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg mt-2 transition-colors duration-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12M12 2v10M4 18h16M6 18h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v9a2 2 0 002 2z"></path>
                         </svg>
-                        <span class="ml-3 text-l">Manajemen Makanan</span>
+                        <span class="ml-3 text-l">Pilihan Menu</span>
                     </a>
                 </div>
             </nav>
