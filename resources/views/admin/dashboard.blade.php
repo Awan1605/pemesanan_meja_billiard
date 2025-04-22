@@ -126,7 +126,7 @@
                 </div>
                 </div>
             </div>
-            </div>
+          </div>
         </header>
             <script>
                 // Toggle profile dropdown

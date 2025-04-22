@@ -128,13 +128,10 @@
             </div>
             </div>
         </header>
-        {{-- tabel pengguna --}}
           <!-- Main content -->
   <main class="flex-1 p-6">
-    <div class="text-sm text-gray-400 mb-2">Have a nice day</div>
 
     <div class="flex flex-col gap-2">
-      <h2 class="text-[#2563EB] font-semibold text-lg">Users</h2>
       <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mt-2">
         <div class="flex items-center flex-1 max-w-full">
           <span class="relative w-full max-w-full">
@@ -261,22 +258,22 @@
     </div>
   </main>
 </body>
+<script>
+      // Toggle profile dropdown
+      document.addEventListener('DOMContentLoaded', function() {
+      const profileButton = document.querySelector('.relative button');
+      const dropdownMenu = document.querySelector('.relative .hidden');
+      
+      profileButton.addEventListener('click', function() {
+          dropdownMenu.classList.toggle('hidden');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+          if (!e.target.closest('.relative')) {
+          dropdownMenu.classList.add('hidden');
+          }
+      });
+      });
+  </script>
 </html>
-            <script>
-                // Toggle profile dropdown
-                document.addEventListener('DOMContentLoaded', function() {
-                const profileButton = document.querySelector('.relative button');
-                const dropdownMenu = document.querySelector('.relative .hidden');
-                
-                profileButton.addEventListener('click', function() {
-                    dropdownMenu.classList.toggle('hidden');
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.relative')) {
-                    dropdownMenu.classList.add('hidden');
-                    }
-                });
-                });
-            </script>
