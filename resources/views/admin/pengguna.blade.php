@@ -128,6 +128,140 @@
             </div>
             </div>
         </header>
+        {{-- tabel pengguna --}}
+          <!-- Main content -->
+  <main class="flex-1 p-6">
+    <div class="text-sm text-gray-400 mb-2">Have a nice day</div>
+
+    <div class="flex flex-col gap-2">
+      <h2 class="text-[#2563EB] font-semibold text-lg">Users</h2>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mt-2">
+        <div class="flex items-center flex-1 max-w-full">
+          <span class="relative w-full max-w-full">
+            <input
+              type="search"
+              placeholder="Search"
+              class="w-full rounded-lg border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm text-gray-500 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+            />
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          </span>
+        </div>
+        <button
+          type="button"
+          class="mt-3 sm:mt-0 inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+        >
+          Add Pengguna +
+        </button>
+        <div class="flex items-center gap-2 mt-3 sm:mt-0 text-sm text-gray-700">
+          <span class="cursor-pointer select-none">Sort by <i class="fas fa-chevron-down text-xs"></i></span>
+          <span class="cursor-pointer select-none">Saved search <i class="fas fa-chevron-down text-xs"></i></span>
+          <button aria-label="Filter" class="text-gray-600 hover:text-gray-900">
+            <i class="fas fa-sliders-h"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-white rounded-lg shadow-sm overflow-x-auto">
+      <table class="w-full text-left text-xs text-gray-400 border-collapse">
+        <thead class="bg-[#E0E7FF] text-[#6B7280]">
+          <tr>
+            <th class="py-3 px-4 font-normal min-w-[180px]">Name</th>
+            <th class="py-3 px-4 font-normal min-w-[120px]">Create Date</th>
+            <th class="py-3 px-4 font-normal min-w-[120px]">Role</th>
+            <th class="py-3 px-4 font-normal min-w-[120px]">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700 text-[13px]">
+          <tr class="bg-white">
+            <td class="py-3 px-4">
+              <div class="font-semibold leading-tight">muhammad albagir</div>
+              <div class="text-[10px] text-gray-400">muhammadalbagir@gmail.com</div>
+            </td>
+            <td class="py-3 px-4">24 Jun, 2023</td>
+            <td class="py-3 px-4">
+              <span class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
+                Super Admin
+              </span>
+            </td>
+            <td class="py-3 px-4 flex gap-3 text-gray-300">
+              <button aria-label="Edit David Wagner" class="hover:text-gray-500">
+                <i class="fas fa-pencil-alt text-xs"></i>
+              </button>
+              <button aria-label="Delete David Wagner" class="hover:text-gray-500">
+                <i class="fas fa-trash-alt text-xs"></i>
+              </button>
+            </td>
+          </tr>
+          <tr class="bg-white">
+            <td class="py-3 px-4">
+              <div class="font-semibold leading-tight">budi syah putra</div>
+              <div class="text-[10px] text-gray-400">budi123@gmail.com</div>
+            </td>
+            <td class="py-3 px-4">24 Aug, 2023</td>
+            <td class="py-3 px-4">
+              <span class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
+                Owner
+              </span>
+            </td>
+            <td class="py-3 px-4 flex gap-3 text-gray-300">
+              <button aria-label="Edit Ina Hogan" class="hover:text-gray-500">
+                <i class="fas fa-pencil-alt text-xs"></i>
+              </button>
+              <button aria-label="Delete Ina Hogan" class="hover:text-gray-500">
+                <i class="fas fa-trash-alt text-xs"></i>
+              </button>
+            </td>
+          </tr>
+          <tr class="bg-white">
+            <td class="py-3 px-4">
+              <div class="font-semibold leading-tight">nadyawati</div>
+              <div class="text-[10px] text-gray-400">nadya@gmail.com</div>
+            </td>
+            <td class="py-3 px-4">18 Dec, 2023</td>
+            <td class="py-3 px-4">
+              <span class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
+                Owner
+              </span>
+            </td>
+            <td class="py-3 px-4 flex gap-3 text-gray-300">
+              <button aria-label="Edit Devin Harmon" class="hover:text-gray-500">
+                <i class="fas fa-pencil-alt text-xs"></i>
+              </button>
+              <button aria-label="Delete Devin Harmon" class="hover:text-gray-500">
+                <i class="fas fa-trash-alt text-xs"></i>
+              </button>
+            </td>
+          </tr>
+          <tr class="bg-white">
+            <td class="py-3 px-4">
+              <div class="font-semibold leading-tight">wibo kurniawan</div>
+              <div class="text-[10px] text-gray-400">wibo12r@gmail.com</div>
+            </td>
+            <td class="py-3 px-4">8 Oct, 2023</td>
+            <td class="py-3 px-4">
+              <span class="inline-block bg-[#E0E7FF] text-[#9CA3AF] text-[11px] font-semibold px-3 py-1 rounded-full select-none">
+                Pending
+              </span>
+            </td>
+            <td class="py-3 px-4 flex gap-3 text-gray-300">
+              <button aria-label="Edit Lena Page" class="hover:text-gray-500">
+                <i class="fas fa-pencil-alt text-xs"></i>
+              </button>
+              <button aria-label="Delete Lena Page" class="hover:text-gray-500">
+                <i class="fas fa-trash-alt text-xs"></i>
+              </button>
+            </td>
+          </tr>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
             <script>
                 // Toggle profile dropdown
                 document.addEventListener('DOMContentLoaded', function() {
