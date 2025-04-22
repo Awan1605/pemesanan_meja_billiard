@@ -186,7 +186,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#">
+                    <a class="text-white hover:text-blue-500 nav-link" href="#tentang">
                         Tentang
                     </a>
                 </li>
@@ -363,6 +363,35 @@
         </div>
     </div>
 
+   <!-- tentang -->
+
+    <div id="tentang" class="container mx-auto mt-10 mb-10 px-4">
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold mb-4">Tentang Zetro Billiard</h2>
+        <p class="text-gray-300 text-lg leading-relaxed">
+          Zetro Billiard adalah tempat terbaik untuk Anda yang ingin merasakan pengalaman bermain biliar dengan suasana eksklusif dan nyaman. Berdiri sejak 2024, kami berkomitmen untuk menyediakan fasilitas terbaik, mulai dari meja berkualitas, pencahayaan modern, hingga layanan pelanggan yang ramah dan profesional.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-semibold mb-3">Visi Kami</h3>
+        <p class="text-gray-300 leading-relaxed">
+          Menjadi tempat hiburan biliar pilihan utama di Indonesia dengan standar kualitas internasional.
+        </p>
+      </section>
+
+      <section>
+        <h3 class="text-2xl font-semibold mb-3">Misi Kami</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-2">
+          <li>Menyediakan fasilitas dan peralatan biliar terbaik.</li>
+          <li>Mengutamakan kenyamanan dan keamanan pengunjung.</li>
+          <li>Mendorong sportivitas dan komunitas biliar yang positif.</li>
+          <li>Memberikan layanan pelanggan yang profesional dan ramah.</li>
+        </ul>
+      </section>
+    </div>
+
+    
     <h2 id="hubungi_kami" class="mb-5 mt-5 font-bold text-xl text-center animate-fade-in">Hubungi Kami</h2>
     <div class="contact-info text-center bg-gray-800 p-5 rounded-lg shadow-lg animate-slide-up">
         <p class="mb-4">
