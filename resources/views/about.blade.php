@@ -255,25 +255,24 @@
 </head>
 <main class="max-w-7xl mx-auto">
 
-        <!--Reservasi -->
-
+<!--Reservasi -->
 <div id="Reservasi" class="container mx-auto mt-10 mb-10 px-4">
  <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Reservasi</h1>
 
-<!-- Zetro Exclusive Section -->
-<section>
-    <h2 class="text-white font-semibold text-base mb-4">Zetro Exclusive</h2>
-    <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
-        @for($i = 1; $i <= 4; $i++)
-        <article class="min-w-[120px] flex-shrink-0">
-            <img class="rounded-md w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
-            <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
-            <p class="text-[9px] text-gray-300">Lantai2 | Meja {{ $i }}</p>
-            <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
-        </article>
-        @endfor
-    </div>
-</section>
+    <!-- Zetro Exclusive Section -->
+    <section>
+        <h2 class="text-white font-semibold text-base mb-4">Zetro Exclusive</h2>
+        <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
+            @for($i = 1; $i <= 4; $i++)
+            <article class="min-w-[120px] flex-shrink-0">
+                <img class="rounded-md w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
+                <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
+                <p class="text-[9px] text-gray-300">Lantai2 | Meja {{ $i }}</p>
+                <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
+            </article>
+            @endfor
+        </div>
+    </section>
 
     <!-- Zetro Classic Section -->
     <section class="mt-8">
