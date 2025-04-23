@@ -50,9 +50,6 @@ class PageController extends Controller
     {
         return view('registration');
     }
-    public function reservasi()
-    {
-    return view('reservasi');
-    }
+
 
 }
