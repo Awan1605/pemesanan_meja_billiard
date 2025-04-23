@@ -253,36 +253,44 @@
         }
     </style>
 </head>
-<body class="bg-[#1a1a1a] text-white font-sans p-6">
-    <main class="max-w-7xl mx-auto">
+<main class="max-w-7xl mx-auto">
 
-        <!-- Zetro Exclusive Section -->
-        <section>
-            <h2 class="text-white font-semibold text-base mb-4">Zetro Exclusive</h2>
-            <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
-                @for($i = 1; $i <= 4; $i++)
-                <article class="min-w-[160px] flex-shrink-0">
-                    <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
-                    <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
-                    <p class="text-[9px] text-gray-300">Lorem1 | Majo 10</p>
-                </article>
-                @endfor
-            </div>
-        </section>
+    <!-- Judul Halaman Reservasi -->
+    <h1 class="text-2xl font-bold text-white mb-6">Reservasi</h1>
 
-        <!-- Zetro Classic Section -->
-        <section class="mt-8">
-            <h2 class="text-white font-semibold text-base mb-4">Zetro Classic</h2>
-            <div class="grid grid-cols-4 gap-4">
-                @for($i = 1; $i <= 16; $i++)
-                <article>
-                    <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
-                    <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
-                    <p class="text-[9px] text-gray-300">Lorem1 | Majo {{ $i }}</p>
-                </article>
-                @endfor
-            </div>
-        </section>
+    <!-- Zetro Exclusive Section -->
+    <section>
+        <h2 class="text-white font-semibold text-base mb-4">Zetro Exclusive</h2>
+        <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
+            @for($i = 1; $i <= 4; $i++)
+            <article class="min-w-[160px] flex-shrink-0">
+                <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
+                <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
+                <p class="text-[9px] text-gray-300">Lantai1 | Meja 10</p>
+            </article>
+            @endfor
+        </div>
+    </section>
+
+    <!-- Zetro Classic Section -->
+    <section class="mt-8">
+        <h2 class="text-white font-semibold text-base mb-4">Zetro Classic</h2>
+        <div class="grid grid-cols-4 gap-4">
+            @for($i = 1; $i <= 16; $i++)
+            <article>
+                <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
+                <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
+                <p class="text-[9px] text-gray-300">Lantai1 | Meja {{ $i }}</p>
+            </article>
+            @endfor
+        </div>
+    </section>
+
+    <!-- Red dot indicator -->
+    <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>
+
+</main>
+
 
         <!-- Red dot indicator -->
         <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>
