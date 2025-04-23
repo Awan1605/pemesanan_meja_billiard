@@ -137,7 +137,7 @@
                         userGrowth: 28.0,
                         totalReservations: 10293,
                         reservationGrowth: 1.3,
-                        totalSales: 10293,
+                        totalSales: 8500000,
                         salesGrowth: 1.3
                     };
                     
