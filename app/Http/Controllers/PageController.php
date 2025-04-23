@@ -12,6 +12,7 @@ class PageController extends Controller
     }
     public function reservasi()
     {
+        return view('reservasi');
         return view('admin.reservasi');
     }
     public function pengguna()
