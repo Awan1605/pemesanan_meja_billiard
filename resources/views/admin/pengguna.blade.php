@@ -4,91 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <title>User Management</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="bg-gray-100 font-sans">
   <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
     @include('partials.sidebar')
-            <main class="p-6">
-                @yield('content')
-            </main> 
-      <!-- Main Content -->
-      <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
-      <!-- Header -->
-      <header class="bg-white shadow-sm p-5">
-        <div class="flex justify-between items-center">
-          <div>
-            <h1 class="text-xl font-semibold text-gray-800">Hello, Wibo</h1>
-            <p class="text-sm text-gray-500">Have a nice day</p>
-          </div>
-
-          <div class="flex items-center space-x-6">
-            <!-- Notification -->
-            <div class="relative">
-              <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                </path>
-              </svg>
-              <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-blue-500"></span>
-            </div>
-
-            <!-- Profile Dropdown -->
-            <div class="relative">
-              <button class="flex items-center space-x-2 focus:outline-none">
-                <img class="w-10 h-10 rounded-full"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAASFBMVEXy8vKZmZn19fWXl5eUlJT39/fj4+Pp6env7+/Ozs7r6+ucnJzJycmjo6PDw8Ph4eHT09O9vb22tratra3b29uurq64uLihoaF/IPScAAAHE0lEQVR4nO2d2XarMAxFQbKZZwj5/z+9JqRt2pgARmCZy37OWuVUsmXJgzzv4uJCA9j+gH1IKvASL4mSKIq8KrL9OTsQBFnWFnHVF3F7C0Lbn7MDQdBldZyVVZwV2UkVQhBXVRx0XSDLkyqssj6rlQUzOKXCsFI2LGVVhsqGcWL7c/YChkhx0mBxcXFxcXFxcXFxcXFxcXFxLkDCUMUAOGctAyDpsv7WtremroLzFWwgqm6pEDgi/LwI5JlEQlSkiP4LSmRbOe+tX98PkClBb6BIs0ha/cItgBeFQRg9SqRBrtE3asQ6dNOOEGatL4TyxCyU8W///CMSm8A9Z4Wk9sVTlfBvEwb80dgHbkkEL0tfjfbBgN+/qBOHxqMM2hmjaRB+5owZZSbmjabTmAdOmBFCAwOOoChsf/0CoEqNDPg0Y5uwd9Xe1IBPM6Ylb4kwFxcW0HEejLLZLhCRsRUh3i5wkMg3+icE+gZyriemZE1hQoWomRoxSWkEKkcNbGvRQjMKR4UNTyO2G0L9HwTLkRiSmVApjBkaESpChdgyDPtQ0zmpMqJtORogJxToC4YLm4jShL5gmA4HhMNwiBfsBiJ0pAr9nJ9Cunj/IGUXEaEgHYe+z+6ctGxoFYrStqK/SMI120Nhx20ylaThUCms2CkkS52eCtmtTIF4omEY8mmDBUOFlLnT/6EQ2Y1Dci/lN5fSCuQYD4kjPrJb05CvS9ndbqPOnu7cnFRBakOGGbAHN9JKFL9gQZwCC3bp4bB/T2hDvPNzUiWRsqpfs1RI6Kais61GC93umu/b1qIHyEo1XHfXoKNSyDFWeMMZdZkTSUSGsUItvbtb09AI9FvbYnTIYjiiTiNQFAxjBenCG0t2iYXiTriiSXORcxuJxLkT+tgym02pd574bQJDRq6QWSWKXiG3auIOXspMoUe2YPtWyMxLvYBcIbOZxouIBfKrJlJvkPopMxN6kvTMF8eDbdQFYWRYqKFVyG4qJT9twrBeSuymKT8nJS2XshyGtEZkF+9HqOpQirttLVoI8wuWhRpFSCWQaTWRsOaNN5aj8DHX0BQU+Z3D+AKKvC9v203IrQr1AoCUG+ebtE25X5QtNynEBpKIt0Avum9RyK48o2HbEpzxDdlvtq3ectufv4Row2Y318XMbza5qQNOuslNOUfCV8DYggxrF1pkYWpEnkmTBtMz3yJzYZ4ZkKbHFG1/+GIM5xoX1jPfmNT4MXdIoFFBg29WqMNgXcPzwOUksDpgINsnWyZYfxKTedr7xtq3arBwTODqucapSPFg7UDkdxlvjrVe6qDClUmiG6nvK2uXpuicwrW7icj1ea9pVm61cbzJ9Zm1yzZ+p0vmCNYJdKSM+ML6DDHldsprhvXpE+cXL3Wsv27pWshfn1qw3ffVY/Q6HdO9+wkMTg8Jl/Inw1qbE3sWD8Bs9wlzV5qWyMTwcBTm3Pe3R2S1oFHAhETfgZ0ZSDY9eC2akPf6FCBON77J7mecR6NR14c3M+Zsa98y6UnOfCHydFXpFT7V6UvEmlsDIYBI2+zIXKMoOLWBABnS2e8L4dchjwZC6iu6hlzfAPpN59luWwbSC4qc6pL6u0aRFwFYEwkgk6rOSYffOwLzukrk8f6q/rFlkQ998HbVN4CoVBblsQ0TwSv7VOxrvN+oP1aXRy12lHPG+RHG+wOKNk4OMORovsPlPTWmdQn7LgVkFLeHeuebSGzj/ZY7KrD/9MOzp1EZMtwlgMioaq3LG1EjsqKedQDC2tbo06EMWVCu6SDqGkbyRgSqNR2JRhUcspydvgEh8mx7V0iQQb/LspoG4ffbWgoDVHaDwzxq1unMB6Qs7yzd8zco7qWhr9K/ObMXpjtzVF3UDkDUJgIJWhkeh+hXWxEcsuDA6nZ79K8i7Y2IV003QNva6BDWvaRB23/rGFbdmXLPRwfWXJradtHVGstvTblpQuWny43o4CgcwKVn46iffDoOXLjzKHv+y209S9/t2XJT2TL3Rfdu3HXSpZfDaPuJHsvC0+KOzqQPFs2m1I2bDmXJ4tTVcD8iqvnZlLpT47EsaTlA3ZnqYBa81edgZvjK/EB0p8CmZ/4eo/FjAUxYcLvI3SXbA5x9ndfxYTj/XJ/b0XBgLiK6HQ0HsJ8ZiC4vSkdmXteg7Cxmi48D0eg2DzM+54jU747bYOZ1BuJmojb4XPum7JxmC/x0G9XlEs0P4kMXWteX3SOf9rzpmt/Z5FMW7OiOzF8+lKOcLkL9MJ0FnyHeD0xvJJ4h3g9Mx3zS7gYW+RDzzyHQn35/0fn8/gsxcSsc4rPYcKrg5n5+/8VUni9PsOx+MtHVOznLMFRuqt0LPkdiMaLP883fN+YHatML1+v5r+BNOxDPM9H4eNfZcPXrXKwJ3yWeJbEY0U01UOCZ3PQnvfgHhE54nPKKnhwAAAAASUVORK5CYII="
-                  alt="Profile">
-              </button>
-
-              <!-- Dropdown Menu -->
-              <div
-                class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100">
-                <div class="px-4 py-3 border-b border-gray-100">
-                  <p class="text-sm font-medium">Wibo Kurniawan</p>
-                  <p class="text-xs text-gray-500 truncate">wibo@example.com</p>
-                </div>
-
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                  </svg>
-                  Edit Profile
-                </a>
-
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                    </path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                  Settings
-                </a>
-
-                <div class="border-t border-gray-100"></div>
-
-                <a href="#" class="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-                  <svg class="w-5 h-5 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
-                    </path>
-                  </svg>
-                  Keluar
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <!-- Main content -->
-      <main class="flex-1 p-6">
+    <main class="p-6">
+      @yield('content')
+    </main>
+    <!-- Main Content -->
+    <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
+      <!-- Profile -->
+      @include('partials.profile')
+      <main class="p-1">
+        @yield('content')
+      </main>
+      <main class="flex-1 p-2">
         <div class="flex flex-col gap-2">
           <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mt-2">
             <div class="flex items-center flex-1 max-w-full">
@@ -98,138 +37,331 @@
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
               </span>
             </div>
-            <button type="button"
-              class="mt-3 sm:mt-0 inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB]">
-              Add Pengguna +
+
+            <!-- Role Filter -->
+            <select
+              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-neutral-content focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+
+              <option value="">All Roles</option>
+              <option value="admin">Admin</option>
+              <option value="owner">Owner</option>
+              <option value="kasir">Kasir</option>
+            </select>
+
+            <!-- Status Filter -->
+            <select
+              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-info focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+
+            <!-- Add User Button -->
+            <button
+              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+              <i class="fas fa-plus mr-2"></i> Add User
             </button>
-            <div class="flex items-center gap-2 mt-3 sm:mt-0 text-sm text-gray-700">
-              <span class="cursor-pointer select-none">Sort by <i class="fas fa-chevron-down text-xs"></i></span>
-              <span class="cursor-pointer select-none">Saved search <i class="fas fa-chevron-down text-xs"></i></span>
-              <button aria-label="Filter" class="text-gray-600 hover:text-gray-900">
-                <i class="fas fa-sliders-h"></i>
+          </div>
+
+          <!-- Additional Filters -->
+          <div class="flex items-center gap-4 text-sm text-gray-700">
+            <!-- Sort Dropdown -->
+            <div class="dropdown dropdown-bottom">
+              <label tabindex="0" class="flex items-center gap-1 hover:text-gray-900 cursor-pointer">
+                <span>Sort by: Name</span>
+                <i class="fas fa-chevron-down text-xl"></i>
+              </label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-52 mt-1">
+                <li><a>Name (A-Z)</a></li>
+                <li><a>Name (Z-A)</a></li>
+                <li><a>Newest</a></li>
+                <li><a>Oldest</a></li>
+              </ul>
+            </div>
+
+            <!-- Saved Search -->
+            <div class="dropdown dropdown-bottom">
+              <label tabindex="0" class="flex items-center gap-1 hover:text-gray-900 cursor-pointer">
+                <span>Saved search</span>
+                <i class="fas fa-chevron-down text-xl"></i>
+              </label>
+              <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-52 mt-1">
+                <li><a>Active Admins</a></li>
+                <li><a>Inactive Users</a></li>
+                <li><a>Recently Added</a></li>
+              </ul>
+            </div>
+
+            <button aria-label="Advanced filter" class="text-gray-600 hover:text-gray-900">
+              <i class="fas fa-sliders-h"></i> Advanced
+            </button>
+          </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+          <!-- Bulk Actions (hidden by default) -->
+          <div id="bulk-actions" class="hidden flex items-center justify-between p-4 border-b bg-gray-50">
+            <div class="text-sm text-gray-500">
+              <span id="selected-count">0</span> users selected
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-outline btn-sm gap-1">
+                <i class="fas fa-ban"></i> Deactivate
+              </button>
+              <button class="btn btn-outline btn-error btn-sm gap-1">
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-600">
+              <!-- Table Header -->
+              <thead class="bg-[#E0E7FF] text-[#6B7280]">
+                <tr>
+                  <th class="py-3 px-4 font-medium w-10">
+                    <input type="checkbox" id="select-all" class="checkbox checkbox-sm rounded border-gray-300">
+                  </th>
+                  <th class="py-3 px-4 font-medium min-w-[180px]">Name</th>
+                  <th class="py-3 px-4 font-medium min-w-[120px] hidden sm:table-cell">Create Date</th>
+                  <th class="py-3 px-4 font-medium min-w-[120px]">Role</th>
+                  <th class="py-3 px-4 font-medium min-w-[120px]">Status</th>
+                  <th class="py-3 px-4 font-medium min-w-[120px]">Action</th>
+                </tr>
+              </thead>
+
+              <!-- Table Body -->
+              <tbody class="divide-y divide-gray-100">
+                <!-- Row 1 -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-4">
+                    <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="font-semibold text-gray-800">Muhammad albagir</div>
+                    <div class="text-xl text-gray-400">muhammadalbagir@gmail.com</div>
+                  </td>
+                  <td class="py-3 px-4 hidden sm:table-cell">24 Jun, 2023</td>
+                  <td class="py-3 px-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-blue-100 text-blue-800">
+                      Admin
+                    </span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="flex gap-3">
+                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                        onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-4">
+                    <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="font-semibold text-gray-800">Budi Syah Putra</div>
+                    <div class="text-xl text-gray-400">Putra@gmail.com</div>
+                  </td>
+                  <td class="py-3 px-4 hidden sm:table-cell">17 Jan, 2023</td>
+                  <td class="py-3 px-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-purple-100 text-purple-800">
+                      Owner
+                    </span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="flex gap-3">
+                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                        onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3 -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-4">
+                    <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="font-semibold text-gray-800">Nadyawati</div>
+                    <div class="text-xl text-gray-400">nadya@gmail.com</div>
+                  </td>
+                  <td class="py-3 px-4 hidden sm:table-cell">22 Agu, 2023</td>
+                  <td class="py-3 px-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-green-100 text-green-800">
+                      Kasir
+                    </span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="flex gap-3">
+                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                        onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4 -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-4">
+                    <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="font-semibold text-gray-800">Wibo Kurniawan</div>
+                    <div class="text-xl text-gray-400">wibokurniawan@gmail.com</div>
+                  </td>
+                  <td class="py-3 px-4 hidden sm:table-cell">22 Agu, 2023</td>
+                  <td class="py-3 px-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-purple-100 text-purple-800">
+                      Owner
+                    </span>
+                  </td>
+                  <td class="py-3 px-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer">
+                      <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      </div>
+                    </label>
+                  </td>
+                  <td class="py-3 px-4">
+                    <div class="flex gap-3">
+                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                        onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State (hidden by default) -->
+          <div id="empty-state" class="hidden p-8 text-center">
+            <div class="mx-auto w-24 h-24 text-gray-300 mb-4">
+              <i class="fas fa-users-slash text-6xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-gray-700 mb-1">No users found</h3>
+            <p class="text-gray-500 mb-4">Try adjusting your search or filter to find what you're looking for.</p>
+            <button class="btn btn-primary btn-sm">
+              <i class="fas fa-plus mr-2"></i> Add New User
+            </button>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex flex-col sm:flex-row justify-between items-center p-4 border-t">
+            <div class="text-sm text-gray-500 mb-2 sm:mb-0">
+              Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span
+                class="font-medium">4</span> entries
+            </div>
+            <div class="flex gap-1">
+              <button class="btn btn-sm btn-ghost">
+                Previous
+              </button>
+              <button class="btn btn-sm btn-primary-content">
+                1
+              </button>
+              <button class="btn btn-sm btn-ghost">
+                Next
               </button>
             </div>
           </div>
         </div>
-        <div class="mt-6 bg-white rounded-lg shadow-sm overflow-x-auto">
-          <table class="w-full text-left text-xs text-gray-400 border-collapse">
-            <thead class="bg-[#E0E7FF] text-[#6B7280]">
-              <tr>
-                <th class="py-3 px-4 font-normal min-w-[180px]">Name</th>
-                <th class="py-3 px-4 font-normal min-w-[120px]">Create Date</th>
-                <th class="py-3 px-4 font-normal min-w-[120px]">Role</th>
-                <th class="py-3 px-4 font-normal min-w-[120px]">Action</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100 text-gray-700 text-[13px]">
-              <tr class="bg-white">
-                <td class="py-3 px-4">
-                  <div class="font-semibold leading-tight">muhammad albagir</div>
-                  <div class="text-[10px] text-gray-400">muhammadalbagir@gmail.com</div>
-                </td>
-                <td class="py-3 px-4">24 Jun, 2023</td>
-                <td class="py-3 px-4">
-                  <span
-                    class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
-                    Super Admin
-                  </span>
-                </td>
-                <td class="py-3 px-4 flex gap-3 text-gray-300">
-                  <button aria-label="Edit David Wagner" class="hover:text-gray-500">
-                    <i class="fas fa-pencil-alt text-xs"></i>
-                  </button>
-                  <button aria-label="Delete David Wagner" class="hover:text-gray-500">
-                    <i class="fas fa-trash-alt text-xs"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="bg-white">
-                <td class="py-3 px-4">
-                  <div class="font-semibold leading-tight">budi syah putra</div>
-                  <div class="text-[10px] text-gray-400">budi123@gmail.com</div>
-                </td>
-                <td class="py-3 px-4">24 Aug, 2023</td>
-                <td class="py-3 px-4">
-                  <span
-                    class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
-                    Owner
-                  </span>
-                </td>
-                <td class="py-3 px-4 flex gap-3 text-gray-300">
-                  <button aria-label="Edit Ina Hogan" class="hover:text-gray-500">
-                    <i class="fas fa-pencil-alt text-xs"></i>
-                  </button>
-                  <button aria-label="Delete Ina Hogan" class="hover:text-gray-500">
-                    <i class="fas fa-trash-alt text-xs"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="bg-white">
-                <td class="py-3 px-4">
-                  <div class="font-semibold leading-tight">nadyawati</div>
-                  <div class="text-[10px] text-gray-400">nadya@gmail.com</div>
-                </td>
-                <td class="py-3 px-4">18 Dec, 2023</td>
-                <td class="py-3 px-4">
-                  <span
-                    class="inline-block bg-[#2563EB] text-white text-[11px] font-semibold px-3 py-1 rounded-full select-none">
-                    Owner
-                  </span>
-                </td>
-                <td class="py-3 px-4 flex gap-3 text-gray-300">
-                  <button aria-label="Edit Devin Harmon" class="hover:text-gray-500">
-                    <i class="fas fa-pencil-alt text-xs"></i>
-                  </button>
-                  <button aria-label="Delete Devin Harmon" class="hover:text-gray-500">
-                    <i class="fas fa-trash-alt text-xs"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr class="bg-white">
-                <td class="py-3 px-4">
-                  <div class="font-semibold leading-tight">wibo kurniawan</div>
-                  <div class="text-[10px] text-gray-400">wibo12r@gmail.com</div>
-                </td>
-                <td class="py-3 px-4">8 Oct, 2023</td>
-                <td class="py-3 px-4">
-                  <span
-                    class="inline-block bg-[#E0E7FF] text-[#9CA3AF] text-[11px] font-semibold px-3 py-1 rounded-full select-none">
-                    Pending
-                  </span>
-                </td>
-                <td class="py-3 px-4 flex gap-3 text-gray-300">
-                  <button aria-label="Edit Lena Page" class="hover:text-gray-500">
-                    <i class="fas fa-pencil-alt text-xs"></i>
-                  </button>
-                  <button aria-label="Delete Lena Page" class="hover:text-gray-500">
-                    <i class="fas fa-trash-alt text-xs"></i>
-                  </button>
-                </td>
-              </tr>
-              </button>
-              </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </main>
+
+      <!-- Delete Confirmation Modal -->
+      <dialog id="delete_modal" class="modal">
+        <div class="modal-box bg-primary-content">
+          <h3 class="font-bold text-lg">Konfirmasi</h3>
+          <p class="py-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn btn-ghost">Kembali</button>
+              <button class="btn btn-error text-white">Hapus Permanen</button>
+            </form>
+          </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+
+      <!-- Tooltip Initialization -->
+      <script>
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function () {
+          // Bulk actions functionality
+          const selectAll = document.getElementById('select-all');
+          const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+          const bulkActions = document.getElementById('bulk-actions');
+
+          selectAll.addEventListener('change', function () {
+            rowCheckboxes.forEach(checkbox => {
+              checkbox.checked = selectAll.checked;
+            });
+            updateBulkActions();
+          });
+
+          rowCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateBulkActions);
+          });
+
+          function updateBulkActions() {
+            const selectedCount = document.querySelectorAll('.row-checkbox:checked').length;
+            document.getElementById('selected-count').textContent = selectedCount;
+            bulkActions.classList.toggle('hidden', selectedCount === 0);
+            selectAll.checked = selectedCount === rowCheckboxes.length;
+          }
+
+        });     
+      </script>
 </body>
-<script>
-  // Toggle profile dropdown
-  document.addEventListener('DOMContentLoaded', function () {
-    const profileButton = document.querySelector('.relative button');
-    const dropdownMenu = document.querySelector('.relative .hidden');
-
-    profileButton.addEventListener('click', function () {
-      dropdownMenu.classList.toggle('hidden');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.relative')) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  });
-</script>
 </html>
