@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -190,97 +192,8 @@
                 <div class="mt-5 bg-white rounded-lg shadow-sm overflow-x-auto p-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         <!-- CARD 1 -->
-                        <div
-                                    <div class="w-[315px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                            <div class="w-[280px] h-[305px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
-                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
-                                <div class="absolute bottom-3 left-4 text-white">
-                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
-                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
-                                </div>
-                            </div>
-                            <div class="absolute top-[340px] left-[18px]">
-                                <p class="text-[#152c5b] text-base leading-relaxed">
-                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
-                                </p>
-                            </div>
-                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
-                                Rp 35.000 / Jam
-                            </div>
-                            <div class="absolute bottom-10 right-3 flex gap-2">
-                                <button
-                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
-                                </button>
-                                <button
-                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- CARD 2 -->
-                        <div
-                                    <div class="w-[315px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                            <div class="w-[280px] h-[305px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
-                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
-                                <div class="absolute bottom-3 left-4 text-white">
-                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
-                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
-                                </div>
-                            </div>
-                            <div class="absolute top-[340px] left-[18px]">
-                                <p class="text-[#152c5b] text-base leading-relaxed">
-                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
-                                </p>
-                            </div>
-                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
-                                Rp 35.000 / Jam
-                            </div>
-                            <div class="absolute bottom-10 right-3 flex gap-2">
-                                <button
-                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
-                                </button>
-                                <button
-                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- CARD 3 -->
-                        <div
-                                    <div class="w-[315px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                            <div class="w-[280px] h-[305px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
-                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
-                                <div class="absolute bottom-3 left-4 text-white">
-                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
-                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
-                                </div>
-                            </div>
-                            <div class="absolute top-[340px] left-[18px]">
-                                <p class="text-[#152c5b] text-base leading-relaxed">
-                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
-                                </p>
-                            </div>
-                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
-                                Rp 35.000 / Jam
-                            </div>
-                            <div class="absolute bottom-10 right-3 flex gap-2">
-                                <button
-                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
-                                </button>
-                                <button
-                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
-                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- CARD 4 -->
-                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-transform duration-200 hover:scale-105 hover:shadow-md">
+                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-500 hover:z-10">
+                            <!-- Gambar dan konten utama -->
                             <div class="w-[280px] h-[300px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
                                 style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
                                 <div class="absolute bottom-3 left-4 text-white">
@@ -296,21 +209,48 @@
                             <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
                                 Rp 35.000 / Jam
                             </div>
+
+                            <!-- Tombol aksi -->
                             <div class="absolute bottom-10 right-3 flex gap-2">
                                 <button
                                     class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
                                     <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
                                 </button>
-                                <button
+
+                                <!-- Tombol Delete dengan modal trigger -->
+                                <button onclick="document.getElementById('delete_modal').showModal()"
                                     class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
                                     <i class="fas fa-trash-alt text-red-600 text-sm"></i>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- CARD 5 -->
-                        <div class="w-[315px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                            <div class="w-[280px] h-[305px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
+                        <!-- Modal Delete DaisyUI -->
+                        <dialog id="delete_modal" class="modal">
+                            <div class="modal-box bg-primary-content text-[#152c5b] text-base leading-relaxed">
+                                <h3 class="font-bold text-lg">Hapus Item?</h3>
+                                <p class="py-4">Apakah Anda yakin ingin menghapus "Zetro Exclusive"? Tindakan ini tidak
+                                    dapat dibatalkan.</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- Tombol cancel -->
+                                        <button class="btn">Batal</button>
+                                        <!-- Tombol delete -->
+                                        <button class="btn btn-error text-white ml-2">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Klik di luar modal untuk menutup -->
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
+
+                        <!-- CARD 2 -->
+                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-500 hover:z-10">
+                            <!-- Gambar dan konten utama -->
+                            <div class="w-[280px] h-[300px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
                                 style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
                                 <div class="absolute bottom-3 left-4 text-white">
                                     <h3 class="text-xl font-bold">Zetro Exclusive</h3>
@@ -325,17 +265,212 @@
                             <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
                                 Rp 35.000 / Jam
                             </div>
+
+                            <!-- Tombol aksi -->
                             <div class="absolute bottom-10 right-3 flex gap-2">
                                 <button
                                     class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
                                     <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
                                 </button>
-                                <button
+
+                                <!-- Tombol Delete dengan modal trigger -->
+                                <button onclick="document.getElementById('delete_modal').showModal()"
                                     class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
                                     <i class="fas fa-trash-alt text-red-600 text-sm"></i>
                                 </button>
                             </div>
                         </div>
+
+                        <!-- Modal Delete DaisyUI -->
+                        <dialog id="delete_modal" class="modal">
+                            <div class="modal-box bg-primary-content text-[#152c5b] text-base leading-relaxed">
+                                <h3 class="font-bold text-lg">Hapus Item?</h3>
+                                <p class="py-4">Apakah Anda yakin ingin menghapus "Zetro Exclusive"? Tindakan ini tidak
+                                    dapat dibatalkan.</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- Tombol cancel -->
+                                        <button class="btn">Batal</button>
+                                        <!-- Tombol delete -->
+                                        <button class="btn btn-error text-white ml-2">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Klik di luar modal untuk menutup -->
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
+
+
+                        <!-- CARD 3 -->
+                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-500 hover:z-10">
+                            <!-- Gambar dan konten utama -->
+                            <div class="w-[280px] h-[300px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
+                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
+                                <div class="absolute bottom-3 left-4 text-white">
+                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
+                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-[340px] left-[18px]">
+                                <p class="text-[#152c5b] text-base leading-relaxed">
+                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
+                                </p>
+                            </div>
+                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
+                                Rp 35.000 / Jam
+                            </div>
+
+                            <!-- Tombol aksi -->
+                            <div class="absolute bottom-10 right-3 flex gap-2">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
+                                </button>
+
+                                <!-- Tombol Delete dengan modal trigger -->
+                                <button onclick="document.getElementById('delete_modal').showModal()"
+                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Modal Delete DaisyUI -->
+                        <dialog id="delete_modal" class="modal">
+                            <div class="modal-box bg-primary-content text-[#152c5b] text-base leading-relaxed">
+                                <h3 class="font-bold text-lg">Hapus Item?</h3>
+                                <p class="py-4">Apakah Anda yakin ingin menghapus "Zetro Exclusive"? Tindakan ini tidak
+                                    dapat dibatalkan.</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- Tombol cancel -->
+                                        <button class="btn">Batal</button>
+                                        <!-- Tombol delete -->
+                                        <button class="btn btn-error text-white ml-2">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Klik di luar modal untuk menutup -->
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
+
+                        <!-- CARD 4 -->
+                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-500 hover:z-10">
+                            <!-- Gambar dan konten utama -->
+                            <div class="w-[280px] h-[300px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
+                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
+                                <div class="absolute bottom-3 left-4 text-white">
+                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
+                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-[340px] left-[18px]">
+                                <p class="text-[#152c5b] text-base leading-relaxed">
+                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
+                                </p>
+                            </div>
+                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
+                                Rp 35.000 / Jam
+                            </div>
+
+                            <!-- Tombol aksi -->
+                            <div class="absolute bottom-10 right-3 flex gap-2">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
+                                </button>
+
+                                <!-- Tombol Delete dengan modal trigger -->
+                                <button onclick="document.getElementById('delete_modal').showModal()"
+                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Modal Delete DaisyUI -->
+                        <dialog id="delete_modal" class="modal">
+                            <div class="modal-box bg-primary-content text-[#152c5b] text-base leading-relaxed">
+                                <h3 class="font-bold text-lg">Hapus Item?</h3>
+                                <p class="py-4">Apakah Anda yakin ingin menghapus "Zetro Exclusive"? Tindakan ini tidak
+                                    dapat dibatalkan.</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- Tombol cancel -->
+                                        <button class="btn">Batal</button>
+                                        <!-- Tombol delete -->
+                                        <button class="btn btn-error text-white ml-2">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Klik di luar modal untuk menutup -->
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
+
+                        <!-- CARD 5 -->
+                        <div class="w-[300px] h-[460px] rounded-lg border-2 border-gray-300 bg-white shadow-md overflow-hidden relative transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:border-blue-500 hover:z-10">
+                            <!-- Gambar dan konten utama -->
+                            <div class="w-[280px] h-[300px] rounded-lg absolute top-[10px] left-[10px] bg-cover bg-center"
+                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8Ty9cV274abHjuLEKzu9pA-cwQpkkpvXsA&s')">
+                                <div class="absolute bottom-3 left-4 text-white">
+                                    <h3 class="text-xl font-bold">Zetro Exclusive</h3>
+                                    <p class="text-sm font-bold mt-1">Lantai 3</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-[340px] left-[18px]">
+                                <p class="text-[#152c5b] text-base leading-relaxed">
+                                    Zetro Billiard, Mitra Raya 2<br>Main Street, Galle.
+                                </p>
+                            </div>
+                            <div class="absolute top-[390px] left-[18px] text-[#152c5b] text-base whitespace-nowrap">
+                                Rp 35.000 / Jam
+                            </div>
+
+                            <!-- Tombol aksi -->
+                            <div class="absolute bottom-10 right-3 flex gap-2">
+                                <button
+                                    class="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-pencil-alt text-blue-600 text-sm"></i>
+                                </button>
+
+                                <!-- Tombol Delete dengan modal trigger -->
+                                <button onclick="document.getElementById('delete_modal').showModal()"
+                                    class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition-colors">
+                                    <i class="fas fa-trash-alt text-red-600 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Modal Delete DaisyUI -->
+                        <dialog id="delete_modal" class="modal">
+                            <div class="modal-box bg-primary-content text-[#152c5b] text-base leading-relaxed">
+                                <h3 class="font-bold text-lg">Hapus Item?</h3>
+                                <p class="py-4">Apakah Anda yakin ingin menghapus "Zetro Exclusive"? Tindakan ini tidak
+                                    dapat dibatalkan.</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <!-- Tombol cancel -->
+                                        <button class="btn">Batal</button>
+                                        <!-- Tombol delete -->
+                                        <button class="btn btn-error text-white ml-2">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Klik di luar modal untuk menutup -->
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
                     </div>
                 </div>
             </main>
