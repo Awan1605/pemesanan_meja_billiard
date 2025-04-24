@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('content')
 <div class="container mx-auto text-white px-4 py-6">
     <h1 class="text-2xl font-bold mb-4">Formulir Booking</h1>
 
@@ -41,4 +40,3 @@
         <button type="submit" class="bg-blue-600 px-4 py-2 rounded text-white">Bayar Sekarang</button>
     </form>
 </div>
-@endsection

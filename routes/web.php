@@ -29,3 +29,7 @@ Route::get('/admin/pengguna', function () {return view('admin.pengguna');})->nam
 Route::get('/admin/meja', function () {return view('admin.meja');})->name('admin.meja');
 Route::get('/admin/pembayaran', function () {return view('admin.pembayaran');})->name('admin.pembayaran');
 Route::get('/admin/makanan', function () {return view('admin.makanan');})->name('admin.makanan');   
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/create', [UserController::class, 'create']);
+Route::post('/users', [UserController::class, 'store']);
