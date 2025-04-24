@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('about');
 });
 Route::get('about', [PageController::class, 'about'])->name('about');
+Route::get('lreservasi', [PageController::class, 'lreservasi'])->name('lreservasi');
 Route::get('about2', [PageController::class, 'about2'])->name('about2');
 Route::get('home', [PageController::class, 'home'])->name('home');
 Route::get('login', [PageController::class, 'login'])->name('login');
