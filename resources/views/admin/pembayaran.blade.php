@@ -230,7 +230,7 @@
       <div class="text-sm text-gray-500">
         Menampilkan 1 sampai 3 dari 53 transaksi
       </div>
-      <div class="flex gap-1">
+      <div class="flex gap-1">  
         <button class="btn btn-sm btn-ghost" disabled>
           <i class="fas fa-chevron-left"></i>
         </button>
