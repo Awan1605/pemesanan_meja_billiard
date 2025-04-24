@@ -257,7 +257,7 @@
 
 <!--Reservasi -->
 <div id="Reservasi" class="container mx-auto mt-10 mb-10 px-4">
- <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Reservasi</h1>
+    <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Reservasi</h1>
 
     <!-- Zetro Exclusive Section -->
     <section>
@@ -283,7 +283,6 @@
                 <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
                 <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
                 <p class="text-[9px] text-gray-300">Lantai1 | Meja {{ $i }}</p>
-                <!-- Tombol Reservasi untuk Zetro Classic -->
                 <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
             </article>
             @endfor
