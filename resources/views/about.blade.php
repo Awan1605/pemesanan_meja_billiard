@@ -268,7 +268,7 @@
                 <img class="rounded-md w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
                 <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
                 <p class="text-[9px] text-gray-300">Lantai2 | Meja {{ $i }}</p>
-                <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
+                <a href="{{ route('booking', ['meja' => $i, 'tipe' => 'Exclusive', 'lantai' => 2]) }}" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
             </article>
             @endfor
         </div>
@@ -283,12 +283,13 @@
                 <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
                 <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
                 <p class="text-[9px] text-gray-300">Lantai1 | Meja {{ $i }}</p>
-                <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
+                <a href="{{ route('booking', ['meja' => $i, 'tipe' => 'Classic', 'lantai' => 1]) }}" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
             </article>
             @endfor
         </div>
     </section>
 </div>
+
 
     <!-- Red dot indicator -->
     <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>

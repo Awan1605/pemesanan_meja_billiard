@@ -50,6 +50,14 @@ class PageController extends Controller
     {
         return view('registration');
     }
+    public function booking(Request $request)
+    {
+        $meja = $request->meja;
+        $tipe = $request->tipe;
+        $lantai = $request->lantai;
+
+        return view('booking', compact('meja', 'tipe', 'lantai'));
+    }
 
 
 }

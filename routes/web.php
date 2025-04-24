@@ -22,6 +22,7 @@ Route::get('about2', [PageController::class, 'about2'])->name('about2');
 Route::get('home', [PageController::class, 'home'])->name('home');
 Route::get('login', [PageController::class, 'login'])->name('login');
 Route::get('registration', [PageController::class, 'registration'])->name('registration');
+Route::get('booking', [PageController::class, 'booking'])->name('booking');
 Route::get('/admin/dashboard', function () {return view('admin.dashboard');})->name('admin.dashboard');
 Route::get('/admin/reservasi', function () {return view('admin.reservasi');})->name('admin.reservasi');
 Route::get('/admin/pengguna', function () {return view('admin.pengguna');})->name('admin.pengguna');
