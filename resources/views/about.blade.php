@@ -278,7 +278,7 @@
     <section class="mt-8">
         <h2 class="text-white font-semibold text-base mb-4">Zetro Classic</h2>
         <div class="grid grid-cols-4 gap-4">
-            @for($i = 1; $i <= 16; $i++)
+            @for($i = 1; $i <= 12; $i++)
             <article>
                 <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
                 <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
@@ -290,87 +290,6 @@
     </section>
 </div>
 </main>
-        <!-- Red dot indicator -->
-        <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>
-
-    <div class="container mx-auto py-8 px-4 animate-fade-in">
-        <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Layanan Sering Dibooking</h1>
-
-        <div class="max-w-5xl mx-auto space-y-6">
-            <!-- Card Zetro Exclusive -->
-            <div
-                class="w-full h-80 relative hover:scale-[1.01] transition-transform duration-300 border border-gray-700 rounded-lg overflow-hidden">
-                <img class="w-full h-full object-cover"
-                    src="https://storage.googleapis.com/a1aa/image/2_gwMICPmhC1roJsjAzp4xc_s1pkeiqy9KjfNP22p0U.jpg"
-                    alt="Zetro Exclusive">
-                <div class="absolute top-2 left-2 bg-blue-900 text-white py-1 px-2 text-sm rounded">50.000 / jam</div>
-                <div class="absolute bottom-0 left-0 w-full bg-blue-900 bg-opacity-90 p-3">
-                    <h5 class="text-blue-400 font-semibold text-lg">Zetro Exclusive</h5>
-                    <p class="text-gray-300 text-sm">Lantai 3</p>
-                </div>
-            </div>
-
-            <!-- Card Zetro Classic - grid 2 kolom -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                <!-- Classic Card -->
-                <div
-                    class="relative h-56 hover:scale-[1.01] transition-transform duration-300 border border-gray-700 rounded-lg overflow-hidden">
-                    <img class="w-full h-full object-cover"
-                        src="https://storage.googleapis.com/a1aa/image/jTCwR_cc4GItaSD_yNsKF2MLX-rwCoPdq9OMEfTltBA.jpg"
-                        alt="Zetro Classic">
-                    <div class="absolute top-2 left-2 bg-blue-900 text-white py-1 px-2 text-sm rounded">35.000 / jam
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-blue-900 bg-opacity-90 p-2">
-                        <h5 class="text-blue-400 font-semibold text-sm">Zetro Classic</h5>
-                        <p class="text-gray-300 text-xs">Lantai 1 - Meja 1</p>
-                    </div>
-                </div>
-                <div
-                    class="relative h-56 hover:scale-[1.01] transition-transform duration-300 border border-gray-700 rounded-lg overflow-hidden">
-                    <img class="w-full h-full object-cover"
-                        src="https://storage.googleapis.com/a1aa/image/jTCwR_cc4GItaSD_yNsKF2MLX-rwCoPdq9OMEfTltBA.jpg"
-                        alt="Zetro Classic">
-                    <div class="absolute top-2 left-2 bg-blue-900 text-white py-1 px-2 text-sm rounded">35.000 / jam
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-blue-900 bg-opacity-90 p-2">
-                        <h5 class="text-blue-400 font-semibold text-sm">Zetro Classic</h5>
-                        <p class="text-gray-300 text-xs">Lantai 1 - Meja 2</p>
-                    </div>
-                </div>
-                <div
-                    class="relative h-56 hover:scale-[1.01] transition-transform duration-300 border border-gray-700 rounded-lg overflow-hidden">
-                    <img class="w-full h-full object-cover"
-                        src="https://storage.googleapis.com/a1aa/image/jTCwR_cc4GItaSD_yNsKF2MLX-rwCoPdq9OMEfTltBA.jpg"
-                        alt="Zetro Classic">
-                    <div class="absolute top-2 left-2 bg-blue-900 text-white py-1 px-2 text-sm rounded">35.000 / jam
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-blue-900 bg-opacity-90 p-2">
-                        <h5 class="text-blue-400 font-semibold text-sm">Zetro Classic</h5>
-                        <p class="text-gray-300 text-xs">Lantai 1 - Meja 3</p>
-                    </div>
-                </div>
-                <div
-                    class="relative h-56 hover:scale-[1.01] transition-transform duration-300 border border-gray-700 rounded-lg overflow-hidden">
-                    <img class="w-full h-full object-cover"
-                        src="https://storage.googleapis.com/a1aa/image/jTCwR_cc4GItaSD_yNsKF2MLX-rwCoPdq9OMEfTltBA.jpg"
-                        alt="Zetro Classic">
-                    <div class="absolute top-2 left-2 bg-blue-900 text-white py-1 px-2 text-sm rounded">35.000 / jam
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full bg-blue-900 bg-opacity-90 p-2">
-                        <h5 class="text-blue-400 font-semibold text-sm">Zetro Classic</h5>
-                        <p class="text-gray-300 text-xs">Lantai 1 - Meja 4</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tombol -->
-            <a href="#"
-                class="block bg-blue-900 text-white text-center py-3 rounded-lg hover:bg-blue-800 transition-colors duration-300 w-full">
-                Lihat Selengkapnya
-            </a>
-        </div>
-    </div>
-
     <div id="galeri" class="container mx-auto mt-10 mb-10 px-4">
         <h2 class="mb-6 font-bold text-2xl text-center text-white">Galeri</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
