@@ -58,8 +58,6 @@
         </div>
     </section>
 </main>
-
-
   <!-- Footer -->
   <footer class="bg-gray-800 mt-16 px-6 py-8 border-t border-gray-700 text-sm">
     <div class="flex justify-between items-center flex-wrap">
@@ -74,6 +72,5 @@
     </div>
     <div class="text-center text-gray-500 mt-4">&copy; 2024 Zetro Billiard. All rights reserved</div>
   </footer>
-
 </body>
 </html>

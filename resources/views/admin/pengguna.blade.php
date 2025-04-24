@@ -17,59 +17,58 @@
   <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
     @include('partials.sidebar')
-    <main class="p-6">
-      @yield('content')
-    </main>
+    
     <!-- Main Content -->
-    <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
+    <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Profile -->
       @include('partials.profile')
-      <main class="p-1">
-        @yield('content')
-      </main>
-      <main class="flex-1 p-2">
-        <div class="flex flex-col gap-2">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 mt-2">
-            <div class="flex items-center flex-1 max-w-full">
-              <span class="relative w-full max-w-full">
+      
+      <main class="flex-1 overflow-y-auto p-4 md:p-6">
+        <div class="flex flex-col gap-4">
+          <!-- Search and Filter Row -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 gap-2">
+            <div class="flex-1 min-w-0">
+              <div class="relative w-full max-w-full">
                 <input type="search" placeholder="Search"
                   class="w-full rounded-lg border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm text-gray-500 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]" />
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-              </span>
+              </div>
             </div>
 
-            <!-- Role Filter -->
-            <select
-              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-neutral-content focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-2">
+              <!-- Role Filter -->
+              <select
+                class="flex-1 min-w-[120px] bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-neutral-content focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+                <option value="">All Roles</option>
+                <option value="admin">Admin</option>
+                <option value="owner">Owner</option>
+                <option value="kasir">Kasir</option>
+              </select>
 
-              <option value="">All Roles</option>
-              <option value="admin">Admin</option>
-              <option value="owner">Owner</option>
-              <option value="kasir">Kasir</option>
-            </select>
+              <!-- Status Filter -->
+              <select
+                class="flex-1 min-w-[120px] bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-info focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
 
-            <!-- Status Filter -->
-            <select
-              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-info focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
-              <option value="">All Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-
-            <!-- Add User Button -->
-            <button
-              class="inline-flex items-center bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
-              <i class="fas fa-plus mr-2"></i> Add User
-            </button>
+              <!-- Add User Button -->
+              <button
+                class="flex-1 min-w-[120px] bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+                <i class="fas fa-plus mr-2"></i> <span class="hidden sm:inline">Add User</span>
+              </button>
+            </div>
           </div>
 
           <!-- Additional Filters -->
-          <div class="flex items-center gap-4 text-sm text-gray-700">
+          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-700">
             <!-- Sort Dropdown -->
             <div class="dropdown dropdown-bottom">
               <label tabindex="0" class="flex items-center gap-1 hover:text-gray-900 cursor-pointer">
                 <span>Sort by: Name</span>
-                <i class="fas fa-chevron-down text-xl"></i>
+                <i class="fas fa-chevron-down text-xs"></i>
               </label>
               <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-52 mt-1">
                 <li><a>Name (A-Z)</a></li>
@@ -83,7 +82,7 @@
             <div class="dropdown dropdown-bottom">
               <label tabindex="0" class="flex items-center gap-1 hover:text-gray-900 cursor-pointer">
                 <span>Saved search</span>
-                <i class="fas fa-chevron-down text-xl"></i>
+                <i class="fas fa-chevron-down text-xs"></i>
               </label>
               <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-white rounded-box w-52 mt-1">
                 <li><a>Active Admins</a></li>
@@ -93,13 +92,13 @@
             </div>
 
             <button aria-label="Advanced filter" class="text-gray-600 hover:text-gray-900">
-              <i class="fas fa-sliders-h"></i> Advanced
+              <i class="fas fa-sliders-h"></i> <span class="hidden sm:inline">Advanced</span>
             </button>
           </div>
         </div>
 
         <!-- Table Section -->
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden mt-4">
           <!-- Bulk Actions (hidden by default) -->
           <div id="bulk-actions" class="hidden flex items-center justify-between p-4 border-b bg-gray-50">
             <div class="text-sm text-gray-500">
@@ -120,14 +119,14 @@
               <!-- Table Header -->
               <thead class="bg-[#E0E7FF] text-[#6B7280]">
                 <tr>
-                  <th class="py-3 px-4 font-medium w-10">
+                  <th class="py-3 px-2 sm:px-4 font-medium w-10">
                     <input type="checkbox" id="select-all" class="checkbox checkbox-sm rounded border-gray-300">
                   </th>
-                  <th class="py-3 px-4 font-medium min-w-[180px]">Name</th>
-                  <th class="py-3 px-4 font-medium min-w-[120px] hidden sm:table-cell">Create Date</th>
-                  <th class="py-3 px-4 font-medium min-w-[120px]">Role</th>
-                  <th class="py-3 px-4 font-medium min-w-[120px]">Status</th>
-                  <th class="py-3 px-4 font-medium min-w-[120px]">Action</th>
+                  <th class="py-3 px-2 sm:px-4 font-medium">Name</th>
+                  <th class="py-3 px-2 sm:px-4 font-medium hidden md:table-cell">Create Date</th>
+                  <th class="py-3 px-2 sm:px-4 font-medium">Role</th>
+                  <th class="py-3 px-2 sm:px-4 font-medium">Status</th>
+                  <th class="py-3 px-2 sm:px-4 font-medium">Action</th>
                 </tr>
               </thead>
 
@@ -135,34 +134,32 @@
               <tbody class="divide-y divide-gray-100">
                 <!-- Row 1 -->
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <div class="font-semibold text-gray-800">Muhammad albagir</div>
-                    <div class="text-xl text-gray-400">muhammadalbagir@gmail.com</div>
+                    <div class="text-xs sm:text-sm text-gray-400">muhammadalbagir@gmail.com</div>
                   </td>
-                  <td class="py-3 px-4 hidden sm:table-cell">24 Jun, 2023</td>
-                  <td class="py-3 px-4">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-blue-100 text-blue-800">
+                  <td class="py-3 px-2 sm:px-4 hidden md:table-cell">24 Jun, 2023</td>
+                  <td class="py-3 px-2 sm:px-4">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-800">
                       Admin
                     </span>
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <label class="inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked class="sr-only peer">
-                      <div
-                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
                       </div>
                     </label>
                   </td>
-                  <td class="py-3 px-4">
-                    <div class="flex gap-3">
-                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                  <td class="py-3 px-2 sm:px-4">
+                    <div class="flex gap-1 sm:gap-3">
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md" data-tip="Edit">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
-                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md text-red-500 hover:bg-red-50"
                         onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -172,34 +169,32 @@
 
                 <!-- Row 2 -->
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <div class="font-semibold text-gray-800">Budi Syah Putra</div>
-                    <div class="text-xl text-gray-400">Putra@gmail.com</div>
+                    <div class="text-xs sm:text-sm text-gray-400">Putra@gmail.com</div>
                   </td>
-                  <td class="py-3 px-4 hidden sm:table-cell">17 Jan, 2023</td>
-                  <td class="py-3 px-4">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-purple-100 text-purple-800">
+                  <td class="py-3 px-2 sm:px-4 hidden md:table-cell">17 Jan, 2023</td>
+                  <td class="py-3 px-2 sm:px-4">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-purple-100 text-purple-800">
                       Owner
                     </span>
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <label class="inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked class="sr-only peer">
-                      <div
-                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
                       </div>
                     </label>
                   </td>
-                  <td class="py-3 px-4">
-                    <div class="flex gap-3">
-                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                  <td class="py-3 px-2 sm:px-4">
+                    <div class="flex gap-1 sm:gap-3">
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md" data-tip="Edit">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
-                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md text-red-500 hover:bg-red-50"
                         onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -209,34 +204,32 @@
 
                 <!-- Row 3 -->
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <div class="font-semibold text-gray-800">Nadyawati</div>
-                    <div class="text-xl text-gray-400">nadya@gmail.com</div>
+                    <div class="text-xs sm:text-sm text-gray-400">nadya@gmail.com</div>
                   </td>
-                  <td class="py-3 px-4 hidden sm:table-cell">22 Agu, 2023</td>
-                  <td class="py-3 px-4">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-green-100 text-green-800">
+                  <td class="py-3 px-2 sm:px-4 hidden md:table-cell">22 Agu, 2023</td>
+                  <td class="py-3 px-2 sm:px-4">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-green-100 text-green-800">
                       Kasir
                     </span>
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <label class="inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked class="sr-only peer">
-                      <div
-                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
                       </div>
                     </label>
                   </td>
-                  <td class="py-3 px-4">
-                    <div class="flex gap-3">
-                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                  <td class="py-3 px-2 sm:px-4">
+                    <div class="flex gap-1 sm:gap-3">
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md" data-tip="Edit">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
-                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md text-red-500 hover:bg-red-50"
                         onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -246,34 +239,32 @@
 
                 <!-- Row 4 -->
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <div class="font-semibold text-gray-800">Wibo Kurniawan</div>
-                    <div class="text-xl text-gray-400">wibokurniawan@gmail.com</div>
+                    <div class="text-xs sm:text-sm text-gray-400">wibokurniawan@gmail.com</div>
                   </td>
-                  <td class="py-3 px-4 hidden sm:table-cell">22 Agu, 2023</td>
-                  <td class="py-3 px-4">
-                    <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xl font-medium bg-purple-100 text-purple-800">
+                  <td class="py-3 px-2 sm:px-4 hidden md:table-cell">22 Agu, 2023</td>
+                  <td class="py-3 px-2 sm:px-4">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium bg-purple-100 text-purple-800">
                       Owner
                     </span>
                   </td>
-                  <td class="py-3 px-4">
+                  <td class="py-3 px-2 sm:px-4">
                     <label class="inline-flex items-center cursor-pointer">
                       <input type="checkbox" class="sr-only peer">
-                      <div
-                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                      <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
                       </div>
                     </label>
                   </td>
-                  <td class="py-3 px-4">
-                    <div class="flex gap-3">
-                      <button class="btn btn-circle btn-ghost btn-xl" data-tip="Edit">
+                  <td class="py-3 px-2 sm:px-4">
+                    <div class="flex gap-1 sm:gap-3">
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md" data-tip="Edit">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
-                      <button class="btn btn-circle btn-ghost btn-xl text-red-500 hover:bg-red-50"
+                      <button class="btn btn-circle btn-ghost btn-sm sm:btn-md text-red-500 hover:bg-red-50"
                         onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -360,8 +351,9 @@
             bulkActions.classList.toggle('hidden', selectedCount === 0);
             selectAll.checked = selectedCount === rowCheckboxes.length;
           }
-
         });     
       </script>
+    </div>
+  </div>
 </body>
 </html>
