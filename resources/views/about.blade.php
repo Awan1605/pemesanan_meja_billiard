@@ -176,7 +176,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="{{ route("home") }}">
+                    <a class="text-white hover:text-blue-500 nav-link" href="#Reservasi">
                         Reservasi
                     </a>
                 </li>
@@ -236,6 +236,68 @@
                 class="rounded-2xl shadow-2xl w-full max-w-md transition-transform duration-500 hover:scale-105" />
         </div>
     </div>
+    
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Zetro Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<main class="max-w-7xl mx-auto">
+
+<!--Reservasi -->
+<div id="Reservasi" class="container mx-auto mt-10 mb-10 px-4">
+    <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Reservasi</h1>
+
+    <!-- Zetro Exclusive Section -->
+    <section>
+        <h2 class="text-white font-semibold text-base mb-4">Zetro Exclusive</h2>
+        <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
+            @for($i = 1; $i <= 4; $i++)
+            <article class="min-w-[120px] flex-shrink-0">
+                <img class="rounded-md w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg" alt="Zetro Exclusive" />
+                <h3 class="text-xs font-semibold mt-2">Zetro Exclusive</h3>
+                <p class="text-[9px] text-gray-300">Lantai2 | Meja {{ $i }}</p>
+                <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
+            </article>
+            @endfor
+        </div>
+    </section>
+
+    <!-- Zetro Classic Section -->
+    <section class="mt-8">
+        <h2 class="text-white font-semibold text-base mb-4">Zetro Classic</h2>
+        <div class="grid grid-cols-4 gap-4">
+            @for($i = 1; $i <= 16; $i++)
+            <article>
+                <img class="rounded-md w-full h-auto object-cover" src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg" alt="Zetro Classic" />
+                <h3 class="text-xs font-semibold mt-2">Zetro Classic</h3>
+                <p class="text-[9px] text-gray-300">Lantai1 | Meja {{ $i }}</p>
+                <a href="/reservasi" class="inline-block bg-blue-500 text-white text-xs px-4 py-2 rounded mt-2">Reservasi</a>
+            </article>
+            @endfor
+        </div>
+    </section>
+</div>
+
+    <!-- Red dot indicator -->
+    <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>
+
+</main>
+
+
+        <!-- Red dot indicator -->
+        <div aria-hidden="true" class="fixed top-1/2 right-6 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#d40000]"></div>
 
     <div class="container mx-auto py-8 px-4 animate-fade-in">
         <h1 class="text-2xl lg:text-3xl font-bold mb-8 text-white text-center">Layanan Sering Dibooking</h1>

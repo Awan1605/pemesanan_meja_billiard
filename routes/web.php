@@ -3,7 +3,6 @@
 use App\Http\Controllers\PageController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

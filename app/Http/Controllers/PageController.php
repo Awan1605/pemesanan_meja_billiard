@@ -10,7 +10,7 @@ class PageController extends Controller
     {
         return view('admin.dashboard');
     }
-    public function reservasi()
+    public function adminreservasi()
     {
         return view('admin.reservasi');
     }
@@ -50,5 +50,6 @@ class PageController extends Controller
     {
         return view('registration');
     }
+
 
 }
