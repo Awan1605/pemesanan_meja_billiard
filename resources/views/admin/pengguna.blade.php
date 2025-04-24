@@ -61,6 +61,40 @@
               </button>
             </div>
           </div>
+<dialog id="add_user_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Tambah User</h3>
+    <form action="{{ route('users.store') }}" method="POST" class="space-y-4">
+      @csrf
+      <div>
+        <label class="label">Nama</label>
+        <input type="text" name="name" class="input input-bordered w-full" required>
+      </div>
+      <div>
+        <label class="label">Email</label>
+        <input type="email" name="email" class="input input-bordered w-full" required>
+      </div>
+      <div>
+        <label class="label">Role</label>
+        <select name="role" class="select select-bordered w-full" required>
+          <option value="admin">Admin</option>
+          <option value="owner">Owner</option>
+          <option value="kasir">Kasir</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Password</label>
+        <input type="password" name="password" class="input input-bordered w-full" required>
+      </div>
+      <div class="modal-action">
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <form method="dialog">
+          <button class="btn">Batal</button>
+        </form>
+      </div>
+    </form>
+  </div>
+</dialog>
 
           <!-- Additional Filters -->
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-700">
