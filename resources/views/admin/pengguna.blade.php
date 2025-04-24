@@ -344,13 +344,13 @@
 
       <!-- Delete Confirmation Modal -->
       <dialog id="delete_modal" class="modal">
-        <div class="modal-box bg-primary-content">
-          <h3 class="font-bold text-lg">Konfirmasi</h3>
-          <p class="py-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+        <div class="modal-box bg-primary-content text-black">
+          <h3 class="font-medium text-lg">Konfirmasi</h3>
+          <p class="py-4 font-sans">Are you sure you want to delete this user? This action cannot be undone.</p>
           <div class="modal-action">
             <form method="dialog">
               <button class="btn btn-ghost">Kembali</button>
-              <button class="btn btn-error text-white">Hapus Permanen</button>
+              <button class="btn btn-error text-black">Hapus Permanen</button>
             </form>
           </div>
         </div>

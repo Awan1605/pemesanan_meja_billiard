@@ -23,6 +23,10 @@
             color: white;
             border: 1px solid #555;
         }
+        .btn-time.active {
+            background-color: #0d6efd;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +56,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="duration" class="form-label">Pilih Berapa Jam Reservasi</label>
+                    <label for="duration" class="form-label">Pilih Lama Reservasi</label>
                     <div class="input-group">
                         <button type="button" class="btn btn-danger" onclick="decreaseDuration()">-</button>
                         <input type="number" class="form-control text-center" id="duration" name="duration" value="2" min="1" readonly>
@@ -61,28 +65,23 @@
                 </div>
 
                 <div class="mb-3">
-    <label class="form-label">Pilih Waktu yang Diinginkan</label>
-    <div id="timeOptions" class="d-flex flex-wrap gap-2">
-        <!-- Pilihan waktu preset -->
-        <button type="button" class="btn btn-outline-light" data-time="18:00">18:00</button>
-        <button type="button" class="btn btn-outline-light" data-time="19:00">19:00</button>
-        <button type="button" class="btn btn-outline-light" data-time="20:00">20:00</button>
-        <button type="button" class="btn btn-outline-light" data-time="21:00">21:00</button>
-        <button type="button" class="btn btn-outline-light" data-time="22:00">22:00</button>
-        <!-- Add more as needed -->
-    </div>
-    <!-- Input tersembunyi untuk dikirim ke server -->
-    <input type="hidden" id="selectedTime" name="time" value="">
-</div>
-
-
-                <div class="mb-3">
-                    <label for="date" class="form-label">Pilih Hari yang ingin ditentukan</label>
-                    <input type="date" id="date" name="date" class="form-control" value="{{ date('Y-m-d') }}">
+                    <label class="form-label">Pilih Waktu</label>
+                    <div id="timeOptions" class="d-flex flex-wrap gap-2">
+                        @foreach (['18:00', '19:00', '20:00', '21:00', '22:00'] as $time)
+                            <button type="button" class="btn btn-outline-light btn-time" data-time="{{ $time }}">{{ $time }}</button>
+                        @endforeach
+                    </div>
+                    <input type="hidden" id="selectedTime" name="time">
                 </div>
 
                 <div class="mb-3">
-                    <p>Total Pembayaran <span id="total" class="text-success">100.000</span> per <span id="jam">2</span> Jam</p>
+                    <label for="date" class="form-label">Pilih Tanggal</label>
+                    <input type="date" id="date" name="date" class="form-control"
+                           min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}">
+                </div>
+
+                <div class="mb-3">
+                    <p>Total Pembayaran <span id="total" class="text-success">100.000</span> untuk <span id="jam">2</span> Jam</p>
                 </div>
 
                 <button type="submit" class="btn btn-custom">Bayar Sekarang</button>
@@ -93,27 +92,27 @@
 </div>
 
 <script>
-    let tarif = {
+    const tarif = {
         exclusive: 50000,
         classic: 30000
     };
 
     function updateTotal() {
-        let duration = parseInt(document.getElementById('duration').value);
-        let tipe = document.getElementById('table_type').value;
-        let harga = tarif[tipe];
+        const duration = parseInt(document.getElementById('duration').value);
+        const type = document.getElementById('table_type').value;
+        const price = tarif[type];
         document.getElementById('jam').innerText = duration;
-        document.getElementById('total').innerText = (harga * duration).toLocaleString('id-ID');
+        document.getElementById('total').innerText = (price * duration).toLocaleString('id-ID');
     }
 
     function increaseDuration() {
-        let input = document.getElementById('duration');
+        const input = document.getElementById('duration');
         input.value = parseInt(input.value) + 1;
         updateTotal();
     }
 
     function decreaseDuration() {
-        let input = document.getElementById('duration');
+        const input = document.getElementById('duration');
         if (parseInt(input.value) > 1) {
             input.value = parseInt(input.value) - 1;
             updateTotal();
@@ -121,11 +120,11 @@
     }
 
     function updateInfo() {
-        let tipe = document.getElementById('table_type').value;
-        let image = document.getElementById('tableImage');
-        let info = document.getElementById('tableInfo');
+        const type = document.getElementById('table_type').value;
+        const image = document.getElementById('tableImage');
+        const info = document.getElementById('tableInfo');
 
-        if (tipe === 'exclusive') {
+        if (type === 'exclusive') {
             image.src = "{{ asset('images/zetro-exclusive.jpg') }}";
             info.innerHTML = 'Zetro Exclusive<br><small>Lantai 3</small>';
         } else {
@@ -135,6 +134,30 @@
 
         updateTotal();
     }
+
+    document.querySelectorAll('.btn-time').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('.btn-time').forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('selectedTime').value = this.getAttribute('data-time');
+        });
+    });
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const selectedTime = document.getElementById('selectedTime').value;
+        const selectedDate = document.getElementById('date').value;
+        const today = new Date().toISOString().split('T')[0];
+
+        if (!selectedTime) {
+            alert('Silakan pilih waktu reservasi terlebih dahulu.');
+            e.preventDefault();
+        }
+
+        if (!selectedDate || selectedDate < today) {
+            alert('Tanggal tidak boleh kosong atau di masa lalu.');
+            e.preventDefault();
+        }
+    });
 
     window.onload = updateTotal;
 </script>
