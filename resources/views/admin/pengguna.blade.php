@@ -54,7 +54,8 @@
 
               <!-- Add User Button -->
               <button
-                class="flex-1 min-w-[120px] bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors">
+                class="flex-1 min-w-[120px] bg-[#2563EB] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-colors"
+                onclick="document.getElementById('add_user_modal').showModal()">
                 <i class="fas fa-plus mr-2"></i> <span class="hidden sm:inline">Add User</span>
               </button>
             </div>
@@ -129,7 +130,7 @@
               </thead>
 
               <!-- Table Body -->
-              <tbody class="divide-y divide-gray-100">
+              <tbody class="divide-y divide-gray-100" id="user-table-body">
                 <!-- Row 1 -->
                 <tr class="hover:bg-gray-50 transition-colors">
                   <td class="py-3 px-2 sm:px-4">
@@ -306,15 +307,90 @@
         </div>
       </main>
 
+      <!-- Add User Modal -->
+      <dialog id="add_user_modal" class="modal">
+        <div class="modal-box w-11/12 max-w-3xl">
+          <h3 class="font-bold text-lg">Add New User</h3>
+          <div class="py-4">
+            <form id="add-user-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Name -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Full Name</span>
+                </label>
+                <input type="text" id="user-name" placeholder="Enter full name" class="input input-bordered w-full" required />
+              </div>
+              
+              <!-- Email -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input type="email" id="user-email" placeholder="Enter email address" class="input input-bordered w-full" required />
+              </div>
+              
+              <!-- Role -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Role</span>
+                </label>
+                <select id="user-role" class="select select-bordered w-full" required>
+                  <option value="" disabled selected>Select role</option>
+                  <option value="admin">Admin</option>
+                  <option value="owner">Owner</option>
+                  <option value="kasir">Kasir</option>
+                </select>
+              </div>
+              
+              <!-- Status -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Status</span>
+                </label>
+                <label class="label cursor-pointer justify-start gap-4">
+                  <input type="checkbox" id="user-status" checked class="toggle toggle-primary" />
+                  <span class="label-text">Active</span>
+                </label>
+              </div>
+              
+              <!-- Password -->
+              <div class="form-control md:col-span-2">
+                <label class="label">
+                  <span class="label-text">Password</span>
+                </label>
+                <input type="password" id="user-password" placeholder="Enter password" class="input input-bordered w-full" required />
+              </div>
+              
+              <!-- Confirm Password -->
+              <div class="form-control md:col-span-2">
+                <label class="label">
+                  <span class="label-text">Confirm Password</span>
+                </label>
+                <input type="password" id="user-confirm-password" placeholder="Confirm password" class="input input-bordered w-full" required />
+              </div>
+            </form>
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn btn-ghost">Cancel</button>
+              <button type="button" class="btn btn-primary" onclick="addNewUser()">Add User</button>
+            </form>
+          </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+
       <!-- Delete Confirmation Modal -->
       <dialog id="delete_modal" class="modal">
-        <div class="modal-box bg-primary-content text-black">
-          <h3 class="font-medium text-lg">Konfirmasi</h3>
-          <p class="py-4 font-sans">Are you sure you want to delete this user? This action cannot be undone.</p>
+        <div class="modal-box bg-primary-content">
+          <h3 class="font-bold text-lg">Konfirmasi</h3>
+          <p class="py-4">Are you sure you want to delete this user? This action cannot be undone.</p>
           <div class="modal-action">
             <form method="dialog">
               <button class="btn btn-ghost">Kembali</button>
-              <button class="btn btn-error text-black">Hapus Permanen</button>
+              <button class="btn btn-error text-white">Hapus Permanen</button>
             </form>
           </div>
         </div>
@@ -350,6 +426,98 @@
             selectAll.checked = selectedCount === rowCheckboxes.length;
           }
         });     
+        
+        // Function to add new user
+        function addNewUser() {
+          // Get form values
+          const name = document.getElementById('user-name').value;
+          const email = document.getElementById('user-email').value;
+          const role = document.getElementById('user-role').value;
+          const status = document.getElementById('user-status').checked;
+          const password = document.getElementById('user-password').value;
+          const confirmPassword = document.getElementById('user-confirm-password').value;
+          
+          // Simple validation
+          if (!name || !email || !role || !password || !confirmPassword) {
+            alert('Please fill all required fields');
+            return;
+          }
+          
+          if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+          }
+          
+          // Create new date (current date)
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString('en-US', { 
+            day: 'numeric', 
+            month: 'short', 
+            year: 'numeric' 
+          });
+          
+          // Determine role color
+          let roleColor = 'bg-blue-100 text-blue-800';
+          if (role === 'owner') roleColor = 'bg-purple-100 text-purple-800';
+          if (role === 'kasir') roleColor = 'bg-green-100 text-green-800';
+          
+          // Create new table row
+          const tableBody = document.getElementById('user-table-body');
+          const newRow = document.createElement('tr');
+          newRow.className = 'hover:bg-gray-50 transition-colors';
+          newRow.innerHTML = `
+            <td class="py-3 px-2 sm:px-4">
+              <input type="checkbox" class="row-checkbox checkbox checkbox-sm rounded border-gray-300">
+            </td>
+            <td class="py-3 px-2 sm:px-4">
+              <div class="font-semibold text-gray-800">${name}</div>
+              <div class="text-xs sm:text-sm text-gray-400">${email}</div>
+            </td>
+            <td class="py-3 px-2 sm:px-4 hidden md:table-cell">${formattedDate}</td>
+            <td class="py-3 px-2 sm:px-4">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs sm:text-sm font-medium ${roleColor}">
+                ${role.charAt(0).toUpperCase() + role.slice(1)}
+              </span>
+            </td>
+            <td class="py-3 px-2 sm:px-4">
+              <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" ${status ? 'checked' : ''} class="sr-only peer">
+                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-green-500">
+                </div>
+              </label>
+            </td>
+            <td class="py-3 px-2 sm:px-4">
+              <div class="flex gap-1 sm:gap-3">
+                <button class="btn btn-circle btn-ghost btn-sm sm:btn-md" data-tip="Edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="btn btn-circle btn-ghost btn-sm sm:btn-md text-red-500 hover:bg-red-50"
+                  onclick="document.getElementById('delete_modal').showModal()" data-tip="Delete">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </td>
+          `;
+          
+          // Add the new row to the table
+          tableBody.insertBefore(newRow, tableBody.firstChild);
+          
+          // Reset the form
+          document.getElementById('add-user-form').reset();
+          
+          // Close the modal
+          document.getElementById('add_user_modal').close();
+          
+          // Update pagination count (simple example)
+          const paginationText = document.querySelector('.flex-col.sm\\:flex-row.justify-between.items-center.p-4.border-t .text-sm');
+          if (paginationText) {
+            const currentCount = parseInt(paginationText.textContent.match(/to (\d+) of (\d+)/)[1]);
+            const totalCount = parseInt(paginationText.textContent.match(/to \d+ of (\d+)/)[1]);
+            paginationText.textContent = paginationText.textContent
+              .replace(`to ${currentCount}`, `to ${currentCount + 1}`)
+              .replace(`of ${totalCount}`, `of ${totalCount + 1}`);
+          }
+        }
       </script>
     </div>
   </div>
