@@ -16,13 +16,11 @@
 <body class="bg-gray-100 font-sans">
   <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
-    @include('partials.sidebar')
-    
+    <x-sidebar></x-sidebar>
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Profile -->
-      @include('partials.profile')
-      
+      <x-profile></x-profile>
       <main class="flex-1 overflow-y-auto p-4 md:p-6">
         <div class="flex flex-col gap-4">
           <!-- Search and Filter Row -->

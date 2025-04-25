@@ -1,4 +1,4 @@
-    <header class="bg-white shadow-sm p-5">
+<header class="bg-white shadow-sm p-5">
         <div class="flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-semibold text-gray-800">Hello, Wibo</h1>

@@ -14,17 +14,11 @@
 <body class="bg-gray-100 font-sans">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        @include('partials.sidebar')
-        <main class="p-6">
-            @yield('content')
-        </main>
+        <x-sidebar></x-sidebar>
         <!-- Main Content -->
         <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
             <!-- Profile -->
-            @include('partials.profile')
-            <main class="p-1">
-                @yield('content')
-            </main>
+            <x-profile></x-profile>
             <!-- Main Content -->
             <main class="flex-1 p-6 bg-gray-50">
                 <!-- Header dan Kontrol -->
