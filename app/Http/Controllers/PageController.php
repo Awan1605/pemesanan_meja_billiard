@@ -6,30 +6,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
     {
-    public function dashboard()
-    {
-        return view('admin.dashboard');
-    }
-    public function adminreservasi()
-    {
-        return view('admin.reservasi');
-    }
-    public function pengguna()
-    {
-        return view('admin.pengguna');
-    }
-    public function meja()
-    {
-        return view('admin.meja');
-    }
-    public function pembayaran()
-    {
-        return view('admin.pembayaran');
-    }
-    public function makanan()
-    {
-        return view('admin.makanan');
-    }
+    
     public function about()
     {
         return view('about');

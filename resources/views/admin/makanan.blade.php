@@ -40,19 +40,13 @@
 <body class="bg-gray-100 font-sans">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-<<<<<<< HEAD
       <x-sidebar></x-sidebar>
         <!-- Main Content -->
         <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
         <!-- Profile -->
         <x-profile></x-profile>
-=======
-        @include('partials.sidebar')
         <!-- Main Content -->
         <div class="p-5 flex-1 overflow-y-auto overflow-x-hidden">
-            <!-- Profile -->
-            @include('partials.profile')
->>>>>>> bafdbe95b06f903ec1a0f114aefeaa08c5c33668
             <main class="flex-1 p-6 bg-gray-50">
                 <!-- Header dan Kontrol -->
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">

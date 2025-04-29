@@ -2,6 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PenggunaController;
+
+Route::get('pengguna', [PenggunaController::class, 'index']);
+Route::post('pengguna', [PenggunaController::class, 'store']);
+Route::get('pengguna/{id}', [PenggunaController::class, 'show']);
+Route::put('pengguna/{id}', [PenggunaController::class, 'update']);
+Route::delete('pengguna/{id}', [PenggunaController::class, 'destroy']);
 
 /*
 |--------------------------------------------------------------------------

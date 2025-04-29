@@ -112,23 +112,23 @@
                             Beranda
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->is('reservasi*') ? 'active' : '' }}">
-                        <a class="text-white hover:text-blue-500 nav-link" href="{{ route('home') }}">
+                    <li>
+                        <a class="text-white hover:text-blue-500 nav-link" href="#reservasi">
                             Reservasi
                         </a>
                     </li>
                     <li>
-                        <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        <a class="text-white hover:text-blue-500 nav-link" href="#galeri">
                             Galeri
                         </a>
                     </li>
                     <li>
-                        <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        <a class="text-white hover:text-blue-500 nav-link" href="#tentang">
                             Tentang
                         </a>
                     </li>
                     <li>
-                        <a class="text-white hover:text-blue-500 nav-link" href="#">
+                        <a class="text-white hover:text-blue-500 nav-link" href="#hubungi_kami">
                             Hubungi Kami
                         </a>
                     </li>
@@ -188,7 +188,7 @@
                             <i class="fas fa-cog mr-2"></i> Setting
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="flex items-center px-4 py-2 text-red-400 hover:text-red-300">
+                        <a href="{{ route('about') }}" class="flex items-center px-4 py-2 text-red-400 hover:text-red-300">
                             <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                         </a>
                     </div>
@@ -199,11 +199,11 @@
         <!-- Mobile Menu -->
         <div class="lg:hidden">
             <ul class="hidden flex-col space-y-2 mt-4 text-lg" id="mobile-menu">
-                <li><a class="text-white text-xl hover:text-blue-500 block nav-link" href="#">Beranda</a></li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="{{ route('home') }}">Reservasi</a></li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Galeri</a></li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Tentang</a></li>
-                <li><a class="text-white hover:text-blue-500 block nav-link" href="#">Hubungi Kami</a></li>
+                <li><a class="text-white text-xl hover:text-blue-500 block nav-link" href="{{route('about2')}}">Beranda</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#reservasi">Reservasi</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#galeri">Galeri</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#tentang">Tentang</a></li>
+                <li><a class="text-white hover:text-blue-500 block nav-link" href="#hubungi_kami">Hubungi Kami</a></li>
                 
                 <!-- Mobile Cart -->
                 <li class="pt-2 border-t border-gray-700">
