@@ -1,4 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <header class="bg-white shadow-sm p-5">
+
     <div class="flex justify-between items-center">
         <div>
             <h1 class="text-2xl font-bold mb-6">Selamat datang, {{ Auth::user()->username }}!</h1>
@@ -32,7 +34,8 @@
                         <p class="text-sm text-gray-500">{{ Auth::user()->email }}</p>
                     </div>
 
-                    <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <a href="#" id="editProfileLink"
+                        class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
@@ -43,7 +46,7 @@
                     <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                         <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c-.94 1.543.826 3.31 2.37 2.37.996.608 2.296.07 2.572-1.065z">
                             </path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -71,20 +74,168 @@
         </div>
     </div>
 </header>
+
+<!-- Modal Edit Profile (Letakkan di luar header, sebelum penutup body) -->
+<div id="editProfileModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between p-4 border-b">
+            <h3 class="text-lg font-medium text-gray-900">Edit Profile</h3>
+            <button id="closeEditProfileModal" class="text-gray-400 hover:text-gray-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="p-6">
+            <form id="editProfileForm" method="POST">
+                @csrf
+                @method('PUT')
+
+                <!-- Nama -->
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-black mb-1">Nama</label>
+                    <input type="name" id="name" name="name" value="{{ Auth::user()->username ?? '' }}"
+                        class="w-full px-3 py-2 border border-white bg-white-800 text-white rounded-md shadow-sm focus:outline-none focus:ring-white focus:border-white">
+                </div>
+
+                <!-- Nomor Telepon -->
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-black mb-1">Nomor Telepon</label>
+                    <input type="tel" id="phone" name="phone" value="{{ Auth::user()->nomor_telepon ?? '' }}"
+                        class="w-full px-3 py-2 border border-white rounded-md shadow-sm focus:outline-none focus:ring-white-500 focus:border-white-500">
+                </div>
+
+                <!-- Password -->
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-black mb-1">Password Baru (kosongkan
+                        jika tidak ingin mengubah)</label>
+                    <input type="password" id="password" name="password"
+                        class="w-full px-3 py-2 border border-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <!-- Konfirmasi Password -->
+                <div class="mb-6">
+                    <label for="password_confirmation" class="block text-sm font-medium text-black mb-1">Konfirmasi
+                        Password Baru</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation"
+                        class="w-full px-3 py-2 border border-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="cancelEditProfile"
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Batal
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Profile dropdown
         const profileButton = document.getElementById('profileDropdownButton');
         const dropdownMenu = document.getElementById('profileDropdownMenu');
+        const editProfileLink = document.getElementById('editProfileLink');
 
+        // Toggle dropdown
         profileButton.addEventListener('click', function (e) {
-            e.stopPropagation(); // supaya tidak langsung ditutup
+            e.stopPropagation();
             dropdownMenu.classList.toggle('hidden');
         });
 
+        // Tutup dropdown ketika klik di luar
         document.addEventListener('click', function (e) {
             if (!document.getElementById('profileDropdownWrapper').contains(e.target)) {
                 dropdownMenu.classList.add('hidden');
             }
+        });
+
+        // Edit Profile Modal
+        const modal = document.getElementById('editProfileModal');
+        const closeButton = document.getElementById('closeEditProfileModal');
+        const cancelButton = document.getElementById('cancelEditProfile');
+
+        // Buka modal ketika "Edit Profile" diklik
+        editProfileLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            dropdownMenu.classList.add('hidden'); // Tutup dropdown
+            modal.classList.remove('hidden');
+        });
+
+        // Tutup modal
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        closeButton.addEventListener('click', closeModal);
+        cancelButton.addEventListener('click', closeModal);
+
+        // Tutup modal ketika klik di luar modal
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('editProfileForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validasi form
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('password_confirmation').value;
+
+            if (password && password !== confirmPassword) {
+                alert('Password dan konfirmasi password tidak cocok!');
+                return;
+            }
+
+            // Kirim form via AJAX
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: form.method,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Profile berhasil diupdate!');
+                        closeModal();
+                        window.location.reload();
+                    } else {
+                        if (data.errors) {
+                            let errorMessages = '';
+                            for (const [field, messages] of Object.entries(data.errors)) {
+                                errorMessages += `${messages.join(', ')}\n`;
+                            }
+                            alert(errorMessages);
+                        } else {
+                            alert(data.message || 'Terjadi kesalahan');
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat mengupdate profile');
+                });
         });
     });
 </script>
