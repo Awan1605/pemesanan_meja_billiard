@@ -118,7 +118,7 @@
 <body>
     <div class="container">
         <div class="left">
-            <img src="biliard.png" alt="Billiard Hall">
+            <img src="https://storage.googleapis.com/a1aa/image/BdM59a_ixLBfeOCEjJXBFhDJiIRx_iwRtPIZEFmcf5g.jpg" alt="Billiard Hall">
             <div class="overlay">
                 <h1><span>Zetro</span>Billiard.</h1>
             </div>
@@ -153,7 +153,7 @@
                 <p class="terms">By signing up you agree to <span>terms and conditions</span> at Zoho.</p>
                 <button type="submit" class="btn">Login</button>
             </form>
-            <p class="create-account">Belum punya akun? <a href="registrasi.php">Daftar di sini</a></p>
+            <p class="create-account">Belum punya akun? <a href="registration.php">Daftar di sini</a></p>
 
             
         </div>
