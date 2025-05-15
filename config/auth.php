@@ -20,7 +20,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Guards
+    | Authentication Guard
     |--------------------------------------------------------------------------
     |
     | Next, you may define every authentication guard for your application.
@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\users::class,
+            'model' => App\Models\Pengguna::class,
         ],
 
         // 'users' => [

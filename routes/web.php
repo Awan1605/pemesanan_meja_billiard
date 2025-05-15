@@ -18,9 +18,14 @@ Route::get('/', function () {
 // Auth Routes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.submit');
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('registration');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/contact', function () {
+    // Process contact form submission
+    return back()->with('success', 'Pesan Anda telah terkirim!');
+})->name('contact.submit');
 
 // Halaman publik
 Route::get('about', [PageController::class, 'about'])->name('about');
@@ -39,11 +44,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(f
     Route::get('/pembayaran', [AdminController::class, 'pembayaran'])->name('pembayaran');
     Route::get('/makanan', [AdminController::class, 'makanan'])->name('makanan');
 
- // Manajemen Pengguna dengan Controller
- Route::get('/users', [PenggunaController::class, 'index'])->name('users.index');
- Route::get('/users/create', [PenggunaController::class, 'create'])->name('users.create');
- Route::post('/users', [PenggunaController::class, 'store'])->name('users.store');
- Route::get('/users/{user}/edit', [PenggunaController::class, 'edit'])->name('users.edit');
- Route::put('/users/{user}', [PenggunaController::class, 'update'])->name('users.update');
- Route::delete('/users/{user}', [PenggunaController::class, 'destroy'])->name('users.destroy');
+    // Manajemen Pengguna dengan Controller
+    Route::get('/users', [PenggunaController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [PenggunaController::class, 'create'])->name('users.create');
+    Route::post('/users', [PenggunaController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}/edit', [PenggunaController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [PenggunaController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [PenggunaController::class, 'destroy'])->name('users.destroy');
 });

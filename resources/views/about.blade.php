@@ -1,5 +1,4 @@
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -187,12 +186,10 @@
                     class="rounded-2xl shadow-2xl w-full max-w-md transition-transform duration-500 hover:scale-105" />
             </div>
         </div>
-        <main class="max-w-7xl mx-auto">
-
+        <main class="max-w-8xl mx-auto">
             <!-- Reservasi Section -->
-            <div id="reservasi" class="container mx-auto mt-20 mb-20 px-4">
-                <h1 class="text-3xl lg:text-4xl font-bold mb-12 text-white text-center">Reservasi</h1>
-
+            <div id="reservasi" class="container mx-auto mt-10 mb-10 px-4">
+                <h1 class="text-3xl lg:text-5xl font-bold mb-12 text-white text-center">Reservasi</h1>
                 <!-- Zetro Exclusive Section -->
                 <div class="mb-16">
                     <h2 class="text-xl font-semibold mb-6 text-white">Zetro Exclusive</h2>
@@ -241,7 +238,7 @@
             </div>
         </main>
         <div id="galeri" class="container mx-auto mt-10 mb-10 px-4">
-            <h2 class="mb-6 font-bold text-2xl text-center text-white">Galeri</h2>
+            <h2 class="mb-6 font-bold text-5xl text-center text-white">Galeri</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
                 <!-- Ulangi untuk semua gambar -->
                 <div class="aspect-w-1 aspect-h-1">
@@ -408,7 +405,7 @@
             <p class="mb-2">Biliar bukan hanya tentang keberuntungan tapi tentang fokus, strategi, dan ketenangan</p>
             <p class="mb-4">Copyright 2025 • KELOMPOK 3 • PBL</p>
             <a class="bg-gray-700 text-white py-2 px-4 rounded hover:bg-blue-800"
-                href="{{ route("registration") }}">Register Now</a>
+                href="#">Register Now</a>
         </div>
         <script>
             document.getElementById('menu-button').addEventListener('click', function () {
@@ -420,6 +417,6 @@
                 }
             });
         </script>
+        
     </body>
-
     </html>
