@@ -173,7 +173,7 @@
                     Nikmati permainan tanpa antre! Pilih meja, tentukan waktu, dan lakukan reservasi hanya dalam hitungan
                     detik.
                 </p>
-                <a href="#"
+                <a href="#reservasi"
                     class="inline-block bg-blue-900 hover:bg-blue-800 transition-colors duration-300 text-white text-lg font-medium py-3 px-6 rounded-xl shadow-lg">
                     Reservasi Sekarang
                 </a>
@@ -198,11 +198,12 @@
                             <div
                                 class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
                                 <img class="w-full h-48 object-cover"
-                                    src="https://storage.googleapis.com/a1aa/image/c629de3d-3a61-474c-dff1-ddeb7063e8e1.jpg"
+                                    src="https://i.pinimg.com/736x/cb/78/a9/cb78a951f1600248602610489aa2465c.jpg"
                                     alt="Zetro Exclusive">
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold text-white">Zetro Exclusive</h3>
                                     <p class="text-gray-400 text-sm">Lantai 2 | Meja {{ $i }}</p>
+                                    <p class="text-gray-400 text-sm">Rp 50.000 / Jam </p>
                                     <a href="{{ route('booking', ['meja' => $i, 'tipe' => 'Exclusive', 'lantai' => 2]) }}"
                                         class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-300">
                                         Reservasi
@@ -221,11 +222,12 @@
                             <div
                                 class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
                                 <img class="w-full h-48 object-cover"
-                                    src="https://storage.googleapis.com/a1aa/image/22b4dd80-6d42-4896-6852-5e5f212771a9.jpg"
+                                    src="https://i.pinimg.com/736x/51/ad/20/51ad208bf51a7cdd41cee58c80ca7aa4.jpg"
                                     alt="Zetro Classic">
                                 <div class="p-4">
                                     <h3 class="text-lg font-semibold text-white">Zetro Classic</h3>
                                     <p class="text-gray-400 text-sm">Lantai 1 | Meja {{ $i }}</p>
+                                    <p class="text-gray-400 text-sm">Rp35.000 / Jam</p>                                    
                                     <a href="{{ route('booking', ['meja' => $i, 'tipe' => 'Classic', 'lantai' => 1]) }}"
                                         class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-300">
                                         Reservasi
@@ -394,13 +396,39 @@
                 </li>
             </ul>
         </div>
-        <div class="footer mt-5 bg-gray-900 p-10 text-center text-gray-400">
-            <div class="footer-links mb-4">
-                <a href="#" class="mx-2 hover:text-blue-500">Home</a>
-                <a href="#" class="mx-2 hover:text-blue-500">About</a>
-                <a href="#" class="mx-2 hover:text-blue-500">Services</a>
-                <a href="#" class="mx-2 hover:text-blue-500">Contact</a>
+
+        <div class="mt-12">
+            <h3 class="text-2xl font-semibold mb-6 text-white text-center">Lokasi Kami</h3>
+            <div class="bg-gray-800 rounded-xl overflow-hidden shadow-xl">
+                <!-- Google Maps Embed -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1193.5082249109348!2d104.0399493570298!3d1.1278893961545275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d9893bb51c671f%3A0x1a8d3c7126d88d7c!2sMitra%20Billiard!5e1!3m2!1sid!2sid!4v1747236832809!5m2!1sid!2sid"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="rounded-t-xl">
+                </iframe>
+                <div class="p-6 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-b-xl">
+                    <h4 class="text-2xl font-extrabold text-white mb-2 tracking-wide">🎱 Zetro Billiard</h4>
+                    <p class="text-gray-300 mb-4 text-sm">📍 Jl. Mitra Raya 2, Batam Kota, Kepulauan Riau</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="bg-blue-700 hover:bg-blue-600 transition duration-300 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                            🚗 Parkir Luas
+                        </span>
+                        <span
+                            class="bg-blue-700 hover:bg-blue-600 transition duration-300 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                            ❄ AC
+                        </span>
+                        <span
+                            class="bg-blue-700 hover:bg-blue-600 transition duration-300 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+                            📶 Free WiFi
+                        </span>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    
+        <div class="footer mt-5 bg-gray-900 p-10 text-center text-gray-400"> 
             <p class="mb-2"><a href="#" class="hover:text-blue-500">ZetroBilliard</a></p>
             <p class="mb-2">Biliar bukan hanya tentang keberuntungan tapi tentang fokus, strategi, dan ketenangan</p>
             <p class="mb-4">Copyright 2025 • KELOMPOK 3 • PBL</p>

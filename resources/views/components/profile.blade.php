@@ -76,7 +76,7 @@
 </header>
 
 <!-- Modal Edit Profile (Letakkan di luar header, sebelum penutup body) -->
-<div id="editProfileModal" class="fixed inset-0 z-50 flex items-center justify-center hidden-flex bg-black bg-opacity-50">
+<div id="editProfileModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
         <!-- Modal Header -->
         <div class="flex items-center justify-between p-4 border-b">
@@ -148,6 +148,10 @@
         const profileButton = document.getElementById('profileDropdownButton');
         const dropdownMenu = document.getElementById('profileDropdownMenu');
         const editProfileLink = document.getElementById('editProfileLink');
+        const modal = document.getElementById('editProfileModal');
+
+        // Pastikan modal tertutup saat halaman dimuat
+        modal.classList.add('hidden');
 
         // Toggle dropdown
         profileButton.addEventListener('click', function (e) {
@@ -163,13 +167,13 @@
         });
 
         // Edit Profile Modal
-        const modal = document.getElementById('editProfileModal');
         const closeButton = document.getElementById('closeEditProfileModal');
         const cancelButton = document.getElementById('cancelEditProfile');
 
         // Buka modal ketika "Edit Profile" diklik
         editProfileLink.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation(); // Tambahkan ini untuk mencegah event bubbling
             dropdownMenu.classList.add('hidden'); // Tutup dropdown
             modal.classList.remove('hidden');
         });
@@ -190,52 +194,68 @@
         });
 
         // Handle form submission
-        document.getElementById('editProfileForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        const editProfileForm = document.getElementById('editProfileForm');
+        if (editProfileForm) {
+            editProfileForm.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-            // Validasi form
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('password_confirmation').value;
+                // Validasi form
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('password_confirmation').value;
 
-            if (password && password !== confirmPassword) {
-                alert('Password dan konfirmasi password tidak cocok!');
-                return;
-            }
+                if (password && password !== confirmPassword) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Password dan konfirmasi password tidak cocok!'
+                    });
+                    return;
+                }
 
-            // Kirim form via AJAX
-            const form = e.target;
-            const formData = new FormData(form);
+                // Kirim form via AJAX
+                const form = e.target;
+                const formData = new FormData(form);
 
-            fetch(form.action, {
-                method: form.method,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Accept': 'application/json'
-                },
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Profile berhasil diupdate!');
-                        closeModal();
-                        window.location.reload();
-                    } else {
-                        if (data.errors) {
-                            let errorMessages = '';
-                            for (const [field, messages] of Object.entries(data.errors)) {
-                                errorMessages += `${messages.join(', ')}\n`;
-                            }
-                            alert(errorMessages);
-                        } else {
-                            alert(data.message || 'Terjadi kesalahan');
-                        }
-                    }
+                fetch(form.action, {
+                    method: form.method,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat mengupdate profile');
-                });
-        });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Profile berhasil diupdate!'
+                            }).then(() => {
+                                closeModal();
+                                window.location.reload();
+                            });
+                        } else {
+                            let errorMessage = data.message || 'Terjadi kesalahan';
+                            if (data.errors) {
+                                errorMessage = Object.values(data.errors).join('\n');
+                            }
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: errorMessage
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Terjadi kesalahan saat mengupdate profile'
+                        });
+                    });
+            });
+        }
     });
 </script>
