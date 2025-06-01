@@ -4,30 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePenggunaTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('pengguna', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
+            $table->string('nama', 100);
+            $table->string('username', 50)->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('nomor_telepon');
-            $table->enum('role', ['admin', 'kasir', 'pengguna'])->default('pengguna');
-            $table->timestamp('dibuat_pada');
-            $table->timestamps();
+            $table->string('nomor_telepon', 20);
+            $table->string('role')->default('pengguna');
+            $table->timestamp('dibuat_pada')->nullable();
+            // tidak perlu updated_at karena di model sudah di-set null
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('pengguna');
     }
-};
+}

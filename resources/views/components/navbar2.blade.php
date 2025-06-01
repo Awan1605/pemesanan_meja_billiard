@@ -281,69 +281,47 @@
             <ul class="flex space-x-6 items-center">
                 <li>
                     <a class="nav-link active text-white hover:text-blue-500" href="{{ route('Public/lending_page') }}">
-                        Beranda
+                        <i class="fas fa-home"></i> Beranda
                     </a>
                 </li>
-                <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#reservasi">
-                        Reservasi
-                    </a>
-                </li>
-                <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#galeri">
-                        Galeri
-                    </a>
-                </li>
-                <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#tentang">
-                        Tentang
-                    </a>
-                </li>
-                <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#hubungi_kami">
-                        Hubungi Kami
-                    </a>
-                </li>
-            </ul>
 
+                @auth
+                    <div class="relative dropdown">
+                        <button id="profile-button" type="button" class="flex items-center space-x-2 focus:outline-none"
+                            data-dropdown-toggle="profile-dropdown" aria-expanded="false" aria-haspopup="true">
+                            <img class="w-8 h-8 rounded-full border-2 border-blue-500"
+                                src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->username) }}&background=2563eb&color=fff"
+                                alt="Profile">
+                            <span class="text-white">{{ Auth::user()->username }}</span>
+                            <i class="fas fa-chevron-down text-sm text-gray-400 ml-1"></i>
+                        </button>
 
-            @auth
-                <div class="relative dropdown">
-                    <button id="profile-button" type="button" class="flex items-center space-x-2 focus:outline-none"
-                        data-dropdown-toggle="profile-dropdown" aria-expanded="false" aria-haspopup="true">
-                        <img class="w-8 h-8 rounded-full border-2 border-blue-500"
-                            src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->username) }}&background=2563eb&color=fff"
-                            alt="Profile">
-                        <span class="text-white">{{ Auth::user()->username }}</span>
-                        <i class="fas fa-chevron-down text-sm text-gray-400 ml-1"></i>
-                    </button>
+                        <div id="profile-dropdown" class="dropdown-menu">
+                            <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                                <i class="fas fa-user-circle mr-2"></i> Profile
+                            </a>
+                            <a href="{{ route('Public/riwayat') }}" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                                <i class="fas fa-history mr-2"></i> Riwayat Pemesanan
+                            </a>
 
-                    <div id="profile-dropdown" class="dropdown-menu">
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                            <i class="fas fa-user-circle mr-2"></i> Profile
-                        </a>
-                        <a href="{{ route('Public/riwayat') }}" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                            <i class="fas fa-history mr-2"></i> Riwayat Pemesanan
-                        </a>
-
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                            <i class="fas fa-cog mr-2"></i> Setting
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                            @csrf
-                            <button type="button"
-                                class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full"
-                                onclick="confirmLogout()">
-                                <i class="fas fa-sign-out-alt mr-2"></i> Keluar
-                            </button>
-                        </form>
+                            <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                                <i class="fas fa-cog mr-2"></i> Setting
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                                @csrf
+                                <button type="button"
+                                    class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full"
+                                    onclick="confirmLogout()">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> Keluar
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            @else
-                <a href="{{ route('login') }}"
-                    class="ml-4 px-4 py-2 rounded-lg bg-blue-900 hover:bg-blue-800 text-white font-semibold transition-colors duration-300">Login</a>
-            @endauth
+                @else
+                    <a href="{{ route('login') }}"
+                        class="ml-4 px-4 py-2 rounded-lg bg-blue-900 hover:bg-blue-800 text-white font-semibold transition-colors duration-300">Login</a>
+                @endauth
         </div>
     </div>
 
@@ -352,10 +330,6 @@
         <ul class="hidden flex-col space-y-2 mt-4 text-lg" id="mobile-menu">
             <li><a class="text-white text-xl hover:text-blue-500 block nav-link"
                     href="{{ route('Public/lending_page') }}">Beranda</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#reservasi">Reservasi</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#galeri">Galeri</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#tentang">Tentang</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#hubungi_kami">Hubungi Kami</a></li>
 
             <!-- Mobile Cart -->
             <li class="pt-2 border-t border-gray-700">
@@ -377,7 +351,7 @@
                     <ul class="mt-2 space-y-1">
                         <li><a href="#" class="block py-1 text-gray-300 hover:text-blue-500"><i
                                     class="fas fa-user-circle mr-2"></i>Profile</a></li>
-                        <li><a href="Public/riwayat" class="block py-1 text-gray-300 hover:text-blue-500"
+                        <li><a href="#booking-history" class="block py-1 text-gray-300 hover:text-blue-500"
                                 onclick="document.getElementById('booking-history-modal').showModal()"><i
                                     class="fas fa-history mr-2"></i>Riwayat Pemesanan</a></li>
                         <li><a href="#" class="block py-1 text-gray-300 hover:text-blue-500"><i
@@ -633,17 +607,9 @@
             title: 'Konfirmasi Logout',
             text: "Anda yakin ingin keluar dari sistem?",
             icon: 'question',
-            background: '#1F2937', // dark gray
-            color: '#fff',
             showCancelButton: true,
             confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal',
-            customClass: {
-                popup: 'swal2-dark',
-                title: 'text-white',
-                confirmButton: 'swal2-confirm bg-blue-600 text-white hover:bg-blue-700',
-                cancelButton: 'swal2-cancel bg-gray-600 text-white hover:bg-gray-700'
-            }
+            cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('logout-form').submit();

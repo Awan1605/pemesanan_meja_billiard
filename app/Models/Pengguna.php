@@ -2,39 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Pengguna extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     protected $table = 'pengguna';
 
     protected $fillable = [
+        'nama',
         'username',
         'email',
         'password',
         'nomor_telepon',
         'role',
-        'dibuat_pada'
+        'dibuat_pada',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'dibuat_pada' => 'datetime'
-    ];
+    public $timestamps = true;
 
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
+    // Jika kolom 'dibuat_pada' adalah pengganti 'created_at'
+    const CREATED_AT = 'dibuat_pada';
+    const UPDATED_AT = null;
 }

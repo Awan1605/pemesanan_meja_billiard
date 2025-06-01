@@ -5,33 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
+{
+
+    public function lending_page()
     {
-    
-    public function about()
-    {
-        return view('about');
+        return view('Public.lending_page');
     }
 
-    public function lreservasi()
+    public function booking1()
     {
-        return view('lreservasi');
+        return view('Public.booking');
+    }
+    public function reservasi()
+    {
+        return view('Public.reservasi');
     }
 
-    public function about2()
-    {
-        return view('about2');
-    }
-    public function home()
-    {
-        return view('home');
-    }
+
     public function login()
     {
-        return view('login');
+        return view('Public.login');
     }
-    public function registration()
+    public function register()
     {
-        return view('registration');
+        return view('Public.register');
     }
     public function booking(Request $request)
     {
@@ -39,8 +36,16 @@ class PageController extends Controller
         $tipe = $request->tipe;
         $lantai = $request->lantai;
 
-        return view('booking', compact('meja', 'tipe', 'lantai'));
+        return view('Public.booking', compact('meja', 'tipe', 'lantai'));
     }
+    public function riwayat()
+    {
+        //Ini nanti untuk mengambil dari database
+        // $riwayat = Booking::where('user_id', auth()->id())->get();
+
+        return view('Public.riwayat');
+    }
+
 
 
 }

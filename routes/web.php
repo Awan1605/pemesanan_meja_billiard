@@ -5,6 +5,9 @@ use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\BookingController;
+use PharIo\Manifest\Author;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +16,22 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('about');
+    return view('Public.lending_page');
 });
 // Auth Routes
-Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('login.submit');
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('registration');
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// Login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+// Register
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+
+// Logout (jika belum ada)
+Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+
+Route::post('/logout', [AuthController::class, 'destroy'])
+    ->name('logout');
 
 Route::post('/contact', function () {
     // Process contact form submission
@@ -28,11 +39,17 @@ Route::post('/contact', function () {
 })->name('contact.submit');
 
 // Halaman publik
-Route::get('about', [PageController::class, 'about'])->name('about');
-Route::get('reservasi', [PageController::class, 'reservasi'])->name('reservasi');
-Route::get('about2', [PageController::class, 'about2'])->name('about2');
-Route::get('home', [PageController::class, 'home'])->name('home');
-Route::get('booking', [PageController::class, 'booking'])->name('booking');
+Route::get('Public/lending_page', [PageController::class, 'lending_page'])->name('Public/lending_page');
+Route::get('Public/booking', [PageController::class, 'booking1'])->name('Public/booking');
+Route::get('Public/lending_page', [PageController::class, 'lending_page'])->name('Public/lending_page');
+// Route untuk halaman riwayat (Blade)
+Route::get('Public/riwayat', [PageController::class, 'riwayat'])->name('Public/riwayat');
+Route::get('Public/reservasi', [PageController::class, 'reservasi'])->name('Public/reservasi');
+
+// Route untuk data JSON riwayat pemesanan (dipanggil via fetch di JS)
+Route::get('/api/riwayat-pemesanan', [BookingController::class, 'history'])->name('booking.history');
+
+
 
 // Admin Pages with Controller
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'isAdmin'])->group(function () {
