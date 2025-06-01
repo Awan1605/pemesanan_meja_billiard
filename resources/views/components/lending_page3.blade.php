@@ -683,71 +683,71 @@
     </footer>
 </body>
 
-@if (session('success'))
-    <script>
-        // Smooth Scroll
-        function scrollHorizontal(containerId, distance) {
+
+<script>
+    // Smooth Scroll
+    function scrollHorizontal(containerId, distance) {
+        const container = document.getElementById(containerId);
+        container.scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+
+    //secroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const containers = ['exclusive-container', 'classic-container'];
+
+        containers.forEach(containerId => {
             const container = document.getElementById(containerId);
-            container.scrollBy({
-                left: distance,
-                behavior: 'smooth'
+
+            container.addEventListener('focus', function() {
+                const arrows = container.parentElement.querySelectorAll('button');
+                arrows.forEach(arrow => arrow.classList.add('opacity-100'));
             });
-        }
 
-        //secroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const containers = ['exclusive-container', 'classic-container'];
+            container.setAttribute('tabindex', '0');
 
-            containers.forEach(containerId => {
-                const container = document.getElementById(containerId);
-
-                container.addEventListener('focus', function() {
-                    const arrows = container.parentElement.querySelectorAll('button');
-                    arrows.forEach(arrow => arrow.classList.add('opacity-100'));
-                });
-
-                container.setAttribute('tabindex', '0');
-
-                container.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowLeft') {
-                        scrollHorizontal(containerId, -300);
-                        e.preventDefault();
-                    } else if (e.key === 'ArrowRight') {
-                        scrollHorizontal(containerId, 300);
-                        e.preventDefault();
-                    }
-                });
+            container.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    scrollHorizontal(containerId, -300);
+                    e.preventDefault();
+                } else if (e.key === 'ArrowRight') {
+                    scrollHorizontal(containerId, 300);
+                    e.preventDefault();
+                }
             });
         });
+    });
 
-        //Alert saat reservasi tapi belum login
-        function showLoginAlert() {
-            Swal.fire({
-                title: '<span style="color:#facc15"><i class="fas fa-lock mr-2"></i> Login Diperlukan!</span>',
-                html: '<div style="color:#f9fafb;font-size:1.1rem;">Anda harus login untuk melakukan reservasi.<br><br><span style="font-size:2rem;">🎱</span></div>',
-                icon: 'warning',
-                background: '#1f2937',
-                color: '#f9fafb',
-                iconColor: '#facc15',
-                showCancelButton: true,
-                confirmButtonColor: '#2563eb',
-                cancelButtonColor: '#dc2626',
-                confirmButtonText: '<i class="fas fa-sign-in-alt mr-2"></i> Login Sekarang',
-                cancelButtonText: 'Batal',
-                customClass: {
-                    popup: 'animate__animated animate__fadeInDown',
-                    confirmButton: 'swal2-confirm-custom',
-                    cancelButton: 'swal2-cancel-custom'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "{{ route('login') }}";
-                }
-            });
-        }
+    //Alert saat reservasi tapi belum login
+    function showLoginAlert() {
+        Swal.fire({
+            title: '<span style="color:#facc15"><i class="fas fa-lock mr-2"></i> Login Diperlukan!</span>',
+            html: '<div style="color:#f9fafb;font-size:1.1rem;">Anda harus login untuk melakukan reservasi.<br><br><span style="font-size:2rem;">🎱</span></div>',
+            icon: 'warning',
+            background: '#1f2937',
+            color: '#f9fafb',
+            iconColor: '#facc15',
+            showCancelButton: true,
+            confirmButtonColor: '#2563eb',
+            cancelButtonColor: '#dc2626',
+            confirmButtonText: '<i class="fas fa-sign-in-alt mr-2"></i> Login Sekarang',
+            cancelButtonText: 'Batal',
+            customClass: {
+                popup: 'animate__animated animate__fadeInDown',
+                confirmButton: 'swal2-confirm-custom',
+                cancelButton: 'swal2-cancel-custom'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "{{ route('login') }}";
+            }
+        });
+    }
 
-        const style = document.createElement('style');
-        style.innerHTML = `
+    const style = document.createElement('style');
+    style.innerHTML = `
     .swal2-confirm-custom {
         background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%) !important;
         border: none !important;
@@ -762,9 +762,10 @@
         font-size: 1rem !important;
     }
     `;
-        document.head.appendChild(style);
-
-
+    document.head.appendChild(style);
+</script>
+@if (session('success'))
+    <script>
         Swal.fire({
             icon: 'success',
             title: 'Selamat Datang, {{ session('username') ?? '' }}!',
@@ -776,7 +777,6 @@
                 confirmButton: 'swal2-confirm-custom'
             }
         });
-
         // Tambahkan style custom untuk tombol OK jika ingin lebih menonjol
         const styleSuccess = document.createElement('style');
         styleSuccess.innerHTML = `
