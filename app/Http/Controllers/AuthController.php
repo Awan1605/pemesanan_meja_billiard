@@ -9,13 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login
+    /**
+     * Menampilkan halaman login
+     */
     public function showLoginForm()
     {
         return view('Public.login');
     }
 
-    // Menangani proses login
+    /**
+     * Menangani proses login pengguna
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -29,32 +33,35 @@ class AuthController extends Controller
             return back()->with('error', 'Username atau password salah.')->withInput();
         }
 
+        // Simpan data pengguna ke session
         $request->session()->put([
             'id' => $pengguna->id,
             'username' => $pengguna->username,
             'role' => $pengguna->role,
-            'authenticated' => true
+            'authenticated' => true,
         ]);
 
-        auth()->login($pengguna);
+        Auth::login($pengguna);
 
-        // Redirect berdasarkan role
+        // Redirect berdasarkan role pengguna
         switch ($pengguna->role) {
             case 'admin':
                 return redirect()->intended(route('admin.dashboard'))
                     ->with('success', 'Selamat datang, ' . $pengguna->username . '!');
             default:
-                return redirect()->intended(route('Public/lending_page'))
+                return redirect()->intended(route('Public.landing_page'))
                     ->with('success', 'Login berhasil! Selamat datang kembali.');
         }
     }
 
-    // Menangani proses logout
+    /**
+     * Menangani proses logout
+     */
     public function destroy(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('success', 'Anda telah logout.');
     }
 }

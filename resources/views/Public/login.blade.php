@@ -140,7 +140,7 @@
               @if (session('success'))
                   Swal.fire({
                       icon: 'success',
-                      title: 'Login Berhasil!',
+                      title: 'Registrasi Berhasil!',
                       text: '{{ session('success') }}',
                       confirmButtonText: 'Lanjutkan',
                       confirmButtonColor: '#3085d6',

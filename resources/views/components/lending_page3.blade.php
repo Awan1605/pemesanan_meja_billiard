@@ -416,7 +416,7 @@
                             @endfor
                         </div>
                         <a href="{{ route('Public/reservasi') }}"
-                            class="inline-flex items-center justify-center w-full px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
+                            class="inline-flex items-center justify-center w-full px-6 py-3 hover:blue-400 text-white text-lg font-medium rounded-xl shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
                             Lihat Semua Meja Tersedia
                             <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
                                 fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
@@ -497,7 +497,7 @@
                             @endfor
                         </div>
                         <a href="{{ route('Public/reservasi') }}"
-                            class="inline-flex items-center justify-center w-full px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-xl shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
+                            class="inline-flex items-center justify-center w-full px-6 py-3 hover:to-blue-400 text-white text-lg font-medium rounded-xl shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
                             Lihat Semua Meja Tersedia
                             <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1"
                                 fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"

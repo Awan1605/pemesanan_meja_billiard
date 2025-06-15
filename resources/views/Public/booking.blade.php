@@ -285,7 +285,7 @@
                 </button>
                 <button type="button" id="resetBtn" class="btn btn-outline btn-error">
                     <i class="fas fa-trash-alt mr-2"></i>
-                    <a href="Public/lending_page">Batal & Hapus Booking</a>
+                    <a href="lending_page">Batal & Hapus Booking</a>
                 </button>
             </div>
         </form>
@@ -404,7 +404,7 @@
             <h3 class="font-bold text-lg mt-4">Pembayaran Berhasil!</h3>
             <p class="py-4">Terima kasih telah melakukan pemesanan. Detail booking telah dikirim ke email Anda.</p>
             <div class="modal-action justify-center">
-                <button class="btn btn-primary" onclick="window.location.href='/Public.lending_page'">
+                <button class="btn btn-primary" onclick="window.location.href='lending_page'">
                     <i class="fas fa-home mr-2"></i>
                     Kembali ke Beranda
                 </button>
@@ -1063,29 +1063,29 @@
                             </div>
                             
                             ${foodItems || drinkItems ? `
-                                                                <div class="grid grid-cols-2 gap-4 mt-4">
-                                                                    ${foodItems ? `
+                                                                                                    <div class="grid grid-cols-2 gap-4 mt-4">
+                                                                                                        ${foodItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Makanan</h4>
                                     <ul class="list-disc pl-5">${foodItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                    ${drinkItems ? `
+                                                                                                        ${drinkItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Minuman</h4>
                                     <ul class="list-disc pl-5">${drinkItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                </div>
-                                                                ` : ''}
+                                                                                                    </div>
+                                                                                                    ` : ''}
                             
                             ${booking.paymentProof ? `
-                                                                <div class="mt-4">
-                                                                    <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
-                                                                    <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
-                                                                         class="mt-2 rounded-lg max-w-xs border border-gray-600">
-                                                                </div>
-                                                                ` : ''}
+                                                                                                    <div class="mt-4">
+                                                                                                        <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
+                                                                                                        <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
+                                                                                                             class="mt-2 rounded-lg max-w-xs border border-gray-600">
+                                                                                                    </div>
+                                                                                                    ` : ''}
                         </div>
                     `,
                         width: '800px',

@@ -157,32 +157,9 @@
         </div>
     </div>
 </body>
-@if (session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registrasi Berhasil!',
-                text: '{{ session('success') }}',
-                confirmButtonText: 'Login Sekarang',
-                confirmButtonColor: '#3085d6',
-            });
-        });
-    </script>
-@endif
-@if (session('error'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops!',
-                text: '{{ session('error') }}',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#d33',
-            });
-        });
-    </script>
-@endif
+
+</body>
+
 
 
 </html>

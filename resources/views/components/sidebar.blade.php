@@ -5,18 +5,30 @@
         </h1>
         <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-900 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
             </svg>
         </button>
     </div>
     <div id="mobile-menu" class="hidden px-4 pb-4">
         <nav class="mt-2">
-            <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded-lg {{ request()->routeIs('admin.dashboard') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Dashboard</a>
-            <a href="{{ route('admin.reservasi') }}" class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.reservasi') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Reservasi Billiard</a>
-            <a href="{{ route('admin.pengguna') }}" class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.pengguna') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen Pengguna</a>
-            <a href="{{ route('admin.meja') }}" class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.meja') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen Meja Billiard</a>
-            <a href="{{ route('admin.pembayaran') }}" class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.pembayaran') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen Pembayaran</a>
-            <a href="{{ route('admin.makanan') }}" class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.makanan') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Pilihan Menu</a>
+            <a href="{{ route('admin.dashboard') }}"
+                class="block py-2 px-4 rounded-lg {{ request()->routeIs('admin.dashboard') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Dashboard</a>
+            <a href="{{ route('admin.reservasi') }}"
+                class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.reservasi') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Reservasi
+                Billiard</a>
+            <a href="{{ route('admin.pengguna') }}"
+                class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.pengguna') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen
+                Pengguna</a>
+            <a href="{{ route('admin.meja') }}"
+                class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.meja') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen
+                Meja Billiard</a>
+            <a href="{{ route('admin.pembayaran') }}"
+                class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.pembayaran') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Manajemen
+                Pembayaran</a>
+            <a href="{{ route('admin.makanan') }}"
+                class="block py-2 px-4 rounded-lg mt-1 {{ request()->routeIs('admin.makanan') ? 'text-blue-600 bg-blue-50 font-medium' : 'text-gray-600 hover:bg-gray-100' }}">Pilihan
+                Menu</a>
         </nav>
     </div>
 </div>
@@ -28,7 +40,7 @@
             <span class="text-blue-800">Zetro</span><span class="text-gray-900">Billiard</span>
         </h1>
     </div>
-    
+
     <nav class="mt-4">
         <div class="px-1">
             <!-- Dashboard -->

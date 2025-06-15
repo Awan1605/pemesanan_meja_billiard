@@ -26,7 +26,7 @@ class Pengguna extends Authenticatable
     ];
 
     public $timestamps = true;
-
+    // Di model Pengguna
     // Jika kolom 'dibuat_pada' adalah pengganti 'created_at'
     const CREATED_AT = 'dibuat_pada';
     const UPDATED_AT = null;

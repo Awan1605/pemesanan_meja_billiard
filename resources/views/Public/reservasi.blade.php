@@ -266,10 +266,7 @@
     `;
     document.head.appendChild(style);
 
-    function toggleTables(type) {
-        const items = document.querySelectorAll(`.${type}-item`);
-        items.forEach(item => item.classList.toggle('hidden'));
-    }
+    // (Removed duplicate toggleTables function to prevent conflict)
 </script>
 
 </html>
