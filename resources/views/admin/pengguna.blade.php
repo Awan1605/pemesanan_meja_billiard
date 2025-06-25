@@ -63,7 +63,7 @@
             <!-- Profile -->
             <x-profile class="mb-4"></x-profile>
 
-            <div class="container mx-auto">
+            <div class="pt-7 container mx-auto">
                 <!-- Header -->
                 <div class="bg-white rounded-lg shadow p-4 md:p-6 mb-4 md:mb-6">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
@@ -84,7 +84,7 @@
                                 <option value="admin">Admin</option>
                                 <option value="pengguna">Pengguna</option>
                             </select>
-                            <button onclick="openModal('add')"
+                            <button @click="openModal('add')"
                                 class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-all text-sm md:text-base">
                                 <i class="fas fa-plus mr-2"></i>Tambah Pengguna
                             </button>

@@ -103,7 +103,7 @@
                         <span class="label-text">Jam Mulai</span>
                     </label>
                     <div class="flex flex-wrap gap-2" id="timeOptionsContainer">
-                        @foreach (['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'] as $time)
+                        @foreach (['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00'] as $time)
                             <button type="button" class="btn btn-outline btn-sm time-btn time-option"
                                 data-time="{{ $time }}">
                                 {{ $time }}
@@ -1063,29 +1063,29 @@
                             </div>
                             
                             ${foodItems || drinkItems ? `
-                                                                                                    <div class="grid grid-cols-2 gap-4 mt-4">
-                                                                                                        ${foodItems ? `
+                                                                                                                    <div class="grid grid-cols-2 gap-4 mt-4">
+                                                                                                                        ${foodItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Makanan</h4>
                                     <ul class="list-disc pl-5">${foodItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                                                        ${drinkItems ? `
+                                                                                                                        ${drinkItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Minuman</h4>
                                     <ul class="list-disc pl-5">${drinkItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                                                    </div>
-                                                                                                    ` : ''}
+                                                                                                                    </div>
+                                                                                                                    ` : ''}
                             
                             ${booking.paymentProof ? `
-                                                                                                    <div class="mt-4">
-                                                                                                        <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
-                                                                                                        <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
-                                                                                                             class="mt-2 rounded-lg max-w-xs border border-gray-600">
-                                                                                                    </div>
-                                                                                                    ` : ''}
+                                                                                                                    <div class="mt-4">
+                                                                                                                        <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
+                                                                                                                        <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
+                                                                                                                             class="mt-2 rounded-lg max-w-xs border border-gray-600">
+                                                                                                                    </div>
+                                                                                                                    ` : ''}
                         </div>
                     `,
                         width: '800px',

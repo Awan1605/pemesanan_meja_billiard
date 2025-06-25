@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use App\Models\Meja;
 
 class AdminController extends Controller
 {
@@ -24,9 +25,12 @@ class AdminController extends Controller
         return view('admin.pengguna', compact('pengguna'));
     }
 
+    // Pastikan ini ada
+
     public function meja()
     {
-        return view('admin.meja');
+        $meja = Meja::paginate(10);
+        return view('admin.meja', compact('meja'));
     }
 
     public function pembayaran()
