@@ -280,7 +280,7 @@
         <div class="hidden lg:flex items-center space-x-6" id="menu">
             <ul class="flex space-x-6 items-center">
                 <li>
-                    <a class="nav-link active text-white hover:text-blue-500" href="{{ route('Public/lending_page') }}">
+                    <a class="nav-link active text-white hover:text-blue-500" href="{{ route('Public.lending') }}">
                         <i class="fas fa-home"></i> Beranda
                     </a>
                 </li>

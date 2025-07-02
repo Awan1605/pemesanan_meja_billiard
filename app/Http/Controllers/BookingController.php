@@ -19,4 +19,9 @@ class BookingController extends Controller
         return view('Public.riwayat', compact('bookings'));
     }
 
+    public function create()
+    {
+        return view('Public.booking');
+    }
+
 }

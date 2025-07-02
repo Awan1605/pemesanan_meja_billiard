@@ -1,272 +1,301 @@
+@props(['exclusiveTables', 'classicTables'])
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservasi | Zetro Billiard</title>
+    <title>Zetro Exclusive</title>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827;
+            color: white;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<style>
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-        }
+</head>
 
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes fade-in-up {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in {
-        animation: fade-in 1s ease-out forwards;
-    }
-
-    .animate-fade-in-up {
-        animation: fade-in-up 0.8s ease-out forwards;
-    }
-</style>
-
-<body class="bg-gray-900 text-white">
-
-    <!-- Navbar -->
-    <x-navbar2></x-navbar2>
-    <main class="p-6">
-        @yield('content')
-    </main>
-
-    <!-- Content -->
+<body class="p-6">
+    <x-navbar2 />
     <main class="max-w-7xl mx-auto px-4">
         <!-- Reservasi Section -->
-        <div id="reservasi" class="mt-10 mb-20">
-            <h1 class="text-4xl lg:text-5xl font-extrabold text-white text-center mb-12 animate-fade-in">
-                Reservasi
-            </h1>
-
+        @props(['exclusiveTables', 'classicTables'])
+        <section id="reservasi" class="my-16">
             <!-- Zetro Exclusive Section -->
-            <section class="mb-20 animate-fade-in-up">
-                <div class="flex justify-between items-center mb-6 animate-fade-in">
-                    <h2 class="text-2xl lg:text-3xl font-extrabold text-white flex items-center gap-3">
-                        <span class="inline-block animate-bounce text-yellow-400">
-                            <i class="fas fa-crown"></i>
-                        </span>
-                        Zetro Exclusive
-                        <span class="inline-block animate-pulse text-blue-400">
-                            <i class="fas fa-gem"></i>
-                        </span>
-                    </h2>
+            <div class="mb-20">
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-white mb-8 text-center animate-fade-in">
+                    <span class="text-yellow-400"><i class="fas fa-crown mr-2"></i></span>
+                    Zetro Exclusive
+                </h2>
+                <div class="relative group">
+                    <!-- Left Arrow -->
+                    <button onclick="scrollHorizontal('exclusive-container', -300)"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 bg-black/60 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <!-- Card Reservasi -->
 
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="exclusive-container">
-                    @for ($i = 1; $i <= 16; $i++)
-                        <div
-                            class="exclusive-item bg-gray-800 rounded-xl shadow-md overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-xl @if ($i > 4) hidden @endif">
-                            <img class="w-full h-48 object-cover"
-                                src="https://i.pinimg.com/736x/cb/78/a9/cb78a951f1600248602610489aa2465c.jpg"
-                                alt="Zetro Exclusive">
-                            <div class="p-4">
-                                <h3 class="text-lg font-semibold text-white">Zetro Exclusive</h3>
-                                <p class="text-sm text-gray-400">Lantai 2 | Meja {{ $i }}</p>
-                                <p class="text-sm text-gray-400">Rp 50.000 / Jam</p>
-                                @auth
-                                    <a href="{{ route('Public/booking', ['meja' => $i, 'tipe' => 'Exclusive', 'lantai' => 2]) }}"
-                                        class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-sm">
-                                        Reservasi
-                                    </a>
-                                @endauth
-                                @guest
-                                    <a href="javascript:void(0);" onclick="showLoginAlert()"
-                                        class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-sm">
-                                        Reservasi
-                                    </a>
-                                @endguest
-                            </div>
-                        </div>
-                    @endfor
-                </div>
-
-                <!-- Tombol Lihat Semua Exclusive -->
-                @if (16 > 4)
-                    <div class="text-center mt-8">
-                        <button onclick="toggleTables('exclusive')"
-                            class="group inline-flex items-center bg-gray-700 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 shadow-md hover:shadow-lg">
-                            Lihat Semua Exclusive
-                            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none"
-                                stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    </div>
-                @endif
-            </section>
-
-            <!-- Zetro Classic Section -->
-            <section class="animate-fade-in-up">
-                <div>
-                    <div class="flex justify-between items-center mb-6 animate-fade-in">
-                        <h2 class="text-xl lg:text-2xl font-extrabold text-white flex items-center gap-3">
-                            <span class="inline-block animate-bounce text-yellow-400">
-                                <i class="fas fa-star"></i>
-                            </span>
-                            Zetro Classic
-                            <span class="inline-block animate-pulse text-blue-400">
-                                <i class="fas fa-bolt"></i>
-                            </span>
-                        </h2>
-
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-                        id="classic-container">
-                        @for ($i = 1; $i <= 30; $i++)
+                    <div class="grid grid-flow-col auto-cols-[minmax(300px,1fr)] gap-7 overflow-x-auto pb-8 scroll-smooth hide-scrollbar"
+                        id="exclusive-container">
+                        @forelse ($exclusiveTables as $table)
                             <div
-                                class="classic-item bg-gray-800 rounded-xl shadow-md overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-xl @if ($i > 4) hidden @endif">
-                                <img class="w-full h-48 object-cover"
-                                    src="https://i.pinimg.com/736x/51/ad/20/51ad208bf51a7cdd41cee58c80ca7aa4.jpg"
-                                    alt="Zetro Classic">
-                                <div class="p-4">
-                                    <h3 class="text-lg font-semibold text-white">Zetro Classic</h3>
-                                    <p class="text-sm text-gray-400">Lantai 1 | Meja {{ $i }}</p>
-                                    <p class="text-sm text-gray-400">Rp 35.000 / Jam</p>
-                                    @auth
-                                        <a href="{{ route('Public/booking', ['meja' => $i, 'tipe' => 'Classic', 'lantai' => 1]) }}"
-                                            class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-sm">
-                                            Reservasi
-                                        </a>
-                                    @endauth
-                                    @guest
-                                        <a href="javascript:void(0);" onclick="showLoginAlert()"
-                                            class="mt-3 inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-300 shadow-sm">
-                                            Reservasi
-                                        </a>
-                                    @endguest
+                                class="bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 flex-shrink-0 flex flex-col">
+                                <!-- Table Image -->
+                                <div class="relative h-48 overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                                        src="{{ $table->foto ? (str_starts_with($table->foto, 'http') ? $table->foto : asset('storage/' . $table->foto)) : 'https://i.pinimg.com/736x/cb/78/a9/cb78a951f1600248602610489aa2465c.jpg' }}"
+                                        alt="{{ $table->nama }}" loading="lazy">
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                        <span
+                                            class="text-xs font-bold px-2 py-1 rounded-full {{ $table->status === 'tersedia'
+                                                ? 'bg-green-500/20 text-green-400'
+                                                : ($table->status === 'terpesan'
+                                                    ? 'bg-blue-500/20 text-blue-400'
+                                                    : ($table->status === 'sedang digunakan'
+                                                        ? 'bg-amber-500/20 text-amber-400'
+                                                        : 'bg-gray-500/20 text-gray-400')) }}">
+                                            {{ App\Http\Controllers\MejaController::$statusOptions[$table->status] ?? $table->status }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Table Details -->
+                                <div class="p-5 flex-1 flex flex-col">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white">{{ $table->nama }}</h3>
+
+                                    </div>
+                                    <div class="space-y-2 text-gray-300 mb-3">
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                            <span>{{ $table->lokasi }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-users text-purple-400"></i>
+                                            <span>Maks. {{ $table->kapasitas }} orang</span>
+                                        </div>
+                                        @if ($table->deskripsi)
+                                            <div class="flex items-start gap-2 pt-1">
+                                                <i class="fas fa-info-circle text-amber-400 mt-1"></i>
+                                                <p class="text-sm">{{ $table->deskripsi }}</p>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <!-- Reservation Button -->
+                                    <div class="mt-auto">
+                                        @auth
+                                            <a href="{{ url('/booking') }}"
+                                                class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
+                                                <i class="fas fa-calendar-plus"></i>
+                                                <span>Reservasi Sekarang</span>
+                                            </a>
+                                        @else
+                                            <button onclick="showLoginAlert()"
+                                                class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
+                                                <i class="fas fa-calendar-plus"></i>
+                                                <span>Reservasi Sekarang</span>
+                                            </button>
+                                        @endauth
+                                    </div>
                                 </div>
                             </div>
-                        @endfor
+                        @empty
+                            <div class="col-span-full text-center py-12">
+                                <div class="text-gray-400 mb-4">
+                                    <i class="fas fa-table text-4xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-white mb-2">Tidak ada meja exclusive tersedia</h3>
+                                <p class="text-gray-400">Silakan cek kembali nanti</p>
+                            </div>
+                        @endforelse
                     </div>
-
-                    <!-- Tombol Lihat Semua Classic -->
-                    @if (12 > 4)
-                        <div class="text-center mt-8">
-                            <button onclick="toggleTables('classic')"
-                                class="group inline-flex items-center bg-gray-700 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 shadow-md hover:shadow-lg">
-                                Lihat Semua Classic
-                                <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none"
-                                    stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-                    @endif
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 mt-16 px-6 py-8 border-t border-gray-700 text-sm">
-        <div class="flex justify-between items-center flex-wrap">
-            <div>
-                <p class="font-bold">Zetro<span class="text-blue-400">Billiard.</span></p>
-                <p class="text-gray-400">Membangun hubungan, tapi menang dengan sportivitas dan respect itu lebih
-                    berarti</p>
+                    <!-- Right Arrow -->
+                    <button onclick="scrollHorizontal('exclusive-container', 300)"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 bg-black/60 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                </div>
             </div>
 
-        </div>
-        <div class="text-center text-gray-500 mt-4">&copy; 2025 Zetro Billiard. All rights reserved</div>
-    </footer>
-</body>
-<script>
-    function toggleTables(type) {
-        const container = document.getElementById(`${type}-container`);
-        const items = container.getElementsByClassName(`${type}-item`);
-        const button = event.target;
+            <!-- Zetro Classic Section -->
+            <div>
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 animate-fade-in gap-4">
+                    <h2 class="text-3xl font-extrabold text-white flex items-center gap-3">
+                        <span class="inline-block animate-bounce text-yellow-400">
+                            <i class="fas fa-star"></i>
+                        </span>
+                        Zetro Classic
+                        <span class="inline-block animate-pulse text-blue-400">
+                            <i class="fas fa-bolt"></i>
+                        </span>
+                    </h2>
+                    <span
+                        class="px-4 py-1 rounded-full bg-gradient-to-r from-blue-700 via-blue-500 to-yellow-400 text-white text-sm font-semibold shadow-lg animate-slide-up">
+                        Favorit Pengunjung!
+                    </span>
+                </div>
+                <div class="relative group">
+                    <!-- Left Arrow -->
+                    <button onclick="scrollHorizontal('classic-container', -300)"
+                        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 bg-black/60 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <!-- Card Container -->
+                    <div class="grid grid-flow-col auto-cols-[minmax(260px,1fr)] gap-6 overflow-x-auto pb-4 scroll-smooth hide-scrollbar"
+                        id="classic-container">
+                        @forelse ($classicTables as $table)
+                            <div
+                                class="bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 flex-shrink-0 flex flex-col">
+                                <!-- Table Image -->
+                                <div class="relative h-44 overflow-hidden">
+                                    <img class="w-full h-full object-cover"
+                                        src="{{ $table->foto ? (str_starts_with($table->foto, 'http') ? $table->foto : asset('storage/' . $table->foto)) : 'https://i.pinimg.com/736x/51/ad/20/51ad208bf51a7cdd41cee58c80ca7aa4.jpg' }}"
+                                        alt="{{ $table->nama }}" loading="lazy">
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
+                                        <span
+                                            class="text-xs font-bold px-2 py-1 rounded-full {{ $table->status === 'tersedia'
+                                                ? 'bg-green-500/20 text-green-400'
+                                                : ($table->status === 'terpesan'
+                                                    ? 'bg-blue-500/20 text-blue-400'
+                                                    : ($table->status === 'sedang digunakan'
+                                                        ? 'bg-amber-500/20 text-amber-400'
+                                                        : 'bg-gray-500/20 text-gray-400')) }}">
+                                            {{ $table->status }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Table Details -->
+                                <div class="p-5 flex-1 flex flex-col">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="text-xl font-bold text-white">{{ $table->nama }}</h3>
 
-        let allVisible = true;
+                                    </div>
 
-        // Check if any items are hidden
-        for (let item of items) {
-            if (item.classList.contains('hidden')) {
-                allVisible = false;
-                break;
-            }
+                                    <div class="space-y-2 text-gray-300 mb-3">
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-map-marker-alt text-blue-400"></i>
+                                            <span>{{ $table->lokasi }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-users text-purple-400"></i>
+                                            <span>Maks. {{ $table->kapasitas }} orang</span>
+                                        </div>
+                                        @if ($table->deskripsi)
+                                            <div class="flex items-start gap-2 pt-1">
+                                                <i class="fas fa-info-circle text-amber-400 mt-1"></i>
+                                                <p class="text-sm">{{ $table->deskripsi }}</p>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <!-- Reservation Button -->
+                                    <div class="mt-auto">
+                                        @auth
+                                            <a href="{{ url('/booking') }}"
+                                                class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
+                                                <i class="fas fa-calendar-plus"></i>
+                                                <span>Reservasi Sekarang</span>
+                                            </a>
+                                        @else
+                                            <button onclick="showLoginAlert()"
+                                                class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
+                                                <i class="fas fa-calendar-plus"></i>
+                                                <span>Reservasi Sekarang</span>
+                                            </button>
+                                        @endauth
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-span-full text-center py-12">
+                                <p class="text-gray-400">Tidak ada meja classic tersedia</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <!-- Right Arrow -->
+                    <button onclick="scrollHorizontal('classic-container', 300)"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-12 w-12 bg-black/60 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-black/80 shadow-lg">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <a href="{{ route('Public/reservasi') }}"
+                        class="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 text-white text-lg font-semibold rounded-xl shadow-lg transition-all duration-300">
+                        Lihat Semua Meja Tersedia
+                        <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // Smooth Scroll
+        function scrollHorizontal(containerId, distance) {
+            const container = document.getElementById(containerId);
+            container.scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
         }
 
-        // Toggle visibility
-        for (let item of items) {
-            if (allVisible) {
-                // Hide items beyond the initial count
-                const initialCount = type === 'exclusive' ? 4 : 12;
-                if (Array.from(items).indexOf(item) >= initialCount) {
-                    item.classList.add('hidden');
-                }
-            } else {
-                item.classList.remove('hidden');
-            }
-        }
+        //secroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const containers = ['exclusive-container', 'classic-container'];
 
-        // Update button text
-        button.textContent = allVisible ?
-            `Lihat Semua ${type.charAt(0).toUpperCase() + type.slice(1)}` :
-            'Lihat Lebih Sedikit';
-    }
+            containers.forEach(containerId => {
+                const container = document.getElementById(containerId);
 
+                container.addEventListener('focus', function() {
+                    const arrows = container.parentElement.querySelectorAll('button');
+                    arrows.forEach(arrow => arrow.classList.add('opacity-100'));
+                });
 
-    //Alert saat reservasi tapi belum login
-    function showLoginAlert() {
-        Swal.fire({
-            title: '<span style="color:#facc15"><i class="fas fa-lock mr-2"></i> Login Diperlukan!</span>',
-            html: '<div style="color:#f9fafb;font-size:1.1rem;">Anda harus login untuk melakukan reservasi.<br><br><span style="font-size:2rem;">🎱</span></div>',
-            icon: 'warning',
-            background: '#1f2937',
-            color: '#f9fafb',
-            iconColor: '#facc15',
-            showCancelButton: true,
-            confirmButtonColor: '#2563eb',
-            cancelButtonColor: '#dc2626',
-            confirmButtonText: '<i class="fas fa-sign-in-alt mr-2"></i> Login Sekarang',
-            cancelButtonText: 'Batal',
-            customClass: {
-                popup: 'animate__animated animate__fadeInDown',
-                confirmButton: 'swal2-confirm-custom',
-                cancelButton: 'swal2-cancel-custom'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "{{ route('login') }}";
-            }
+                container.setAttribute('tabindex', '0');
+
+                container.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        scrollHorizontal(containerId, -300);
+                        e.preventDefault();
+                    } else if (e.key === 'ArrowRight') {
+                        scrollHorizontal(containerId, 300);
+                        e.preventDefault();
+                    }
+                });
+            });
         });
-    }
-
-    const style = document.createElement('style');
-    style.innerHTML = `
-    .swal2-confirm-custom {
-        background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%) !important;
-        border: none !important;
-        font-weight: bold !important;
-        font-size: 1rem !important;
-    }
-    .swal2-cancel-custom {
-        background: #374151 !important;
-        color: #f9fafb !important;
-        border: none !important;
-        font-weight: bold !important;
-        font-size: 1rem !important;
-    }
-    `;
-    document.head.appendChild(style);
-
-    // (Removed duplicate toggleTables function to prevent conflict)
-</script>
+    </script>
+</body>
 
 </html>

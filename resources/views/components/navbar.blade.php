@@ -1,17 +1,10 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Add SweetAlert2 for better alerts -->
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<style>
-    /* Animation for navbar */
-    .animate-fade-in {
-        animation: fadeIn 0.5s ease-out;
-    }
 
+<style>
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -24,293 +17,159 @@
         }
     }
 
-    /* Nav link hover effect */
-    .nav-link {
-        position: relative;
-        transition: color 0.3s;
-    }
-
-    .nav-link:hover {
-        color: #3b82f6;
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        background-color: #3b82f6;
-        transition: width 0.3s;
-    }
-
-    .nav-link:hover::after {
-        width: 100%;
-    }
-
-    /* Dropdown styles */
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background-color: #1a202c;
-        min-width: 200px;
-        border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        z-index: 50;
-    }
-
-    .dropdown-menu a {
-        display: block;
-        padding: 0.75rem 1rem;
-        color: #e2e8f0;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: #2d3748;
-        color: #4299e1;
-    }
-
-    .dropdown-menu.show {
-        display: block;
-        animation: fadeIn 0.2s ease-out;
-    }
-
-    .dropdown-divider {
-        border-top: 1px solid #4a5568;
-        margin: 0.25rem 0;
-    }
-
-    /* Cart badge */
-    .cart-badge {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background-color: #ef4444;
-        color: white;
-        border-radius: 9999px;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        font-weight: bold;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideUp {
-        from {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
     .animate-fade-in {
-        animation: fadeIn 1s ease-in-out;
-    }
-
-    .animate-slide-up {
-        animation: slideUp 0.8s ease-in-out;
+        animation: fadeIn 0.5s ease-out;
     }
 
     .cards {
-        max-width: fit-content;
-        border-radius: 15px;
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        gap: 1rem;
-        backdrop-filter: blur(15px);
+        @apply max-w-fit rounded-xl flex flex-col items-center justify-center gap-4 backdrop-blur-md;
         box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.192),
-            inset 0 0 5px rgba(255, 255, 255, 0.274), 0 5px 5px rgba(0, 0, 0, 0.164);
+            inset 0 0 5px rgba(255, 255, 255, 0.274),
+            0 5px 5px rgba(0, 0, 0, 0.164);
         transition: 0.5s;
     }
 
     .cards:hover {
-        animation: ease-out 5s;
-        background: rgba(173, 173, 173, 0.05);
+        @apply bg-gray-500 bg-opacity-5;
     }
 
     .cards ul {
-        padding: 1rem;
-        display: flex;
-        list-style: none;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        flex-direction: row;
+        @apply p-4 flex list-none gap-4 items-center justify-center flex-wrap flex-row;
     }
 
     .cards ul li {
-        cursor: pointer;
-        position: relative;
+        @apply cursor-pointer relative;
     }
 
     .svg {
-        transition: all 0.3s;
-        padding: 1rem;
-        height: 60px;
-        width: 60px;
-        border-radius: 100%;
-        color: rgb(255, 174, 0);
+        @apply transition-all duration-300 p-4 h-15 w-15 rounded-full text-yellow-400;
         fill: currentColor;
         box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
-            inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.164);
+            inset 0 0 5px rgba(255, 255, 255, 0.5),
+            0 5px 5px rgba(0, 0, 0, 0.164);
     }
 
     .texts {
-        opacity: 0;
-        border-radius: 5px;
-        padding: 5px;
-        transition: all 0.3s ease;
-        color: rgb(255, 174, 0);
+        @apply opacity-0 rounded-sm p-1 transition-all duration-300 text-yellow-400 absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap z-50;
         background-color: rgba(255, 255, 255, 0.3);
-        position: absolute;
-        top: -40px;
-        /* Naik ke atas */
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        z-index: 9999;
         box-shadow: -5px 0 1px rgba(153, 153, 153, 0.2),
             -10px 0 1px rgba(153, 153, 153, 0.2),
             inset 0 0 20px rgba(255, 255, 255, 0.3),
-            inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.082);
+            inset 0 0 5px rgba(255, 255, 255, 0.5),
+            0 5px 5px rgba(0, 0, 0, 0.082);
     }
 
     .iso-pro {
-        transition: 0.5s;
-        position: relative;
+        @apply transition-all duration-500 relative;
     }
 
     .iso-pro:hover a>.svg {
-        transform: scale(1.1);
-        /* Efek hover lebih stabil */
+        @apply scale-110;
     }
 
     .iso-pro:hover .texts {
-        opacity: 1;
+        @apply opacity-100;
         transform: translateX(-50%) translateY(-5px) skew(-3deg);
     }
 
     .iso-pro:hover .svg {
-        transform: scale(1.05);
+        @apply scale-105;
     }
 
     .iso-pro span {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: #1877f2;
-        border-color: #1877f2;
+        @apply opacity-0 absolute top-0 left-0 text-blue-600 border-blue-600 rounded-full transition-all duration-300 h-15 w-15;
         box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
-            inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.164);
-        border-radius: 50%;
-        transition: all 0.3s;
-        height: 60px;
-        width: 60px;
+            inset 0 0 5px rgba(255, 255, 255, 0.5),
+            0 5px 5px rgba(0, 0, 0, 0.164);
     }
 
     .iso-pro:hover span {
-        opacity: 1;
+        @apply opacity-100;
     }
 
     .iso-pro:hover span:nth-child(1) {
-        opacity: 0.2;
+        @apply opacity-20;
     }
 
     .iso-pro:hover span:nth-child(2) {
-        opacity: 0.4;
-        transform: scale(1.1);
+        @apply opacity-40 scale-110;
     }
 
     .iso-pro:hover span:nth-child(3) {
-        opacity: 0.6;
-        transform: scale(1.2);
+        @apply opacity-60 scale-120;
     }
 
-    /* Booking history modal */
     .booking-history-modal {
-        max-width: 800px;
-        width: 90%;
+        @apply max-w-4xl w-[90%];
     }
 
     modal-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @apply flex items-center justify-center;
     }
 
     .modal-box {
-        max-height: 90vh;
-        overflow-y: auto;
+        @apply max-h-[90vh] overflow-y-auto;
+    }
+
+    #mobile-menu {
+        transition: all 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    #mobile-menu.open {
+        max-height: 1000px;
+        /* Sesuaikan dengan kebutuhan */
     }
 </style>
-
 <nav class="bg-gray-900 p-4 fixed top-0 left-0 w-full z-50 animate-fade-in">
     <div class="container mx-auto flex justify-between items-center">
         <a class="text-blue-500 font-bold text-2xl" href="#">
             <span class="text-blue-500">Zetro</span><span class="text-white">Billiard</span>
         </a>
-        <button class="text-white block lg:hidden text-2xl" id="menu-button">
-            <i class="fas fa-bars"></i>
+
+        <!-- Tombol Hamburger untuk Mobile -->
+        <button class="text-white lg:hidden text-2xl focus:outline-none" id="hamburger-button">
+            <i class="fas fa-bars" id="hamburger-icon"></i>
         </button>
-        <div class="hidden lg:flex items-center space-x-6" id="menu">
+        <div class="hidden lg:flex items-center space-x-6">
             <ul class="flex space-x-6 items-center">
                 <li>
-                    <a class="nav-link active text-white hover:text-blue-500" href="{{ route('Public/lending_page') }}">
+                    <a class="nav-link active text-white hover:text-blue-500 transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                        href="{{ route('Public/lending_page') }}">
                         Beranda
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#reservasi">
+                    <a class="nav-link text-white hover:text-blue-500 transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                        href="#reservasi">
                         Reservasi
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#galeri">
+                    <a class="nav-link text-white hover:text-blue-500 transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                        href="#galeri">
                         Galeri
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#tentang">
+                    <a class="nav-link text-white hover:text-blue-500 transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                        href="#tentang">
                         Tentang
                     </a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-blue-500 nav-link" href="#hubungi_kami">
+                    <a class="nav-link text-white hover:text-blue-500 transition-colors duration-300 relative after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-blue-500 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+                        href="#hubungi_kami">
                         Hubungi Kami
                     </a>
                 </li>
             </ul>
 
-
             @auth
-                <div class="relative dropdown">
+                <div class="relative">
                     <button id="profile-button" type="button" class="flex items-center space-x-2 focus:outline-none"
-                        data-dropdown-toggle="profile-dropdown" aria-expanded="false" aria-haspopup="true">
+                        aria-expanded="false" aria-haspopup="true">
                         <img class="w-8 h-8 rounded-full border-2 border-blue-500"
                             src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->username) }}&background=2563eb&color=fff"
                             alt="Profile">
@@ -318,22 +177,25 @@
                         <i class="fas fa-chevron-down text-sm text-gray-400 ml-1"></i>
                     </button>
 
-                    <div id="profile-dropdown" class="dropdown-menu">
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <div id="profile-dropdown"
+                        class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50">
+                        <a href="#"
+                            class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 transition-colors duration-200">
                             <i class="fas fa-user-circle mr-2"></i> Profile
                         </a>
-                        <a href="{{ route('Public/riwayat') }}" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <a href="{{ route('Public/riwayat') }}"
+                            class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 transition-colors duration-200">
                             <i class="fas fa-history mr-2"></i> Riwayat Pemesanan
                         </a>
-
-                        <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <a href="#"
+                            class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 transition-colors duration-200">
                             <i class="fas fa-cog mr-2"></i> Setting
                         </a>
-                        <div class="dropdown-divider"></div>
+                        <div class="border-t border-gray-700 my-1"></div>
                         <form method="POST" action="{{ route('logout') }}" id="logout-form">
                             @csrf
                             <button type="button"
-                                class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full"
+                                class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full transition-colors duration-200"
                                 onclick="confirmLogout()">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                             </button>
@@ -348,134 +210,120 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div class="lg:hidden">
-        <ul class="hidden flex-col space-y-2 mt-4 text-lg" id="mobile-menu">
-            <li><a class="text-white text-xl hover:text-blue-500 block nav-link"
+    <div class="lg:hidden bg-gray-800 mt-2 rounded-lg" id="mobile-menu">
+        <ul class="flex flex-col space-y-2 p-4">
+            <li><a class="text-white hover:text-blue-500 block py-2 transition-colors"
                     href="{{ route('Public/lending_page') }}">Beranda</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#reservasi">Reservasi</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#galeri">Galeri</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#tentang">Tentang</a></li>
-            <li><a class="text-white hover:text-blue-500 block nav-link" href="#hubungi_kami">Hubungi Kami</a></li>
-
-            <!-- Mobile Cart -->
-            <li class="pt-2 border-t border-gray-700">
-                <a href="#" class="flex items-center py-2 text-gray-300 hover:text-blue-500">
-                    <i class="fas fa-shopping-cart mr-2"></i> Keranjang
-                    <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">3</span>
-                </a>
+            <li><a class="text-white hover:text-blue-500 block py-2 transition-colors" href="#reservasi">Reservasi</a>
             </li>
+            <li><a class="text-white hover:text-blue-500 block py-2 transition-colors" href="#galeri">Galeri</a></li>
+            <li><a class="text-white hover:text-blue-500 block py-2 transition-colors" href="#tentang">Tentang</a></li>
+            <li><a class="text-white hover:text-blue-500 block py-2 transition-colors" href="#hubungi_kami">Hubungi
+                    Kami</a></li>
 
-            <!-- Mobile Profile Menu -->
             @auth
                 <li class="pt-2 border-t border-gray-700">
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-3 py-2">
                         <img class="w-8 h-8 rounded-full"
                             src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->username) }}&background=2563eb&color=fff"
                             alt="Profile">
                         <span class="text-white">{{ Auth::user()->username }}</span>
                     </div>
                     <ul class="mt-2 space-y-1">
-                        <li><a href="#" class="block py-1 text-gray-300 hover:text-blue-500"><i
+                        <li><a href="#" class="block py-2 text-gray-300 hover:text-blue-500"><i
                                     class="fas fa-user-circle mr-2"></i>Profile</a></li>
-                        <li><a href="Public/riwayat" class="block py-1 text-gray-300 hover:text-blue-500"
-                                onclick="document.getElementById('booking-history-modal').showModal()"><i
+                        <li><a href="Public/riwayat" class="block py-2 text-gray-300 hover:text-blue-500"><i
                                     class="fas fa-history mr-2"></i>Riwayat Pemesanan</a></li>
-                        <li><a href="#" class="block py-1 text-gray-300 hover:text-blue-500"><i
+                        <li><a href="#" class="block py-2 text-gray-300 hover:text-blue-500"><i
                                     class="fas fa-cog mr-2"></i>Setting</a></li>
-                        <li></li>
-                        <form method="POST" action="{{ route('logout') }}" id="logout-form-mobile">
-                            @csrf
-                            <button type="submit" onclick="event.preventDefault(); confirmLogout();"
-                                class="block py-1 text-red-400 hover:text-red-300 w-full text-left">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Keluar
-                            </button>
-                        </form>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}" id="logout-form-mobile">
+                                @csrf
+                                <button type="button" onclick="confirmLogout('logout-form-mobile')"
+                                    class="block w-full text-left py-2 text-red-400 hover:text-red-300">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Keluar
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             @else
                 <li class="pt-2 border-t border-gray-700">
-                    <a href="{{ route('login') }}" class="btn btn-primary w-full text-center">Login</a>
+                    <a href="{{ route('login') }}"
+                        class="block w-full text-center py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">Login</a>
                 </li>
             @endauth
         </ul>
     </div>
 </nav>
+
 <script>
-    // Dropdown desktop fix
     document.addEventListener('DOMContentLoaded', function() {
-        // Toggle dropdown on profile button click
-        const profileBtn = document.getElementById('profile-button');
-        const profileDropdown = document.getElementById('profile-dropdown');
-        if (profileBtn && profileDropdown) {
-            profileBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                profileDropdown.classList.toggle('show');
-            });
-            // Close dropdown if click outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown')) {
-                    profileDropdown.classList.remove('show');
-                }
-            });
-        }
-
-        // toggle menu mobile
-        const menuButton = document.getElementById('menu-button');
+        const hamburgerButton = document.getElementById('hamburger-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const profileButton = document.getElementById('profile-button');
+        const profileDropdown = document.getElementById('profile-dropdown');
 
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', function(e) {
+        if (hamburgerButton && mobileMenu) {
+            hamburgerButton.addEventListener('click', function(e) {
                 e.stopPropagation();
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('block');
+                mobileMenu.classList.toggle('open');
 
-                // Animasi fade in
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.style.opacity = '0';
-                    mobileMenu.style.transform = 'translateY(-10px)';
-                    setTimeout(() => {
-                        mobileMenu.style.opacity = '1';
-                        mobileMenu.style.transform = 'translateY(0)';
-                        mobileMenu.style.transition = 'all 0.3s ease';
-                    }, 50);
+                // Ganti ikon antara bars dan times
+                if (mobileMenu.classList.contains('open')) {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                } else {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
                 }
             });
 
-            // Tutup saat klik di luar
+            // Tutup menu saat klik di luar
             document.addEventListener('click', function(e) {
-                if (!e.target.closest('#menu-button') && !e.target.closest('#mobile-menu')) {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('block');
+                if (!mobileMenu.contains(e.target) && !hamburgerButton.contains(e.target)) {
+                    mobileMenu.classList.remove('open');
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
                 }
             });
         }
+
+        // Desktop profile dropdown toggle
+        if (profileButton && profileDropdown) {
+            profileButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('hidden');
+            });
+
+            // Tutup dropdown saat klik di luar
+            document.addEventListener('click', function(e) {
+                if (!profileDropdown.contains(e.target) && !profileButton.contains(e.target)) {
+                    profileDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // Logout confirmation function
+        window.confirmLogout = function(formId) {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+                customClass: {
+                    popup: 'swal2-dark',
+                    title: 'text-white',
+                    confirmButton: 'swal2-confirm bg-blue-600 text-white hover:bg-blue-700',
+                    cancelButton: 'swal2-cancel bg-gray-600 text-white hover:bg-gray-700'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(formId).submit();
+                }
+            });
+        };
     });
-
-    //Alert Untuk logout
-    function confirmLogout() {
-        Swal.fire({
-            title: 'Konfirmasi Logout',
-            text: "Anda yakin ingin keluar dari sistem?",
-            icon: 'question',
-            background: '#1F2937', // dark gray
-            color: '#fff',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Logout',
-            cancelButtonText: 'Batal',
-            customClass: {
-                popup: 'swal2-dark',
-                title: 'text-white',
-                confirmButton: 'swal2-confirm bg-blue-600 text-white hover:bg-blue-700',
-                cancelButton: 'swal2-cancel bg-gray-600 text-white hover:bg-gray-700'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
-            }
-        });
-    }
 </script>
-
-</body>
-
-</html>

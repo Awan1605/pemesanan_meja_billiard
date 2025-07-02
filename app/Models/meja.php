@@ -8,28 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Meja extends Model
 {
     use HasFactory;
-
-    // Tambahkan ini
-    public static $statusOptions = [
-        'tersedia' => 'Tersedia',
-        'terpesan' => 'Terpesan',
-        'digunakan' => 'Sedang Digunakan',
-        'maintenance' => 'Maintenance'
-    ];
-
     protected $table = 'meja';
 
+    /**
+     * Daftar status meja yang tersedia.
+     */
     protected $fillable = [
         'nama',
         'kapasitas',
         'lokasi',
+        'tipe',
         'status',
         'foto',
         'deskripsi'
     ];
 
-    public function getFotoUrlAttribute()
-    {
-        return $this->foto ? asset('storage/' . $this->foto) : null;
-    }
+    public static $statusOptions = [
+        'tersedia' => 'Tersedia',
+        'terpesan' => 'Terpesan',
+        'digunakan' => 'Sedang Digunakan',
+        'maintenance' => 'Maintenance',
+    ];
+
+    public static $tipeOptions = [
+        'exclusive' => 'Exclusive',
+        'classic' => 'Classic',
+    ];
+
 }

@@ -36,7 +36,8 @@
 
                     <a href="#" id="editProfileLink"
                         class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
@@ -44,7 +45,8 @@
                     </a>
 
                     <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c-.94 1.543.826 3.31 2.37 2.37.996.608 2.296.07 2.572-1.065z">
                             </path>
@@ -76,7 +78,7 @@
 </header>
 
 <!-- Modal Edit Profile (Letakkan di luar header, sebelum penutup body) -->
-<div id="editProfileModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+<div id="editProfileModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50">
     <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
         <!-- Modal Header -->
         <div class="flex items-center justify-between p-4 border-b">
@@ -143,7 +145,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // Profile dropdown
         const profileButton = document.getElementById('profileDropdownButton');
         const dropdownMenu = document.getElementById('profileDropdownMenu');
@@ -154,13 +156,13 @@
         modal.classList.add('hidden');
 
         // Toggle dropdown
-        profileButton.addEventListener('click', function (e) {
+        profileButton.addEventListener('click', function(e) {
             e.stopPropagation();
             dropdownMenu.classList.toggle('hidden');
         });
 
         // Tutup dropdown ketika klik di luar
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', function(e) {
             if (!document.getElementById('profileDropdownWrapper').contains(e.target)) {
                 dropdownMenu.classList.add('hidden');
             }
@@ -171,52 +173,53 @@
         const cancelButton = document.getElementById('cancelEditProfile');
 
         // Buka modal ketika "Edit Profile" diklik
-        editProfileLink.addEventListener('click', function (e) {
+        editProfileLink.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation(); // Tambahkan ini untuk mencegah event bubbling
             dropdownMenu.classList.add('hidden'); // Tutup dropdown
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
         });
 
-        // Tutup modal
         function closeModal() {
             modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
+    }
 
-        closeButton.addEventListener('click', closeModal);
-        cancelButton.addEventListener('click', closeModal);
+    closeButton.addEventListener('click', closeModal); cancelButton.addEventListener('click', closeModal);
 
-        // Tutup modal ketika klik di luar modal
-        modal.addEventListener('click', function (e) {
-            if (e.target === modal) {
-                closeModal();
+    // Tutup modal ketika klik di luar modal
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Handle form submission
+    const editProfileForm = document.getElementById('editProfileForm');
+    if (editProfileForm) {
+        editProfileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validasi form
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('password_confirmation').value;
+
+            if (password && password !== confirmPassword) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Password dan konfirmasi password tidak cocok!'
+                });
+                return;
             }
-        });
 
-        // Handle form submission
-        const editProfileForm = document.getElementById('editProfileForm');
-        if (editProfileForm) {
-            editProfileForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+            // Kirim form via AJAX
+            const form = e.target;
+            const formData = new FormData(form);
 
-                // Validasi form
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('password_confirmation').value;
-
-                if (password && password !== confirmPassword) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Password dan konfirmasi password tidak cocok!'
-                    });
-                    return;
-                }
-
-                // Kirim form via AJAX
-                const form = e.target;
-                const formData = new FormData(form);
-
-                fetch(form.action, {
+            fetch(form.action, {
                     method: form.method,
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
@@ -224,38 +227,38 @@
                     },
                     body: formData
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                text: 'Profile berhasil diupdate!'
-                            }).then(() => {
-                                closeModal();
-                                window.location.reload();
-                            });
-                        } else {
-                            let errorMessage = data.message || 'Terjadi kesalahan';
-                            if (data.errors) {
-                                errorMessage = Object.values(data.errors).join('\n');
-                            }
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: errorMessage
-                            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: 'Profile berhasil diupdate!'
+                        }).then(() => {
+                            closeModal();
+                            window.location.reload();
+                        });
+                    } else {
+                        let errorMessage = data.message || 'Terjadi kesalahan';
+                        if (data.errors) {
+                            errorMessage = Object.values(data.errors).join('\n');
                         }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Terjadi kesalahan saat mengupdate profile'
+                            text: errorMessage
                         });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat mengupdate profile'
                     });
-            });
-        }
+                });
+        });
+    }
     });
 </script>

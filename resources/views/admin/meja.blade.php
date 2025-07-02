@@ -69,7 +69,7 @@
         <x-sidebar class="w-full md:w-64 flex-shrink-0"></x-sidebar>
 
         <!-- Main Content -->
-        <div class="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-6">
+        <div class="flex-1 overflow-y-auto overflow-x-hidden pt-9 p-4 md:p-6">
             <!-- Profile -->
             <x-profile class="mb-4"></x-profile>
 
@@ -98,17 +98,29 @@
                 @endif
 
                 <!-- Filter dan Pencarian -->
-                <div class="bg-white rounded-lg shadow p-4 mb-6">
-                    <form id="filterForm" method="GET" action="{{ route('admin.meja') }}"
-                        class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg shadow p-4 mb-6" x-data="{
+                    filters: {
+                        search: '',
+                        status: '',
+                        kapasitas: ''
+                    },
+                    applyFilters() {
+                        this.$dispatch('filters-updated', this.filters);
+                    },
+                    resetFilters() {
+                        this.filters = { search: '', status: '', kapasitas: '' };
+                        this.applyFilters();
+                    }
+                }">
+                    <form class="grid grid-cols-1 md:grid-cols-4 gap-4" @submit.prevent="applyFilters">
                         <!-- Pencarian -->
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">Cari Meja</span>
                             </label>
                             <div class="relative">
-                                <input type="text" name="search" placeholder="Cari nama atau lokasi..."
-                                    class="input input-bordered w-full pl-10" value="{{ request('search') }}">
+                                <input type="text" x-model="filters.search" placeholder="Cari nama atau lokasi..."
+                                    class="input input-bordered w-full pl-10">
                                 <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                             </div>
                         </div>
@@ -118,14 +130,12 @@
                             <label class="label">
                                 <span class="label-text">Status</span>
                             </label>
-                            <select name="status" class="select select-bordered">
+                            <select x-model="filters.status" class="select select-bordered">
                                 <option value="">Semua Status</option>
-                                @foreach (App\Models\Meja::$statusOptions as $key => $value)
-                                    <option value="{{ $key }}"
-                                        {{ request('status') == $key ? 'selected' : '' }}>
-                                        {{ $value }}
-                                    </option>
-                                @endforeach
+                                <option value="tersedia">Tersedia</option>
+                                <option value="terpesan">Terpesan</option>
+                                <option value="sedang digunakan">Sedang Digunakan</option>
+                                <option value="maintenance">Maintenance</option>
                             </select>
                         </div>
 
@@ -134,14 +144,11 @@
                             <label class="label">
                                 <span class="label-text">Kapasitas</span>
                             </label>
-                            <select name="capacity" class="select select-bordered">
+                            <select x-model="filters.kapasitas" class="select select-bordered">
                                 <option value="">Semua Kapasitas</option>
-                                <option value="1-2" {{ request('capacity') == '1-2' ? 'selected' : '' }}>1-2 Orang
-                                </option>
-                                <option value="3-4" {{ request('capacity') == '3-4' ? 'selected' : '' }}>3-4 Orang
-                                </option>
-                                <option value="5+" {{ request('capacity') == '5+' ? 'selected' : '' }}>5+ Orang
-                                </option>
+                                <option value="1-2">1-2 Orang</option>
+                                <option value="3-4">3-4 Orang</option>
+                                <option value="5+">5+ Orang</option>
                             </select>
                         </div>
 
@@ -151,13 +158,15 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-filter mr-2"></i> Filter
                                 </button>
-                                <a href="{{ route('admin.meja') }}" class="btn btn-ghost">
+                                <button type="button" @click="resetFilters" class="btn btn-ghost">
                                     <i class="fas fa-sync-alt mr-2"></i> Reset
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
                 </div>
+
+                <!-- Tabel Meja -->
 
                 <div class="bg-white rounded-lg shadow overflow-hidden">
                     <div class="overflow-x-auto">
@@ -190,12 +199,10 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @forelse ($meja as $m)
                                     <tr x-data="{ expanded: false }" class="hover:bg-gray-50">
-                                        <!-- Mobile View - Enhanced Nama Column -->
-                                        <td class="px-4 py-4">
-                                            <!-- Label "Nama" for mobile -->
-                                            <div class="md:hidden font-medium text-gray-500 mb-1">Nama</div>
 
-                                            <!-- Clickable content -->
+                                        <td class="px-4 py-4">
+
+                                            <div class="md:hidden font-medium text-gray-500 mb-1">Nama</div>
                                             <div @click="expanded = !expanded"
                                                 class="flex items-center justify-between cursor-pointer md:cursor-auto">
                                                 <span class="font-medium">{{ $m->nama }}</span>
@@ -203,7 +210,6 @@
                                                     :class="{ 'rotate-180': expanded }"></i>
                                             </div>
 
-                                            <!-- Expanded Content - Mobile Only -->
                                             <div x-show="expanded" x-collapse class="mt-3 space-y-3 md:hidden">
                                                 <div class="grid grid-cols-2 gap-4">
                                                     <div>
@@ -264,7 +270,7 @@
                                             </div>
                                         </td>
 
-                                        <!-- Desktop Columns -->
+                                        <!-- Desktop -->
                                         <td class="px-4 py-4 hidden md:table-cell">{{ $m->kapasitas }} orang</td>
                                         <td class="px-4 py-4 hidden md:table-cell">{{ $m->lokasi }}</td>
                                         <td class="px-4 py-4 hidden md:table-cell">
@@ -368,8 +374,8 @@
                                     <select name="lokasi" class="select select-bordered" required>
                                         <option value="Lantai 1">Lantai 1</option>
                                         <option value="Lantai 2">Lantai 2</option>
-                                        <option value="Teras">Teras</option>
-                                        <option value="VIP Room">VIP Room</option>
+                                        <option value="Lantai 3">Lantai 3</option>
+
                                     </select>
                                 </div>
 
@@ -381,6 +387,15 @@
                                         @foreach (\App\Models\Meja::$statusOptions as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Tipe Meja <span class="text-red-500">*</span></span>
+                                    </label>
+                                    <select name="tipe" class="select select-bordered" required>
+                                        <option value="Classic">Classic</option>
+                                        <option value="Exclusive">Exclusive</option>
                                     </select>
                                 </div>
                                 <div class="form-control md:col-span-2">
@@ -468,6 +483,16 @@
                                         @foreach (\App\Models\Meja::$statusOptions as $key => $value)
                                             <option value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Tipe Meja <span class="text-red-500">*</span></span>
+                                    </label>
+                                    <select name="tipe" x-model="currentMeja.tipe" class="select select-bordered"
+                                        required>
+                                        <option value="Classic">Classic</option>
+                                        <option value="Exclusive">Exclusive</option>
                                     </select>
                                 </div>
                                 <div class="form-control md:col-span-2">
@@ -583,7 +608,13 @@
                                         }"></span>
                                 </div>
                             </div>
-
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-tag text-indigo-400 mt-0.5"></i>
+                                <div>
+                                    <p class="text-gray-500 text-xs">Tipe Meja</p>
+                                    <p class="font-semibold text-base" x-text="currentMeja.tipe"></p>
+                                </div>
+                            </div>
                             <template x-if="currentMeja.deskripsi">
                                 <div class="flex items-start gap-3">
                                     <i class="fas fa-align-left text-purple-400 mt-0.5"></i>
@@ -620,6 +651,7 @@
                                 kapasitas: '',
                                 lokasi: '',
                                 status: '',
+                                tipe: '', // tambahkan ini
                                 foto: '',
                                 deskripsi: '',
                                 status_label: ''
@@ -647,6 +679,7 @@
                                     kapasitas: meja.kapasitas,
                                     lokasi: meja.lokasi,
                                     status: meja.status,
+                                    tipe: meja.tipe || '', // tambahkan ini
                                     foto: meja.foto || '',
                                     deskripsi: meja.deskripsi || '',
                                     status_label: meja.status_label || ''
