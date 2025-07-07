@@ -9,23 +9,20 @@ use App\Http\Controllers\{
     PenggunaController,
     BookingController,
     ReservasiController,
+    MejaController
 };
-use App\Http\Controllers\MejaController;
 use App\Http\Controllers\Admin\MejaApiController;
-
 
 // ==================== PUBLIC ==================== //
 Route::get('/', [MejaController::class, 'publicView'])->name('home');
 Route::get('/landing', [MejaController::class, 'publicView'])->name('Public.landing_page');
-
 Route::get('Public/lending_page', [PageController::class, 'lending_page'])->name('Public/lending_page');
-// Route::get('/booking/{meja}/{tipe}/{lantai}', function ($meja, $tipe, $lantai) {
-//     return view('Public.booking', compact('meja', 'tipe', 'lantai'));
-// })->name('Public/booking');
-
 Route::get('Public/riwayat', [PageController::class, 'riwayat'])->name('Public/riwayat');
 Route::get('Public/reservasi', [MejaController::class, 'reservasi'])->name('Public/reservasi');
 Route::get('/lending-page', [MejaController::class, 'publicView'])->name('Public.lending');
+Route::get('/lending', [MejaController::class, 'publicView']);
+// Route::get('/booking/{meja}', [BookingController::class, 'create'])->name('Public.booking');
+
 
 // Contact Form
 Route::post('/contact', fn() => back()->with('success', 'Pesan Anda telah terkirim!'))->name('contact.submit');
@@ -42,11 +39,11 @@ Route::post('/register', [PenggunaController::class, 'register'])->name('registe
 
 // ==================== ADMIN ==================== //
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/reservasi', [AdminController::class, 'reservasi'])->name('reservasi');
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     // Halaman Manajemen
-
     Route::get('/pengguna', [AdminController::class, 'pengguna'])->name('pengguna');
     Route::get('/meja', [AdminController::class, 'meja'])->name('meja');
     Route::get('/pembayaran', [AdminController::class, 'pembayaran'])->name('pembayaran');
@@ -62,10 +59,8 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
     Route::post('/meja', [MejaController::class, 'store'])->name('meja.store');
     Route::put('/meja/{meja}', [MejaController::class, 'update'])->name('meja.update');
     Route::delete('/meja/{id}', [MejaController::class, 'destroy'])->name('meja.destroy');
-    Route::delete('/meja/{meja}', [MejaController::class, 'destroy'])
-        ->name('admin.meja.destroy');
+    Route::delete('/meja/{meja}', [MejaController::class, 'destroy'])->name('admin.meja.destroy');
     Route::get('/meja/{id}', [MejaController::class, 'show'])->name('meja.show');
-
     Route::get('/admin/meja', [MejaController::class, 'index'])->name('admin.meja');
 
     // CRUD Pengguna
@@ -77,21 +72,18 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
 
 // ==================== USER ==================== //
 Route::middleware(['auth'])->group(function () {
-    Route::resource('meja', MejaController::class)->except(['create', 'edit']); // gunakan yang dibutuhkan saja
+    Route::resource('meja', MejaController::class)->except(['create', 'edit']);
 });
 
-// ==================== API ROUTES ==================== //
-// Route::view('/booking', 'Public.booking')->name('Public.booking');
-
-// routes/web.php
-// Route::get('/booking', [BookingController::class, 'create'])->name('booking');
-
+// ==================== BOOKING ==================== //
 Route::get('booking', function () {
     return view('Public.booking');
 })->name('Public.booking')->middleware('auth');
+Route::get('/booking/{id}', [BookingController::class, 'showBookingForm']);
+// routes/web.php
+// routes/web.php
+Route::get('/booking/{id}', [BookingController::class, 'show'])->name('booking.show');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
+Route::get('Booking/riwayat', [BookingController::class, 'riwayat'])->name('Booking.riwayat');
+// ==================== END ==================== //
 
-Route::get('/lending', [MejaController::class, 'publicView']);
-Route::get('/lending', [MejaController::class, 'publicView'])->name('Public.lending');
-
-// Replace this:
-Route::get('/reservasi', [MejaController::class, 'reservasi'])->name('reservasi');

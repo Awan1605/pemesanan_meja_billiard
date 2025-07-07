@@ -194,12 +194,12 @@
                         <div class="border-t border-gray-700 my-1"></div>
                         <form method="POST" action="{{ route('logout') }}" id="logout-form">
                             @csrf
-                            <button type="button"
-                                class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full transition-colors duration-200"
-                                onclick="confirmLogout()">
+                            <button type="button" onclick="confirmLogout('logout-form')"
+                                class="flex items-center px-4 py-2 text-red-400 hover:text-red-300 w-full transition-colors duration-200">
                                 <i class="fas fa-sign-out-alt mr-2"></i> Keluar
                             </button>
                         </form>
+
                     </div>
                 </div>
             @else
@@ -306,18 +306,22 @@
         }
 
         // Logout confirmation function
-        window.confirmLogout = function(formId) {
+        window.confirmLogout = function(formId = 'logout-form') {
             Swal.fire({
-                title: 'Apakah Anda yakin ingin logout?',
+                title: '<span style="color: #fff;">Keluar dari akun?</span>',
+                text: "Anda yakin ingin logout dari akun ini?",
                 icon: 'warning',
+                background: '#1e293b',
+                color: '#fff',
                 showCancelButton: true,
-                confirmButtonText: 'Ya, Logout',
-                cancelButtonText: 'Batal',
+                confirmButtonText: '<span style="color: #fff;">Ya, Logout</span>',
+                cancelButtonText: '<span style="color: #fff;">Batal</span>',
                 customClass: {
                     popup: 'swal2-dark',
                     title: 'text-white',
-                    confirmButton: 'swal2-confirm bg-blue-600 text-white hover:bg-blue-700',
-                    cancelButton: 'swal2-cancel bg-gray-600 text-white hover:bg-gray-700'
+                    htmlContainer: 'text-white',
+                    confirmButton: 'swal2-confirm bg-blue-600 text-white hover:bg-blue-700 border-0',
+                    cancelButton: 'swal2-cancel bg-gray-600 text-white hover:bg-gray-700 border-0'
                 }
             }).then((result) => {
                 if (result.isConfirmed) {

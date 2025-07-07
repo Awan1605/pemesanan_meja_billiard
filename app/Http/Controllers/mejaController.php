@@ -72,6 +72,16 @@ class MejaController extends Controller
 
         return response()->json($meja);
     }
+    // MejaController.php
+    public function showBookingForm($id)
+    {
+        try {
+            $meja = Meja::findOrFail($id);
+            return view('Public.booking', compact('meja'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Meja tidak ditemukan');
+        }
+    }
     public function publicView()
     {
         $exclusiveTables = Meja::where('tipe', 'exclusive')->where('status', 'tersedia')->get();
@@ -84,6 +94,12 @@ class MejaController extends Controller
         $exclusiveTables = Meja::where('tipe', 'exclusive')->get();
         $classicTables = Meja::where('tipe', 'classic')->get();
         return view('Public.reservasi', compact('exclusiveTables', 'classicTables'));
+    }
+
+    public function create($id)
+    {
+        $meja = Meja::findOrFail($id);
+        return view('Public.booking', compact('meja'));
     }
 
 

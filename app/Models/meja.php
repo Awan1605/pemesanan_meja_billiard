@@ -18,6 +18,7 @@ class Meja extends Model
         'kapasitas',
         'lokasi',
         'tipe',
+        'harga',
         'status',
         'foto',
         'deskripsi'

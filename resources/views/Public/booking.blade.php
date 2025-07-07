@@ -56,29 +56,41 @@
         <!-- Booking Form -->
         <form id="bookingForm" class="bg-base-200 rounded-lg shadow-lg p-6" method="POST">
             @csrf
-
             <!-- Room Selection -->
-            <div class="mb-6">
-                <h2 class="text-lg font-semibold mb-4 flex items-center">
-                    <i class="fas fa-door-open mr-2"></i>
-                    Pilih Ruangan
-                </h2>
-                <div class="flex flex-wrap gap-4">
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <input type="radio" name="room_type" value="regular" class="radio radio-primary"
-                                checked />
-                            <span class="label-text ml-2">Classic (Rp 35.000/jam)</span>
-                        </label>
+            @if (isset($meja) && $meja)
+                <!-- Tampilkan form booking -->
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text font-semibold text-lg">Meja yang Dipilih:</span>
+                    </label>
+                    <div class="p-4 bg-gray-100 rounded-lg">
+                        <p class="text-lg">
+                            <strong>{{ $meja->nama }}</strong> -
+                            Lokasi: {{ $meja->lokasi }}
+                        </p>
+                        <p class="text-lg">
+                            Harga: <span class="text-blue-600">Rp
+                                {{ number_format($meja->harga, 0, ',', '.') }}/jam</span>
+                        </p>
                     </div>
-                    <div class="form-control">
-                        <label class="label cursor-pointer">
-                            <input type="radio" name="room_type" value="vip" class="radio radio-primary" />
-                            <span class="label-text ml-2">Exclusive (Rp 50.000/jam)</span>
-                        </label>
+                    <input type="hidden" name="meja_id" value="{{ $meja->id }}">
+                </div>
+            @else
+                <!-- Tampilkan pesan error dan tombol kembali -->
+                <div class="alert alert-error shadow-lg mb-6">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Meja tidak ditemukan. Silakan pilih meja terlebih dahulu.</span>
                     </div>
                 </div>
-            </div>
+                <a href="{{ route('Public/reservasi') }}" class="btn btn-primary">
+                    <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Meja
+                </a>
+            @endif
 
             <!-- Date Picker -->
             <div class="mb-6">
@@ -100,7 +112,7 @@
 
                 <div class="mb-4">
                     <label class="label">
-                        <span class="label-text">Jam Mulai</span>
+                        <span class="label-text text-lg">Jam Mulai</span>
                     </label>
                     <div class="flex flex-wrap gap-2" id="timeOptionsContainer">
                         @foreach (['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00'] as $time)
@@ -115,28 +127,39 @@
 
                 <div class="mb-4">
                     <label class="label">
-                        <span class="label-text">Durasi</span>
+                        <span class="label-text text-lg">Pilih Durasi (jam):</span>
                     </label>
-                    <div class="flex flex-wrap gap-2">
-                        @foreach ([1, 2, 3] as $hours)
+                    <div class="flex flex-wrap gap-2" id="durationOptionsContainer">
+                        @foreach ([1, 2, 3] as $durasi)
                             <button type="button" class="btn btn-outline btn-sm duration-option"
-                                data-duration="{{ $hours }}">
-                                {{ $hours }} Jam
+                                data-duration="{{ $durasi }}">
+                                {{ $durasi }} Jam
                             </button>
                         @endforeach
                     </div>
-                    <input type="hidden" name="duration" id="durationInput" required>
+                    <input type="hidden" id="durationInput" name="duration" value="1" required>
                 </div>
-                <div class="mb-4 bg-base-300 p-3 rounded-lg">
-                    <div class="flex justify-between items-center">
-                        <span class="font-medium">Harga:</span>
-                        <span id="priceDisplay" class="font-bold">Rp 0</span>
+                <!-- Simpan harga dasar (tidak terlihat) -->
+                <input type="hidden" id="hargaPerJam" value="{{ $meja->harga }}">
+
+                <!-- Tempat lihat harga total -->
+                <div class="bg-base-300 p-3 rounded-lg flex justify-between items-center mt-3">
+                    <div>
+                        <span class="font-medium text-lg">Total Bayar:</span>
                     </div>
+                    <span id="priceDisplay" class="text-xl font-bold text-green-600">Rp 0</span>
                 </div>
+
+                <!-- Simpan total untuk dikirim ke server -->
+                <input type="hidden" id="totalPayment" name="total_payment" value="0">
+
+
+                <!-- Total payment yang akan dikirim ke server saat submit -->
+                <input type="hidden" name="total_payment" id="totalPayment">
                 <div class="bg-base-300 p-3 rounded-lg">
                     <div class="flex justify-between items-center">
-                        <span class="font-medium">Jam Selesai:</span>
-                        <span id="endTimeDisplay" class="font-bold">--:--</span>
+                        <span class="font-medium text-lg">Jam Selesai:</span>
+                        <span id="endTimeDisplay" class="font-bold text-xl">--:--</span>
                     </div>
                 </div>
             </div>
@@ -289,6 +312,7 @@
                     <i class="fas fa-trash-alt mr-2"></i>
                     Batal Booking
                 </button>
+
             </div>
         </form>
     </div>
@@ -298,15 +322,37 @@
         <div class="modal-box">
             <h3 class="font-bold text-lg">Konfirmasi Pemesanan</h3>
             <div class="py-4 space-y-2">
-                <p><span class="font-semibold">Ruangan:</span> <span id="confirmRoom"></span></p>
+                <p><span class="font-semibold">Meja:</span>
+                    <span id="confirmRoom">
+                        @if (isset($meja) && $meja)
+                            {{ $meja->nama }} - Lokasi: {{ $meja->lokasi }}
+                        @else
+                            -
+                        @endif
+                    </span>
+                </p>
                 <p><span class="font-semibold">Tanggal:</span> <span id="confirmDate"></span></p>
                 <p><span class="font-semibold">Waktu:</span> <span id="confirmTime"></span></p>
                 <p><span class="font-semibold">Durasi:</span> <span id="confirmDuration"></span></p>
-                <p><span class="font-semibold">Harga Ruangan:</span> <span id="confirmPrice"></span></p>
+                <p><span class="font-semibold">Harga Meja:</span>
+                    <span id="confirmPrice">
+                        @if (isset($meja) && $meja)
+                            Rp {{ number_format($meja->harga, 0, ',', '.') }}/jam
+                        @else
+                            -
+                        @endif
+                    </span>
+                </p>
                 <p><span class="font-semibold">Makanan:</span> <span id="confirmFood"></span></p>
                 <p><span class="font-semibold">Minuman:</span> <span id="confirmDrink"></span></p>
-                <p class="pt-2 border-t"><span class="font-semibold">Total Harga:</span> <span id="confirmTotal"
-                        class="text-lg font-bold text-primary"></span></p>
+                <p class="pt-2 border-t">
+                    <span class="font-semibold">Total Harga:</span>
+                    <span id="confirmTotal" class="text-lg font-bold text-primary">
+                        @if (isset($total_payment))
+                            Rp {{ number_format($total_payment, 0, ',', '.') }}
+                        @endif
+                    </span>
+                </p>
             </div>
             <div class="modal-action">
                 <form method="dialog">
@@ -430,10 +476,17 @@
                     const [h, m] = btn.dataset.time.split(':').map(Number);
                     let disable = false;
                     if (
-                        selectedDate.toDateString() === today.toDateString() &&
-                        (h < nowHour || (h === nowHour && m <= nowMinute))
+                        selectedDate.toDateString() === today.toDateString()
                     ) {
-                        disable = true;
+
+                        if (h === 0 && m === 0) {
+
+                            if (nowHour > 0 || (nowHour === 0 && nowMinute > 0)) {
+                                disable = false;
+                            }
+                        } else if (h < nowHour || (h === nowHour && m <= nowMinute)) {
+                            disable = true;
+                        }
                     }
                     btn.disabled = disable;
                     if (disable) {
@@ -455,11 +508,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             // Price constants
-            const ROOM_PRICES = {
-                regular: 35000,
-                vip: 50000
-            };
-
             const FOOD_PRICES = {
                 nasi_goreng: 20000
             };
@@ -480,6 +528,7 @@
             const roomTypeRadios = document.querySelectorAll('input[name="room_type"]');
             const foodCountBadge = document.getElementById('foodCountBadge');
             const drinkCountBadge = document.getElementById('drinkCountBadge');
+            const totalPaymentInput = document.getElementById('totalPayment');
 
             // Form elements
             const bookingForm = document.getElementById('bookingForm');
@@ -498,6 +547,36 @@
             const qrisAmount = document.getElementById('qrisAmount');
             const bankAmount = document.getElementById('bankAmount');
             const completePaymentBtn = document.getElementById('completePaymentBtn');
+            // Ambil harga per jam
+            const hargaPerJam = parseInt(document.getElementById('hargaPerJam').value);
+            const inputDurasi = document.getElementById('durationInput');
+            const tampilanHarga = document.getElementById('priceDisplay');
+
+            // Fungsi hitung harga
+            function hitungHarga() {
+                // Jika belum pilih durasi
+                if (!inputDurasi.value || inputDurasi.value < 1) {
+                    tampilanHarga.textContent = 'Rp 0';
+                    return;
+                }
+
+                // Hitung total
+                const durasi = parseInt(inputDurasi.value);
+                const total = hargaPerJam * durasi;
+
+                // Tampilkan harga dengan format Rp
+                tampilanHarga.textContent = 'Rp ' + total.toLocaleString('id-ID');
+
+                // Simpan total untuk dikirim ke server
+                document.getElementById('totalPayment').value = total;
+            }
+
+            inputDurasi.addEventListener('change', function() {
+                if (this.value < 1) {
+                    this.value = 1;
+                    hitungHarga();
+                }
+            });
 
             // Payment proof elements
             const paymentProofContainer = document.createElement('div');
@@ -606,12 +685,13 @@
                     return;
                 }
 
-                const roomType = document.querySelector('input[name="room_type"]:checked').value;
                 const duration = parseInt(durationInput.value);
-                const price = ROOM_PRICES[roomType] * duration;
+                const price = hargaPerJam * duration;
 
                 priceDisplay.textContent = `Rp ${price.toLocaleString('id-ID')}`;
+                totalPaymentInput.value = price;
             }
+
 
             // Quantity update functions
             function updateQuantity(item, type, change) {
@@ -701,14 +781,29 @@
                     return;
                 }
 
-                // Populate confirmation modal
-                const roomType = document.querySelector('input[name="room_type"]:checked').value;
-                const roomName = roomType === 'regular' ? 'Classic' : 'Exclusive';
+                // Ambil data meja dari blade (sudah ada di konfirmasi modal)
+                const mejaNama = document.getElementById('confirmRoom').textContent.trim();
                 const duration = parseInt(durationInput.value);
-                const roomPrice = ROOM_PRICES[roomType] * duration;
-                totalPrice = calculateTotalPrice();
+                const hargaPerJam = parseInt(document.getElementById('hargaPerJam').value);
+                const roomPrice = hargaPerJam * duration;
 
-                document.getElementById('confirmRoom').textContent = roomName;
+                // Hitung total harga (meja + makanan + minuman)
+                let total = roomPrice;
+                if (foodItems.nasi_goreng > 0) {
+                    total += foodItems.nasi_goreng * FOOD_PRICES.nasi_goreng;
+                }
+                if (drinkItems.root_calm > 0) {
+                    total += drinkItems.root_calm * DRINK_PRICES.root_calm;
+                }
+                if (drinkItems.es_dagen > 0) {
+                    total += drinkItems.es_dagen * DRINK_PRICES.es_dagen;
+                }
+                if (drinkItems.ice_tea > 0) {
+                    total += drinkItems.ice_tea * DRINK_PRICES.ice_tea;
+                }
+                totalPrice = total;
+
+                // Isi konfirmasi modal
                 document.getElementById('confirmDate').textContent =
                     document.querySelector('input[name="booking_date"]').value;
                 document.getElementById('confirmTime').textContent =
@@ -750,7 +845,11 @@
                     `Rp ${totalPrice.toLocaleString('id-ID')}`;
 
                 // Show modal
-                confirmModal.showModal();
+                if (typeof confirmModal.showModal === 'function') {
+                    confirmModal.showModal();
+                } else {
+                    confirmModal.style.display = 'block';
+                }
             });
 
             // Final submission (from confirmation modal)
@@ -1067,29 +1166,29 @@
                             </div>
                             
                             ${foodItems || drinkItems ? `
-                                                                                                                                            <div class="grid grid-cols-2 gap-4 mt-4">
-                                                                                                                                                ${foodItems ? `
+                                                                                                                                                                                                                                                                                                                                    <div class="grid grid-cols-2 gap-4 mt-4">
+                                                                                                                                                                                                                                                                                                                                        ${foodItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Makanan</h4>
                                     <ul class="list-disc pl-5">${foodItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                                                                                                ${drinkItems ? `
+                                                                                                                                                                                                                                                                                                                                        ${drinkItems ? `
                                 <div>
                                     <h4 class="font-bold text-blue-400">Minuman</h4>
                                     <ul class="list-disc pl-5">${drinkItems}</ul>
                                 </div>
                                 ` : ''}
-                                                                                                                                            </div>
-                                                                                                                                            ` : ''}
+                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                    ` : ''}
                             
                             ${booking.paymentProof ? `
-                                                                                                                                            <div class="mt-4">
-                                                                                                                                                <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
-                                                                                                                                                <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
-                                                                                                                                                     class="mt-2 rounded-lg max-w-xs border border-gray-600">
-                                                                                                                                            </div>
-                                                                                                                                            ` : ''}
+                                                                                                                                                                                                                                                                                                                                    <div class="mt-4">
+                                                                                                                                                                                                                                                                                                                                        <h4 class="font-bold text-blue-400">Bukti Pembayaran</h4>
+                                                                                                                                                                                                                                                                                                                                        <img src="${booking.paymentProof}" alt="Bukti Pembayaran" 
+                                                                                                                                                                                                                                                                                                                                             class="mt-2 rounded-lg max-w-xs border border-gray-600">
+                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                    ` : ''}
                         </div>
                     `,
                         width: '800px',

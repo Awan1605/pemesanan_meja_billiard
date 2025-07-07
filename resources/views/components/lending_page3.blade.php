@@ -424,7 +424,7 @@
                                     <!-- Reservation Button -->
                                     <div class="mt-auto">
                                         @auth
-                                            <a href="{{ url('/booking') }}"
+                                            <a href="{{ route('booking.show', ['id' => $table->id]) }}"
                                                 class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
                                                 <i class="fas fa-calendar-plus"></i>
                                                 <span>Reservasi Sekarang</span>
@@ -537,7 +537,7 @@
                                     <!-- Reservation Button -->
                                     <div class="mt-auto">
                                         @auth
-                                            <a href="{{ url('/booking') }}"
+                                            <a href="{{ route('booking.show', ['id' => $table->id]) }}"
                                                 class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg font-semibold">
                                                 <i class="fas fa-calendar-plus"></i>
                                                 <span>Reservasi Sekarang</span>

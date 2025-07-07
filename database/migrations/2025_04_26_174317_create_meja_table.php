@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->enum('status', ['tersedia', 'terpesan', 'digunakan', 'maintenance']);
             $table->enum('tipe', ['exclusive', 'classic', 'vip'])->default('classic');
             $table->decimal('harga', 10, 2);
+
             $table->string('foto')->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();

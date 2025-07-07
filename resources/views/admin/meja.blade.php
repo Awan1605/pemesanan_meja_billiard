@@ -184,6 +184,9 @@
                                         Lokasi</th>
                                     <th
                                         class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Harga</th>
+                                    <th
+                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Status</th>
                                     <th
                                         class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -219,6 +222,12 @@
                                                     <div>
                                                         <p class="text-sm font-medium text-gray-500">Lokasi</p>
                                                         <p>{{ $m->lokasi }}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-sm font-medium text-gray-500">Harga</p>
+                                                        <p>
+                                                            Rp {{ number_format($m->harga, 0, ',', '.') }}
+                                                        </p>
                                                     </div>
                                                     <div>
                                                         <p class="text-sm font-medium text-gray-500">Status</p>
@@ -274,6 +283,9 @@
                                         <td class="px-4 py-4 hidden md:table-cell">{{ $m->kapasitas }} orang</td>
                                         <td class="px-4 py-4 hidden md:table-cell">{{ $m->lokasi }}</td>
                                         <td class="px-4 py-4 hidden md:table-cell">
+                                            Rp {{ number_format($m->harga, 0, ',', '.') }}
+                                        </td>
+                                        <td class="px-4 py-4 hidden md:table-cell">
                                             <span
                                                 class="status-badge 
                             @if ($m->status == 'tersedia') status-tersedia
@@ -316,7 +328,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="px-6 py-8 text-center text-gray-500">
+                                        <td colspan="8" class="px-6 py-8 text-center text-gray-500">
                                             <div class="flex flex-col items-center justify-center">
                                                 <i class="fas fa-inbox text-4xl mb-3 text-gray-400"></i>
                                                 <p class="text-lg">Tidak ada data meja</p>
@@ -377,6 +389,15 @@
                                         <option value="Lantai 3">Lantai 3</option>
 
                                     </select>
+                                </div>
+
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Harga <span class="text-red-500">*</span></span>
+                                    </label>
+                                    <input type="number" name="harga" x-model="currentMeja.harga" min="0"
+                                        class="input input-bordered" required>
+
                                 </div>
 
                                 <div class="form-control">
@@ -474,6 +495,14 @@
                                     </select>
                                 </div>
 
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Harga <span class="text-red-500">*</span></span>
+                                    </label>
+                                    <input type="number" name="harga" x-model="currentMeja.harga" min="0"
+                                        class="input input-bordered" required>
+
+                                </div>
                                 <div class="form-control">
                                     <label class="label">
                                         <span class="label-text">Status <span class="text-red-500">*</span></span>
@@ -595,6 +624,15 @@
                             </div>
 
                             <div class="flex items-start gap-3">
+                                <i class="fas fa-money-bill-wave text-emerald-400 mt-0.5"></i>
+                                <div>
+                                    <p class="text-gray-500 text-xs">Harga</p>
+                                    <p class="font-semibold text-base"
+                                        x-text="currentMeja.harga ? 'Rp ' + Number(currentMeja.harga).toLocaleString('id-ID') : '-'">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
                                 <i class="fas fa-info-circle text-yellow-400 mt-0.5"></i>
                                 <div>
                                     <p class="text-gray-500 text-xs">Status Meja</p>
@@ -650,8 +688,9 @@
                                 nama: '',
                                 kapasitas: '',
                                 lokasi: '',
+                                harga: '',
                                 status: '',
-                                tipe: '', // tambahkan ini
+                                tipe: '',
                                 foto: '',
                                 deskripsi: '',
                                 status_label: ''
@@ -678,8 +717,9 @@
                                     nama: meja.nama,
                                     kapasitas: meja.kapasitas,
                                     lokasi: meja.lokasi,
+                                    harga: meja.harga || '',
                                     status: meja.status,
-                                    tipe: meja.tipe || '', // tambahkan ini
+                                    tipe: meja.tipe || '',
                                     foto: meja.foto || '',
                                     deskripsi: meja.deskripsi || '',
                                     status_label: meja.status_label || ''
